@@ -8,10 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		9543049C5260C38B82037C92 /* Pods_PixelGramTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0CEE169CEA330C829D6D343 /* Pods_PixelGramTests.framework */; };
-		B4BADC5E1F9F7F6200651842 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BADC5D1F9F7F6200651842 /* AppDelegate.swift */; };
-		B4BADC601F9F7F6200651842 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BADC5F1F9F7F6200651842 /* ViewController.swift */; };
+		B4B2B9071FA3B29100454DE3 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B2B9061FA3B29100454DE3 /* FeedViewController.swift */; };
+		B4B2B9091FA3B2AE00454DE3 /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B2B9081FA3B2AE00454DE3 /* FeedViewModel.swift */; };
+		B4B2B90B1FA3B2BD00454DE3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B2B90A1FA3B2BD00454DE3 /* LoginViewController.swift */; };
+		B4B2B90D1FA3B2CE00454DE3 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B2B90C1FA3B2CE00454DE3 /* LoginViewModel.swift */; };
+		B4B2B90F1FA3B2D900454DE3 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B2B90E1FA3B2D900454DE3 /* ProfileViewController.swift */; };
+		B4B2B9111FA3B2E500454DE3 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B2B9101FA3B2E500454DE3 /* ProfileViewModel.swift */; };
+		B4B2B9131FA3B2F100454DE3 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B2B9121FA3B2F100454DE3 /* SignupViewController.swift */; };
+		B4B2B9151FA3B2FF00454DE3 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B2B9141FA3B2FF00454DE3 /* SignupViewModel.swift */; };
+		B4B2B9181FA3B39B00454DE3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B2B9171FA3B39B00454DE3 /* User.swift */; };
+		B4B2B91A1FA3B3A700454DE3 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B2B9191FA3B3A700454DE3 /* Image.swift */; };
+		B4B2B91E1FA3B47300454DE3 /* ImageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B2B91D1FA3B47300454DE3 /* ImageViewCell.swift */; };
+		B4B2B9201FA3B48700454DE3 /* ImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B2B91F1FA3B48700454DE3 /* ImageViewModel.swift */; };
+		B4B2B9231FA3B4D500454DE3 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B2B9221FA3B4D500454DE3 /* SettingsViewController.swift */; };
+		B4B2B9251FA3B4EE00454DE3 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B2B9241FA3B4EE00454DE3 /* SettingsViewModel.swift */; };
+		B4B2B9271FA3B53800454DE3 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B2B9261FA3B53800454DE3 /* UserViewModel.swift */; };
+		B4B2B9291FA3BAE800454DE3 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B2B9281FA3BAE800454DE3 /* Session.swift */; };
+		B4B2B92A1FA3C4B800454DE3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B2B9001FA3B21900454DE3 /* AppDelegate.swift */; };
 		B4BADC631F9F7F6200651842 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4BADC611F9F7F6200651842 /* Main.storyboard */; };
-		B4BADC661F9F7F6200651842 /* PixelGram.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B4BADC641F9F7F6200651842 /* PixelGram.xcdatamodeld */; };
 		B4BADC681F9F7F6200651842 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4BADC671F9F7F6200651842 /* Assets.xcassets */; };
 		B4BADC6B1F9F7F6200651842 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4BADC691F9F7F6200651842 /* LaunchScreen.storyboard */; };
 		B4BADC761F9F7F6200651842 /* PixelGramTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BADC751F9F7F6200651842 /* PixelGramTests.swift */; };
@@ -34,11 +48,25 @@
 		8AA51776F9D770C0EEBF72C9 /* Pods-PixelGram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PixelGram.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PixelGram/Pods-PixelGram.debug.xcconfig"; sourceTree = "<group>"; };
 		B40F9D881F9F837E00243953 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		B40F9D891F9F837E00243953 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		B4B2B9001FA3B21900454DE3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		B4B2B9061FA3B29100454DE3 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		B4B2B9081FA3B2AE00454DE3 /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
+		B4B2B90A1FA3B2BD00454DE3 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		B4B2B90C1FA3B2CE00454DE3 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		B4B2B90E1FA3B2D900454DE3 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		B4B2B9101FA3B2E500454DE3 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		B4B2B9121FA3B2F100454DE3 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		B4B2B9141FA3B2FF00454DE3 /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
+		B4B2B9171FA3B39B00454DE3 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		B4B2B9191FA3B3A700454DE3 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		B4B2B91D1FA3B47300454DE3 /* ImageViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewCell.swift; sourceTree = "<group>"; };
+		B4B2B91F1FA3B48700454DE3 /* ImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewModel.swift; sourceTree = "<group>"; };
+		B4B2B9221FA3B4D500454DE3 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		B4B2B9241FA3B4EE00454DE3 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		B4B2B9261FA3B53800454DE3 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		B4B2B9281FA3BAE800454DE3 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		B4BADC5A1F9F7F6200651842 /* PixelGram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PixelGram.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B4BADC5D1F9F7F6200651842 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B4BADC5F1F9F7F6200651842 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B4BADC621F9F7F6200651842 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		B4BADC651F9F7F6200651842 /* PixelGram.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PixelGram.xcdatamodel; sourceTree = "<group>"; };
 		B4BADC671F9F7F6200651842 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B4BADC6A1F9F7F6200651842 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B4BADC6C1F9F7F6200651842 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -90,6 +118,118 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		B4B2B8FC1FA3B20000454DE3 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				B4B2B8FD1FA3B20000454DE3 /* App Delegate */,
+				B4B2B9161FA3B37F00454DE3 /* Models */,
+				B4B2B9011FA3B23100454DE3 /* Scenes */,
+				B4B2B8FE1FA3B20000454DE3 /* Shared */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		B4B2B8FD1FA3B20000454DE3 /* App Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				B4B2B9001FA3B21900454DE3 /* AppDelegate.swift */,
+			);
+			path = "App Delegate";
+			sourceTree = "<group>";
+		};
+		B4B2B8FE1FA3B20000454DE3 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				B4B2B91B1FA3B45500454DE3 /* ViewModels */,
+				B4B2B91C1FA3B45500454DE3 /* Views */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		B4B2B9011FA3B23100454DE3 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				B4B2B9031FA3B26B00454DE3 /* Feed */,
+				B4B2B9041FA3B26B00454DE3 /* Login */,
+				B4B2B9021FA3B26B00454DE3 /* Profile */,
+				B4B2B9211FA3B4C600454DE3 /* Settings */,
+				B4B2B9051FA3B26B00454DE3 /* Signup */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		B4B2B9021FA3B26B00454DE3 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				B4B2B90E1FA3B2D900454DE3 /* ProfileViewController.swift */,
+				B4B2B9101FA3B2E500454DE3 /* ProfileViewModel.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		B4B2B9031FA3B26B00454DE3 /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				B4B2B9061FA3B29100454DE3 /* FeedViewController.swift */,
+				B4B2B9081FA3B2AE00454DE3 /* FeedViewModel.swift */,
+			);
+			path = Feed;
+			sourceTree = "<group>";
+		};
+		B4B2B9041FA3B26B00454DE3 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				B4B2B90A1FA3B2BD00454DE3 /* LoginViewController.swift */,
+				B4B2B90C1FA3B2CE00454DE3 /* LoginViewModel.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		B4B2B9051FA3B26B00454DE3 /* Signup */ = {
+			isa = PBXGroup;
+			children = (
+				B4B2B9121FA3B2F100454DE3 /* SignupViewController.swift */,
+				B4B2B9141FA3B2FF00454DE3 /* SignupViewModel.swift */,
+			);
+			path = Signup;
+			sourceTree = "<group>";
+		};
+		B4B2B9161FA3B37F00454DE3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B4B2B9171FA3B39B00454DE3 /* User.swift */,
+				B4B2B9191FA3B3A700454DE3 /* Image.swift */,
+				B4B2B9281FA3BAE800454DE3 /* Session.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B4B2B91B1FA3B45500454DE3 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				B4B2B91F1FA3B48700454DE3 /* ImageViewModel.swift */,
+				B4B2B9261FA3B53800454DE3 /* UserViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		B4B2B91C1FA3B45500454DE3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B4B2B91D1FA3B47300454DE3 /* ImageViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B4B2B9211FA3B4C600454DE3 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				B4B2B9221FA3B4D500454DE3 /* SettingsViewController.swift */,
+				B4B2B9241FA3B4EE00454DE3 /* SettingsViewModel.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		B4BADC511F9F7F6200651842 = {
 			isa = PBXGroup;
 			children = (
@@ -115,13 +255,11 @@
 		B4BADC5C1F9F7F6200651842 /* PixelGram */ = {
 			isa = PBXGroup;
 			children = (
-				B4BADC5D1F9F7F6200651842 /* AppDelegate.swift */,
-				B4BADC5F1F9F7F6200651842 /* ViewController.swift */,
+				B4B2B8FC1FA3B20000454DE3 /* Classes */,
 				B4BADC611F9F7F6200651842 /* Main.storyboard */,
 				B4BADC671F9F7F6200651842 /* Assets.xcassets */,
 				B4BADC691F9F7F6200651842 /* LaunchScreen.storyboard */,
 				B4BADC6C1F9F7F6200651842 /* Info.plist */,
-				B4BADC641F9F7F6200651842 /* PixelGram.xcdatamodeld */,
 			);
 			path = PixelGram;
 			sourceTree = "<group>";
@@ -191,6 +329,7 @@
 				TargetAttributes = {
 					B4BADC591F9F7F6200651842 = {
 						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					B4BADC701F9F7F6200651842 = {
@@ -317,11 +456,15 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-PixelGram/Pods-PixelGram-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Locksmith/Locksmith.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Locksmith.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 			);
@@ -355,9 +498,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4BADC601F9F7F6200651842 /* ViewController.swift in Sources */,
-				B4BADC5E1F9F7F6200651842 /* AppDelegate.swift in Sources */,
-				B4BADC661F9F7F6200651842 /* PixelGram.xcdatamodeld in Sources */,
+				B4B2B9151FA3B2FF00454DE3 /* SignupViewModel.swift in Sources */,
+				B4B2B9291FA3BAE800454DE3 /* Session.swift in Sources */,
+				B4B2B90F1FA3B2D900454DE3 /* ProfileViewController.swift in Sources */,
+				B4B2B90B1FA3B2BD00454DE3 /* LoginViewController.swift in Sources */,
+				B4B2B9131FA3B2F100454DE3 /* SignupViewController.swift in Sources */,
+				B4B2B91E1FA3B47300454DE3 /* ImageViewCell.swift in Sources */,
+				B4B2B9251FA3B4EE00454DE3 /* SettingsViewModel.swift in Sources */,
+				B4B2B9071FA3B29100454DE3 /* FeedViewController.swift in Sources */,
+				B4B2B90D1FA3B2CE00454DE3 /* LoginViewModel.swift in Sources */,
+				B4B2B9271FA3B53800454DE3 /* UserViewModel.swift in Sources */,
+				B4B2B9091FA3B2AE00454DE3 /* FeedViewModel.swift in Sources */,
+				B4B2B9231FA3B4D500454DE3 /* SettingsViewController.swift in Sources */,
+				B4B2B9181FA3B39B00454DE3 /* User.swift in Sources */,
+				B4B2B91A1FA3B3A700454DE3 /* Image.swift in Sources */,
+				B4B2B9111FA3B2E500454DE3 /* ProfileViewModel.swift in Sources */,
+				B4B2B92A1FA3C4B800454DE3 /* AppDelegate.swift in Sources */,
+				B4B2B9201FA3B48700454DE3 /* ImageViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -511,11 +668,13 @@
 			baseConfigurationReference = 8AA51776F9D770C0EEBF72C9 /* Pods-PixelGram.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = PixelGram/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.PixelGram;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -526,6 +685,7 @@
 			baseConfigurationReference = 1F2D0F7DF1843C9765F3749D /* Pods-PixelGram.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = PixelGram/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -601,19 +761,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		B4BADC641F9F7F6200651842 /* PixelGram.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				B4BADC651F9F7F6200651842 /* PixelGram.xcdatamodel */,
-			);
-			currentVersion = B4BADC651F9F7F6200651842 /* PixelGram.xcdatamodel */;
-			path = PixelGram.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = B4BADC521F9F7F6200651842 /* Project object */;
 }

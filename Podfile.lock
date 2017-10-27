@@ -1,4 +1,6 @@
 PODS:
+  - Alamofire (4.5.1)
+  - Locksmith (4.0.0)
   - RxBlocking (4.0.0):
     - RxSwift (~> 4.0)
   - RxCocoa (4.0.0):
@@ -8,17 +10,21 @@ PODS:
     - RxSwift (~> 4.0)
 
 DEPENDENCIES:
+  - Alamofire (~> 4.5)
+  - Locksmith (~> 4.0)
   - RxBlocking (~> 4.0)
   - RxCocoa (~> 4.0)
   - RxSwift (~> 4.0)
   - RxTest (~> 4.0)
 
 SPEC CHECKSUMS:
+  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
+  Locksmith: e9bebbaaa4cee3c511bc358a44f843c3fe00e21f
   RxBlocking: 923c2c8106d80d7c2d6b276afd66ce3b10824836
   RxCocoa: d62846ca96495d862fa4c59ea7d87e5031d7340e
   RxSwift: fd680d75283beb5e2559486f3c0ff852f0d35334
   RxTest: 0041e792cede35e53e4749f378d21482af0e9d12
 
-PODFILE CHECKSUM: 322a3ebbe3c787973ffeec5bfa28682a9914d476
+PODFILE CHECKSUM: d76995a873849156c5e080eef419033fcc8c78af
 
 COCOAPODS: 1.3.1

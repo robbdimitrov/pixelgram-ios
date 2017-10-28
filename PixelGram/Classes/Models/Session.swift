@@ -6,11 +6,22 @@
 //  Copyright © 2017 Robert Dimitrov. All rights reserved.
 //
 
+import Foundation
+
 class Session {
 
     static let sharedInstance = Session()
     
     private init() {}
+    
+    var authDate: Date? {
+        get {
+            return Date()
+        }
+        set {
+            
+        }
+    }
     
     var currentUser: User? {
         get {

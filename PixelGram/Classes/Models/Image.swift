@@ -6,11 +6,13 @@
 //  Copyright © 2017 Robert Dimitrov. All rights reserved.
 //
 
+import Foundation
+
 struct Image {
 
     var owner: User
     var url: String
-    var dateCreated: String
+    var dateCreated: Date
     var description: String?
     var usersLiked: [User]?
     

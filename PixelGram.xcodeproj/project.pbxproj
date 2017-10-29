@@ -28,6 +28,14 @@
 		B4BADC6B1F9F7F6200651842 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4BADC691F9F7F6200651842 /* LaunchScreen.storyboard */; };
 		B4BADC761F9F7F6200651842 /* PixelGramTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BADC751F9F7F6200651842 /* PixelGramTests.swift */; };
 		B4E9CC381FA46B2D009ECF88 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E9CC371FA46B2D009ECF88 /* SignupViewModel.swift */; };
+		B4E9CC3A1FA4BF6C009ECF88 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E9CC391FA4BF6C009ECF88 /* ProfileCell.swift */; };
+		B4E9CC3C1FA4C16F009ECF88 /* LabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E9CC3B1FA4C16F009ECF88 /* LabelCell.swift */; };
+		B4E9CC3E1FA4C308009ECF88 /* InputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E9CC3D1FA4C308009ECF88 /* InputCell.swift */; };
+		B4E9CC401FA4C622009ECF88 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E9CC3F1FA4C622009ECF88 /* HeaderView.swift */; };
+		B4E9CC431FA4CBA2009ECF88 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E9CC421FA4CBA2009ECF88 /* CameraViewController.swift */; };
+		B4E9CC461FA4CEBA009ECF88 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E9CC451FA4CEBA009ECF88 /* TabViewController.swift */; };
+		B4E9CC4B1FA5C986009ECF88 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E9CC4A1FA5C986009ECF88 /* ViewController.swift */; };
+		B4E9CC4D1FA5C992009ECF88 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E9CC4C1FA5C992009ECF88 /* View.swift */; };
 		EE66EED9888004422CFEA730 /* Pods_PixelGram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E47333A63EEDE7FE606960C0 /* Pods_PixelGram.framework */; };
 /* End PBXBuildFile section */
 
@@ -71,6 +79,14 @@
 		B4BADC751F9F7F6200651842 /* PixelGramTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelGramTests.swift; sourceTree = "<group>"; };
 		B4BADC771F9F7F6200651842 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B4E9CC371FA46B2D009ECF88 /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
+		B4E9CC391FA4BF6C009ECF88 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
+		B4E9CC3B1FA4C16F009ECF88 /* LabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelCell.swift; sourceTree = "<group>"; };
+		B4E9CC3D1FA4C308009ECF88 /* InputCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputCell.swift; sourceTree = "<group>"; };
+		B4E9CC3F1FA4C622009ECF88 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		B4E9CC421FA4CBA2009ECF88 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		B4E9CC451FA4CEBA009ECF88 /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
+		B4E9CC4A1FA5C986009ECF88 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B4E9CC4C1FA5C992009ECF88 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		D0CEE169CEA330C829D6D343 /* Pods_PixelGramTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PixelGramTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E47333A63EEDE7FE606960C0 /* Pods_PixelGram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PixelGram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECF04226D5F81C6187E8B9D8 /* Pods-PixelGramTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PixelGramTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PixelGramTests/Pods-PixelGramTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -138,6 +154,8 @@
 		B4B2B8FE1FA3B20000454DE3 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				B4E9CC491FA5C974009ECF88 /* Extensions */,
+				B4E9CC441FA4CEAE009ECF88 /* ViewControllers */,
 				B4B2B91B1FA3B45500454DE3 /* ViewModels */,
 				B4B2B91C1FA3B45500454DE3 /* Views */,
 			);
@@ -147,6 +165,7 @@
 		B4B2B9011FA3B23100454DE3 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				B4E9CC411FA4CB81009ECF88 /* Camera */,
 				B4B2B9031FA3B26B00454DE3 /* Feed */,
 				B4B2B9041FA3B26B00454DE3 /* Login */,
 				B4B2B9021FA3B26B00454DE3 /* Profile */,
@@ -160,6 +179,7 @@
 			children = (
 				B4B2B90E1FA3B2D900454DE3 /* ProfileViewController.swift */,
 				B4B2B9101FA3B2E500454DE3 /* ProfileViewModel.swift */,
+				B4E9CC391FA4BF6C009ECF88 /* ProfileCell.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -206,6 +226,8 @@
 			isa = PBXGroup;
 			children = (
 				B4B2B91D1FA3B47300454DE3 /* ImageViewCell.swift */,
+				B4E9CC3B1FA4C16F009ECF88 /* LabelCell.swift */,
+				B4E9CC3D1FA4C308009ECF88 /* InputCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -215,6 +237,7 @@
 			children = (
 				B4B2B9221FA3B4D500454DE3 /* SettingsViewController.swift */,
 				B4B2B9241FA3B4EE00454DE3 /* SettingsViewModel.swift */,
+				B4E9CC3F1FA4C622009ECF88 /* HeaderView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -260,6 +283,31 @@
 				B4BADC771F9F7F6200651842 /* Info.plist */,
 			);
 			path = PixelGramTests;
+			sourceTree = "<group>";
+		};
+		B4E9CC411FA4CB81009ECF88 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				B4E9CC421FA4CBA2009ECF88 /* CameraViewController.swift */,
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
+		B4E9CC441FA4CEAE009ECF88 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				B4E9CC451FA4CEBA009ECF88 /* TabViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		B4E9CC491FA5C974009ECF88 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B4E9CC4A1FA5C986009ECF88 /* ViewController.swift */,
+				B4E9CC4C1FA5C992009ECF88 /* View.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -487,20 +535,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4E9CC3A1FA4BF6C009ECF88 /* ProfileCell.swift in Sources */,
 				B4E9CC381FA46B2D009ECF88 /* SignupViewModel.swift in Sources */,
 				B4B2B9291FA3BAE800454DE3 /* Session.swift in Sources */,
 				B4B2B90F1FA3B2D900454DE3 /* ProfileViewController.swift in Sources */,
 				B4B2B90B1FA3B2BD00454DE3 /* LoginViewController.swift in Sources */,
 				B4B2B91E1FA3B47300454DE3 /* ImageViewCell.swift in Sources */,
+				B4E9CC461FA4CEBA009ECF88 /* TabViewController.swift in Sources */,
+				B4E9CC4B1FA5C986009ECF88 /* ViewController.swift in Sources */,
+				B4E9CC4D1FA5C992009ECF88 /* View.swift in Sources */,
 				B4B2B9251FA3B4EE00454DE3 /* SettingsViewModel.swift in Sources */,
 				B4B2B9071FA3B29100454DE3 /* FeedViewController.swift in Sources */,
 				B4B2B90D1FA3B2CE00454DE3 /* LoginViewModel.swift in Sources */,
 				B4B2B9271FA3B53800454DE3 /* UserViewModel.swift in Sources */,
 				B4B2B9091FA3B2AE00454DE3 /* FeedViewModel.swift in Sources */,
+				B4E9CC431FA4CBA2009ECF88 /* CameraViewController.swift in Sources */,
+				B4E9CC3C1FA4C16F009ECF88 /* LabelCell.swift in Sources */,
 				B4B2B9231FA3B4D500454DE3 /* SettingsViewController.swift in Sources */,
 				B4B2B9181FA3B39B00454DE3 /* User.swift in Sources */,
 				B4B2B91A1FA3B3A700454DE3 /* Image.swift in Sources */,
+				B4E9CC401FA4C622009ECF88 /* HeaderView.swift in Sources */,
 				B4B2B9111FA3B2E500454DE3 /* ProfileViewModel.swift in Sources */,
+				B4E9CC3E1FA4C308009ECF88 /* InputCell.swift in Sources */,
 				B4B2B92A1FA3C4B800454DE3 /* AppDelegate.swift in Sources */,
 				B4B2B9201FA3B48700454DE3 /* ImageViewModel.swift in Sources */,
 			);
@@ -664,7 +720,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -680,7 +736,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.PixelGram;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

@@ -19,6 +19,10 @@ class ImageViewCell: UICollectionViewCell {
     
     // MARK: - Actions
     
+    @IBAction func imageDoubleTapped(_ sender: UITapGestureRecognizer) {
+        
+    }
+    
     @IBAction func likeTapped(_ sender: UIButton) {
         
     }

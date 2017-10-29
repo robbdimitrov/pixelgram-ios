@@ -44,10 +44,10 @@ class TabViewController: UIViewController {
         }
     }
 
-    private var viewControllers: [Int: UIViewController] = [:]
-    private var buttons: [UIButton] = []
+    private var viewControllers = [Int: UIViewController]()
+    private var buttons = [UIButton]()
     private let disposeBag = DisposeBag()
-    private var selectedTab: Variable<Int> = Variable(0)
+    private var selectedTab = Variable(0)
     
     @IBOutlet var homeButton: UIButton?
     @IBOutlet var cameraButton: UIButton?
@@ -92,9 +92,8 @@ class TabViewController: UIViewController {
     private func configureButton(button: UIButton) {
         let image = button.image(for: .normal)?.withRenderingMode(.alwaysTemplate)
         
-        button.setTitleColor(UIColor.black.withAlphaComponent(0.5), for: .normal)
-        button.setTitleColor(UIColor.black.withAlphaComponent(1.0), for: [.selected, .highlighted])
         button.setImage(image, for: .normal)
+        button.tintColor = UIColor.black.withAlphaComponent(0.25)
         
         button.rx.tap.subscribe(onNext: { [weak self] in
             let index = self?.buttons.index(of: button) ?? 0
@@ -146,16 +145,18 @@ class TabViewController: UIViewController {
     private func updateSelectedTabButton(_ currentValue: Int, oldValue: Int = 0) {
         let previousButton = buttons[oldValue]
         previousButton.isSelected = false
+        previousButton.tintColor = UIColor.black.withAlphaComponent(0.25)
         
         let currentButton = buttons[currentValue]
         currentButton.isSelected = true
+        currentButton.tintColor = UIColor.black.withAlphaComponent(1.0)
     }
     
     private func updateSelectedViewController(_ currentValue: Int, oldValue: Int = 0) {
         let previousViewController = viewControllers[oldValue]
         let currentViewController = viewControllerForIndex(currentValue)
         
-        guard previousViewController == currentViewController else {
+        guard previousViewController != currentViewController else {
             print("View controller didn't change")
             return
         }

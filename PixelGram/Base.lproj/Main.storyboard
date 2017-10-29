@@ -22,7 +22,7 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="nB0-ql-a2E">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="EFn-SA-LV4">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="EFn-SA-LV4">
                                     <size key="itemSize" width="372" height="491"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -54,28 +54,29 @@
                                                         <constraint firstAttribute="height" constant="1" id="FoO-6C-N4z"/>
                                                     </constraints>
                                                 </view>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SoD-le-jMC">
-                                                    <rect key="frame" x="12" y="449" width="46.5" height="30"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SoD-le-jMC">
+                                                    <rect key="frame" x="12" y="449" width="32" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="KIT-de-R3u"/>
                                                     </constraints>
-                                                    <state key="normal" title="Like"/>
+                                                    <state key="normal" image="ic_favorite_border"/>
+                                                    <state key="selected" image="ic_favorite"/>
                                                     <connections>
                                                         <action selector="likeTapped:" destination="FtC-1f-DcQ" eventType="touchUpInside" id="e9a-YZ-OaX"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0ow-TF-bSD">
-                                                    <rect key="frame" x="70.5" y="449" width="46.5" height="30"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0ow-TF-bSD">
+                                                    <rect key="frame" x="56" y="449" width="32" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="hjS-NU-p1T"/>
                                                     </constraints>
-                                                    <state key="normal" title="Share"/>
+                                                    <state key="normal" image="ic_open_in_new"/>
                                                     <connections>
                                                         <action selector="shareTapped:" destination="FtC-1f-DcQ" eventType="touchUpInside" id="hHV-JK-AAW"/>
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Likes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I1h-fk-Ve7">
-                                                    <rect key="frame" x="129" y="456" width="231" height="17"/>
+                                                    <rect key="frame" x="100" y="456" width="260" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -98,7 +99,7 @@
                                             <constraint firstAttribute="bottomMargin" secondItem="SoD-le-jMC" secondAttribute="bottom" constant="12" id="GzQ-uH-YWo"/>
                                             <constraint firstItem="Cbq-3w-9Rc" firstAttribute="top" secondItem="lbf-H3-gbO" secondAttribute="bottom" constant="12" id="NOi-ow-6gO"/>
                                             <constraint firstItem="Cbq-3w-9Rc" firstAttribute="leading" secondItem="FtC-1f-DcQ" secondAttribute="leading" id="Qjm-vh-Sfw"/>
-                                            <constraint firstItem="0ow-TF-bSD" firstAttribute="width" secondItem="I1h-fk-Ve7" secondAttribute="width" multiplier="2:10" id="UGE-tY-fJ2"/>
+                                            <constraint firstItem="0ow-TF-bSD" firstAttribute="width" secondItem="I1h-fk-Ve7" secondAttribute="width" multiplier="2:16" id="UGE-tY-fJ2"/>
                                             <constraint firstItem="Cbq-3w-9Rc" firstAttribute="top" secondItem="djM-zO-dFw" secondAttribute="bottom" constant="13" id="WrY-u2-w2P"/>
                                             <constraint firstItem="lbf-H3-gbO" firstAttribute="top" secondItem="FtC-1f-DcQ" secondAttribute="top" constant="12" id="eOS-SC-5tA"/>
                                             <constraint firstItem="2Bu-1c-LZY" firstAttribute="top" secondItem="Cbq-3w-9Rc" secondAttribute="bottom" id="kvb-rt-GdG"/>
@@ -135,6 +136,9 @@
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="ZPh-x0-LOb"/>
+                    <connections>
+                        <outlet property="collectionView" destination="nB0-ql-a2E" id="SFp-Zl-5QA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -595,6 +599,9 @@
     <resources>
         <image name="ic_account_box" width="24" height="24"/>
         <image name="ic_add_a_photo" width="24" height="24"/>
+        <image name="ic_favorite" width="24" height="24"/>
+        <image name="ic_favorite_border" width="24" height="24"/>
         <image name="ic_home" width="24" height="24"/>
+        <image name="ic_open_in_new" width="24" height="24"/>
     </resources>
 </document>

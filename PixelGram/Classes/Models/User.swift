@@ -8,11 +8,11 @@
 
 struct User {
     
-    var name: String
-    var username: String
-    var email: String
-    var avatarURL: String
-    var bio: String?
+    var name: String = ""
+    var username: String = ""
+    var email: String = ""
+    var avatarURL: String = ""
+    var bio: String? = ""
     var images: [Image]?
     var likedImages: [Image]?
     

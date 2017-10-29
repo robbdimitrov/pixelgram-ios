@@ -8,14 +8,55 @@
 
 import UIKit
 
+import RxSwift
+import RxCocoa
+
 class FeedViewController: UIViewController {
 
+    private var viewModel = FeedViewModel()
+    @IBOutlet var collectionView: UICollectionView?
+    
+    let disposeBag = DisposeBag()
+    
+    // MARK: - View lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupHeader()
-        
         title = "Feed"
+        
+        setupHeader()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        configureCollectionView()
+        viewModel.loadData()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        if let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
+            flowLayout.estimatedItemSize = CGSize(width: view.bounds.width, height: view.bounds.width)
+        }
+    }
+    
+    // MARK: - Config
+    
+    func configureCollectionView() {
+        guard let collectionView = collectionView else {
+            print("Error: collection view is nil")
+            return
+        }
+        
+        viewModel.images.asObservable()
+            .bind(to: collectionView.rx.items(cellIdentifier:
+            ImageViewCell.reuseIdentifier,
+            cellType: ImageViewCell.self)) { (row, element, cell) in
+                
+                cell.configure(with: ImageViewModel(with: element))
+                
+        }.disposed(by: disposeBag)
     }
     
     func setupHeader() {

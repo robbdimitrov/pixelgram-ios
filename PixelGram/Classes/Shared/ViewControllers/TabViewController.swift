@@ -19,13 +19,13 @@ class TabViewController: UIViewController {
     }
     
     private enum Tab: Int {
-        case home = 0
+        case feed = 0
         case camera
         case profile
         
         var identifier: String {
             switch self {
-            case .home:
+            case .feed:
                 return FeedViewController.storyboardIdentifier
             case .camera:
                 return CameraViewController.storyboardIdentifier

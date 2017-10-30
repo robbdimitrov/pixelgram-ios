@@ -12,9 +12,15 @@ class ImageViewModel {
     
     private var image: Image
     
+    private var dateFormatter = DateFormatter()
+    
     init(with image: Image) {
         self.image = image
+        
+        configureDateFormatter()
     }
+    
+    // Getters
     
     var imageURL: URL? {
         return URL(string: image.url)
@@ -25,7 +31,10 @@ class ImageViewModel {
     }
     
     var ownerAvatarURL: URL? {
-        return URL(string: image.owner.avatarURL)
+        if let avatarURL = image.owner.avatarURL {
+            return URL(string: avatarURL)
+        }
+        return nil
     }
     
     var likesText: String {
@@ -45,6 +54,17 @@ class ImageViewModel {
         attributedString.setAttributes([.font : usernameFont], range: (attributedString.string as NSString).range(of: image.owner.username))
         
         return attributedString
+    }
+    
+    var dateCreatedText: String {
+        return dateFormatter.string(from: image.dateCreated)
+    }
+    
+    // Configure date formatter
+    
+    func configureDateFormatter() {
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .none
     }
     
 }

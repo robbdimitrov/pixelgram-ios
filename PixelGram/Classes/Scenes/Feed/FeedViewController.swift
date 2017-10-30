@@ -13,10 +13,10 @@ import RxCocoa
 
 class FeedViewController: UIViewController {
 
-    private var viewModel = FeedViewModel()
     @IBOutlet var collectionView: UICollectionView?
     
-    let disposeBag = DisposeBag()
+    private var viewModel = FeedViewModel()
+    private let disposeBag = DisposeBag()
     
     // MARK: - View lifecycle
     
@@ -25,13 +25,13 @@ class FeedViewController: UIViewController {
 
         title = "Feed"
         
-        setupHeader()
+        configureHeader()
+        configureCollectionView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        configureCollectionView()
         viewModel.loadData()
     }
     
@@ -51,7 +51,7 @@ class FeedViewController: UIViewController {
             return
         }
         
-        viewModel.images.asObservable()
+        viewModel.imagesObservable
             .bind(to: collectionView.rx.items(cellIdentifier:
             ImageViewCell.reuseIdentifier,
             cellType: ImageViewCell.self)) { (row, element, cell) in
@@ -61,7 +61,7 @@ class FeedViewController: UIViewController {
         }.disposed(by: disposeBag)
     }
     
-    func setupHeader() {
+    func configureHeader() {
         let logoView = UIImageView()
         let image = UIImage(named: "logo")
         let ratio: CGFloat = (image?.size.width ?? 0) / (image?.size.height ?? 1)

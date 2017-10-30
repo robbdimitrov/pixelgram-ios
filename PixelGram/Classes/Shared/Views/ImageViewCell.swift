@@ -10,13 +10,18 @@ import UIKit
 
 class ImageViewCell: FullWidthCell {
     
-    @IBOutlet var avatarImageView: UIImageView?
+    @IBOutlet var avatarImageView: UIImageView? {
+        didSet {
+            avatarImageView?.layer.cornerRadius = (avatarImageView?.frame.width ?? 0) / 2.0
+        }
+    }
     @IBOutlet var usernameLabel: UILabel?
     @IBOutlet var imageView: UIImageView?
     @IBOutlet var likesLabel: UILabel?
     @IBOutlet var likeButton: UIButton?
     @IBOutlet var shareButton: UIButton?
     @IBOutlet var descriptionLabel: UILabel?
+    @IBOutlet var dateCreatedLabel: UILabel?
     
     var viewModel: ImageViewModel?
     
@@ -36,6 +41,7 @@ class ImageViewCell: FullWidthCell {
         usernameLabel?.text = viewModel.usernameText
         likesLabel?.text = viewModel.likesText
         descriptionLabel?.attributedText = viewModel.descriptionText
+        dateCreatedLabel?.text = viewModel.dateCreatedText
     }
     
 }

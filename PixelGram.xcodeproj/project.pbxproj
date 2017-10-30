@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		9543049C5260C38B82037C92 /* Pods_PixelGramTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0CEE169CEA330C829D6D343 /* Pods_PixelGramTests.framework */; };
+		B40896D91FA7D36A006088EE /* ProfileDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E940031FA74D2F0098AEA2 /* ProfileDataSource.swift */; };
+		B470DDFB1FA7AD6A00B0E3E9 /* MockServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B470DDFA1FA7AD6A00B0E3E9 /* MockServer.swift */; };
 		B4B0CD571FA63D290099768C /* UIImageView+Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B0CD561FA63D290099768C /* UIImageView+Networking.swift */; };
 		B4B2B9071FA3B29100454DE3 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B2B9061FA3B29100454DE3 /* FeedViewController.swift */; };
 		B4B2B9091FA3B2AE00454DE3 /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B2B9081FA3B2AE00454DE3 /* FeedViewModel.swift */; };
@@ -29,6 +31,7 @@
 		B4BADC6B1F9F7F6200651842 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4BADC691F9F7F6200651842 /* LaunchScreen.storyboard */; };
 		B4BADC761F9F7F6200651842 /* PixelGramTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BADC751F9F7F6200651842 /* PixelGramTests.swift */; };
 		B4E93FFF1FA6F4DE0098AEA2 /* FullWidthCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E93FFE1FA6F4DE0098AEA2 /* FullWidthCell.swift */; };
+		B4E940021FA747BF0098AEA2 /* ThumbImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E940011FA747BF0098AEA2 /* ThumbImageCell.swift */; };
 		B4E9CC381FA46B2D009ECF88 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E9CC371FA46B2D009ECF88 /* SignupViewModel.swift */; };
 		B4E9CC3A1FA4BF6C009ECF88 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E9CC391FA4BF6C009ECF88 /* ProfileCell.swift */; };
 		B4E9CC3C1FA4C16F009ECF88 /* LabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E9CC3B1FA4C16F009ECF88 /* LabelCell.swift */; };
@@ -58,6 +61,7 @@
 		8AA51776F9D770C0EEBF72C9 /* Pods-PixelGram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PixelGram.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PixelGram/Pods-PixelGram.debug.xcconfig"; sourceTree = "<group>"; };
 		B40F9D881F9F837E00243953 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		B40F9D891F9F837E00243953 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		B470DDFA1FA7AD6A00B0E3E9 /* MockServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockServer.swift; sourceTree = "<group>"; };
 		B4B0CD561FA63D290099768C /* UIImageView+Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Networking.swift"; sourceTree = "<group>"; };
 		B4B2B9001FA3B21900454DE3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B4B2B9061FA3B29100454DE3 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
@@ -83,6 +87,9 @@
 		B4BADC751F9F7F6200651842 /* PixelGramTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelGramTests.swift; sourceTree = "<group>"; };
 		B4BADC771F9F7F6200651842 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B4E93FFE1FA6F4DE0098AEA2 /* FullWidthCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullWidthCell.swift; sourceTree = "<group>"; };
+		B4E940001FA70E300098AEA2 /* PixelGram.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PixelGram.entitlements; sourceTree = "<group>"; };
+		B4E940011FA747BF0098AEA2 /* ThumbImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbImageCell.swift; sourceTree = "<group>"; };
+		B4E940031FA74D2F0098AEA2 /* ProfileDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDataSource.swift; sourceTree = "<group>"; };
 		B4E9CC371FA46B2D009ECF88 /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
 		B4E9CC391FA4BF6C009ECF88 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 		B4E9CC3B1FA4C16F009ECF88 /* LabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelCell.swift; sourceTree = "<group>"; };
@@ -187,6 +194,7 @@
 				B4B2B90E1FA3B2D900454DE3 /* ProfileViewController.swift */,
 				B4B2B9101FA3B2E500454DE3 /* ProfileViewModel.swift */,
 				B4E9CC391FA4BF6C009ECF88 /* ProfileCell.swift */,
+				B4E940031FA74D2F0098AEA2 /* ProfileDataSource.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -236,6 +244,7 @@
 				B4E9CC3B1FA4C16F009ECF88 /* LabelCell.swift */,
 				B4E9CC3D1FA4C308009ECF88 /* InputCell.swift */,
 				B4E93FFE1FA6F4DE0098AEA2 /* FullWidthCell.swift */,
+				B4E940011FA747BF0098AEA2 /* ThumbImageCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -275,6 +284,7 @@
 		B4BADC5C1F9F7F6200651842 /* PixelGram */ = {
 			isa = PBXGroup;
 			children = (
+				B4E940001FA70E300098AEA2 /* PixelGram.entitlements */,
 				B4B2B8FC1FA3B20000454DE3 /* Classes */,
 				B4BADC611F9F7F6200651842 /* Main.storyboard */,
 				B4BADC671F9F7F6200651842 /* Assets.xcassets */,
@@ -323,6 +333,7 @@
 			isa = PBXGroup;
 			children = (
 				B4E9CC4F1FA61ED6009ECF88 /* APIClient.swift */,
+				B470DDFA1FA7AD6A00B0E3E9 /* MockServer.swift */,
 			);
 			path = "API Client";
 			sourceTree = "<group>";
@@ -385,6 +396,11 @@
 						CreatedOnToolsVersion = 9.0;
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					B4BADC701F9F7F6200651842 = {
 						CreatedOnToolsVersion = 9.0;
@@ -568,12 +584,15 @@
 				B4B2B9251FA3B4EE00454DE3 /* SettingsViewModel.swift in Sources */,
 				B4B2B9071FA3B29100454DE3 /* FeedViewController.swift in Sources */,
 				B4B2B90D1FA3B2CE00454DE3 /* LoginViewModel.swift in Sources */,
+				B4E940021FA747BF0098AEA2 /* ThumbImageCell.swift in Sources */,
 				B4B2B9271FA3B53800454DE3 /* UserViewModel.swift in Sources */,
 				B4B2B9091FA3B2AE00454DE3 /* FeedViewModel.swift in Sources */,
+				B470DDFB1FA7AD6A00B0E3E9 /* MockServer.swift in Sources */,
 				B4E9CC431FA4CBA2009ECF88 /* CameraViewController.swift in Sources */,
 				B4E9CC3C1FA4C16F009ECF88 /* LabelCell.swift in Sources */,
 				B4B2B9231FA3B4D500454DE3 /* SettingsViewController.swift in Sources */,
 				B4B2B9181FA3B39B00454DE3 /* User.swift in Sources */,
+				B40896D91FA7D36A006088EE /* ProfileDataSource.swift in Sources */,
 				B4B2B91A1FA3B3A700454DE3 /* Image.swift in Sources */,
 				B4E9CC401FA4C622009ECF88 /* HeaderView.swift in Sources */,
 				B4E93FFF1FA6F4DE0098AEA2 /* FullWidthCell.swift in Sources */,
@@ -735,7 +754,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = PixelGram/PixelGram.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = W5TUR3QJX4;
 				INFOPLIST_FILE = PixelGram/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.PixelGram;
@@ -752,7 +773,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = PixelGram/PixelGram.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = W5TUR3QJX4;
 				INFOPLIST_FILE = PixelGram/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.PixelGram;

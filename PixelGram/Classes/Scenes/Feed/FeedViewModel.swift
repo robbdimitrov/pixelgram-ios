@@ -17,6 +17,10 @@ class FeedViewModel {
     // Limit per page
     var limit = 20
     
+    var imagesObservable: Observable<[Image]> {
+        return images.asObservable()
+    }
+    
     func loadData() {
         APIClient.sharedInstance.loadImages(for: page, limit: limit, completion: { [weak self] (images) in
             

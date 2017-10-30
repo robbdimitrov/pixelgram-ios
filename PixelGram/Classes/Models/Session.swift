@@ -8,6 +8,8 @@
 
 import Foundation
 
+import Locksmith
+
 class Session {
 
     static let sharedInstance = Session()
@@ -25,10 +27,10 @@ class Session {
     
     var currentUser: User? {
         get {
-            return nil
+            return MockServer.sharedInstance.users.first
         }
         set {
-            // TODO: Save to user defaults
+            
         }
     }
     
@@ -37,7 +39,7 @@ class Session {
             return nil
         }
         set {
-            // TODO: Save to keychain
+            
         }
     }
 

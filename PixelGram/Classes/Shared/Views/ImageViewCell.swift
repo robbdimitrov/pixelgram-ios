@@ -16,6 +16,7 @@ class ImageViewCell: FullWidthCell {
     @IBOutlet var likesLabel: UILabel?
     @IBOutlet var likeButton: UIButton?
     @IBOutlet var shareButton: UIButton?
+    @IBOutlet var descriptionLabel: UILabel?
     
     var viewModel: ImageViewModel?
     
@@ -34,20 +35,7 @@ class ImageViewCell: FullWidthCell {
         }
         usernameLabel?.text = viewModel.usernameText
         likesLabel?.text = viewModel.likesText
-    }
-    
-    // MARK: - Actions
-    
-    @IBAction func imageDoubleTapped(_ sender: UITapGestureRecognizer) {
-        
-    }
-    
-    @IBAction func likeTapped(_ sender: UIButton) {
-        
-    }
-    
-    @IBAction func shareTapped(_ sender: UIButton) {
-        
+        descriptionLabel?.attributedText = viewModel.descriptionText
     }
     
 }

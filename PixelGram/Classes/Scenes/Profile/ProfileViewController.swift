@@ -10,6 +10,8 @@ import UIKit
 
 class ProfileViewController: UIViewController {
 
+    @IBOutlet var collectionView: UICollectionView?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

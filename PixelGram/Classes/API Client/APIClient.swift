@@ -100,6 +100,11 @@ class APIClient {
                         likedImages: [])
         
         var users = [user1, user2, user3]
+        var descriptions = [
+            "My beautiful tiny puppy. Love it very very very much. Say hello puppy =) #sweet #pup",
+            "Rox in the gardern. Playing with the flowers #life",
+            "My dog. 6 years old #timeflies"
+        ]
         
         let imageURLs = [
             "https://static.pexels.com/photos/356378/pexels-photo-356378.jpeg",
@@ -113,11 +118,12 @@ class APIClient {
         for url in imageURLs {
             let userIndex = Int(arc4random_uniform(3))
             var user = users[userIndex]
+            let description = descriptions[userIndex]
             
             let image = Image(owner: user,
                               url: url,
                               dateCreated: Date(),
-                              description: "Dog description",
+                              description: description,
                               usersLiked: [])
             images.append(image)
             user.images?.append(image)

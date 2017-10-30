@@ -28,6 +28,7 @@
 		B4BADC681F9F7F6200651842 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4BADC671F9F7F6200651842 /* Assets.xcassets */; };
 		B4BADC6B1F9F7F6200651842 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4BADC691F9F7F6200651842 /* LaunchScreen.storyboard */; };
 		B4BADC761F9F7F6200651842 /* PixelGramTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BADC751F9F7F6200651842 /* PixelGramTests.swift */; };
+		B4E93FFF1FA6F4DE0098AEA2 /* FullWidthCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E93FFE1FA6F4DE0098AEA2 /* FullWidthCell.swift */; };
 		B4E9CC381FA46B2D009ECF88 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E9CC371FA46B2D009ECF88 /* SignupViewModel.swift */; };
 		B4E9CC3A1FA4BF6C009ECF88 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E9CC391FA4BF6C009ECF88 /* ProfileCell.swift */; };
 		B4E9CC3C1FA4C16F009ECF88 /* LabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E9CC3B1FA4C16F009ECF88 /* LabelCell.swift */; };
@@ -81,6 +82,7 @@
 		B4BADC711F9F7F6200651842 /* PixelGramTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PixelGramTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4BADC751F9F7F6200651842 /* PixelGramTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelGramTests.swift; sourceTree = "<group>"; };
 		B4BADC771F9F7F6200651842 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B4E93FFE1FA6F4DE0098AEA2 /* FullWidthCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullWidthCell.swift; sourceTree = "<group>"; };
 		B4E9CC371FA46B2D009ECF88 /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
 		B4E9CC391FA4BF6C009ECF88 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 		B4E9CC3B1FA4C16F009ECF88 /* LabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelCell.swift; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 				B4B2B91D1FA3B47300454DE3 /* ImageViewCell.swift */,
 				B4E9CC3B1FA4C16F009ECF88 /* LabelCell.swift */,
 				B4E9CC3D1FA4C308009ECF88 /* InputCell.swift */,
+				B4E93FFE1FA6F4DE0098AEA2 /* FullWidthCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -511,6 +514,7 @@
 				"${BUILT_PRODUCTS_DIR}/Locksmith/Locksmith.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -518,6 +522,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Locksmith.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -571,6 +576,7 @@
 				B4B2B9181FA3B39B00454DE3 /* User.swift in Sources */,
 				B4B2B91A1FA3B3A700454DE3 /* Image.swift in Sources */,
 				B4E9CC401FA4C622009ECF88 /* HeaderView.swift in Sources */,
+				B4E93FFF1FA6F4DE0098AEA2 /* FullWidthCell.swift in Sources */,
 				B4B2B9111FA3B2E500454DE3 /* ProfileViewModel.swift in Sources */,
 				B4E9CC3E1FA4C308009ECF88 /* InputCell.swift in Sources */,
 				B4B2B92A1FA3C4B800454DE3 /* AppDelegate.swift in Sources */,

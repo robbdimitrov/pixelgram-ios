@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ImageViewCell: UICollectionViewCell {
+class ImageViewCell: FullWidthCell {
     
     @IBOutlet var avatarImageView: UIImageView?
     @IBOutlet var usernameLabel: UILabel?

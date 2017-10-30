@@ -36,8 +36,10 @@ class FeedViewController: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
-        if let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
-            flowLayout.estimatedItemSize = CGSize(width: view.bounds.width, height: view.bounds.width)
+        super.viewDidLayoutSubviews()
+        
+        if let collectionView = collectionView, let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            flowLayout.estimatedItemSize = CGSize(width: collectionView.frame.width, height: collectionView.frame.width)
         }
     }
     

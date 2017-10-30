@@ -75,24 +75,24 @@ class APIClient {
         
         var images = [Image]()
         
-        let user1 = User(name: "User 1",
-                        username: "peterH",
+        let user1 = User(name: "Joan of Arc",
+                        username: "joahnn",
                         email: "peterh@gmail.com",
                         avatarURL: "https://i.pinimg.com/736x/39/42/22/394222ba4866706c7dd60772a96457b3--profile-pictures-to-prove.jpg",
                         bio: "Smart guy, founder @WorldCo",
                         images: [],
                         likedImages: [])
         
-        let user2 = User(name: "User 2",
-                        username: "peterH",
+        let user2 = User(name: "Smart Pants",
+                        username: "nodev",
                         email: "peterh@gmail.com",
                         avatarURL: "https://pbs.twimg.com/profile_images/822420954324365312/D1iNOqmR_400x400.jpg",
                         bio: "Smart guy, founder @WorldCo",
                         images: [],
                         likedImages: [])
         
-        let user3 = User(name: "User 3",
-                        username: "peterH",
+        let user3 = User(name: "Mich Connor",
+                        username: "michconnor",
                         email: "peterh@gmail.com",
                         avatarURL: "http://www.replify.com/wp-content/uploads/2016/05/A11442-illustration-of-a-cartoon-elephant-pv-1.jpg",
                         bio: "Smart guy, founder @WorldCo",

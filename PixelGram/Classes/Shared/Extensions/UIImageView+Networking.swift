@@ -8,16 +8,12 @@
 
 import UIKit
 
-import Alamofire
+import SDWebImage
 
 extension UIImageView {
 
     func setImage(with url: URL) {
-        Alamofire.request(url).response { [weak self] response in
-            if let data = response.data {
-                self?.image = UIImage(data: data, scale: 1)
-            }
-        }
+        sd_setImage(with: url, completed: nil)
     }
     
 }

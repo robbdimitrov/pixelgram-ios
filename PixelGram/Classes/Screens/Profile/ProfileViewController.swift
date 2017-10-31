@@ -28,14 +28,13 @@ class ProfileViewController: UIViewController {
         createViewModel()
         configureCollectionView()
         updateHeaderView()
+        configureInitialHeaderSize()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
         if let collectionView = collectionView, let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            flowLayout.headerReferenceSize = CGSize(width: collectionView.frame.width, height: 170)
-            
             let cellSide: CGFloat = collectionView.frame.width / 2
             flowLayout.estimatedItemSize = CGSize(width: cellSide, height: cellSide)
         }
@@ -51,6 +50,11 @@ class ProfileViewController: UIViewController {
     }
     
     // MARK: - Config
+    
+    func configureInitialHeaderSize() {
+        (collectionView?.collectionViewLayout as? UICollectionViewFlowLayout)?.headerReferenceSize =
+            CGSize(width: collectionView?.frame.width ?? 10, height: 170)
+    }
     
     func updateHeaderView() {
         if let userViewModel = viewModel?.userViewModel {
@@ -87,6 +91,13 @@ class ProfileViewController: UIViewController {
             if let cell = cell as? ProfileCell, let userViewModel = viewModel?.userViewModel {
                 cell.configure(with: userViewModel)
             }
+            
+            let size = cell.systemLayoutSizeFitting(CGSize(width: collectionView.frame.width, height: 1000),
+                                                    withHorizontalFittingPriority: .required,
+                                                    verticalFittingPriority: .defaultLow)
+            
+            
+            (collectionView.collectionViewLayout as? UICollectionViewFlowLayout)?.headerReferenceSize = size
             
             return cell
             

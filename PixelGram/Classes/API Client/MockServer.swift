@@ -29,7 +29,7 @@ class MockServer {
                         username: "peterH",
                         email: "peterH@mail.com",
                         avatarURL: "https://3.bp.blogspot.com/-ruB-4ADEKGI/WRBQU5CyU2I/AAAAAAAAANs/AlT6lpWnyMw805vvXLztCQzwk2aeJkRiwCLcB/s320/Cool+Whatsapp+Pics.png",
-                        bio: "Smart guy, founder @WorldCo. Loves travel, great cuisine and looking at the stars. Loves travel, great cuisine and looking at the stars.",
+                        bio: "Smart guy, founder @WorldCo. Loves travel, great cuisine and looking at the stars.",
                         images: [],
                         likedImages: [])
         

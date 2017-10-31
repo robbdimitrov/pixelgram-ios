@@ -35,8 +35,6 @@ class ProfileViewModel {
         self.user = Variable(user)
         images = Variable(user.images ?? [])
         userViewModel = UserViewModel(with: self.user.value)
-        
-        print("ProfileViewModel created: number of images: \(images.value.count)")
     }
     
     // MARK: - Getters

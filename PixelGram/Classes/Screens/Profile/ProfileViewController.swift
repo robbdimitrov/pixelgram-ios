@@ -49,7 +49,7 @@ class ProfileViewController: CollectionViewController {
     
     func createDataSource() -> CollectionViewDataSource {
         let dataSource = SupplementaryElementCollectionViewDataSource(configureHeader: {
-            [weak viewModel] (collectionView, kind, indexPath) -> UICollectionReusableView in
+            [weak viewModel, weak self] (collectionView, kind, indexPath) -> UICollectionReusableView in
             
             let cell = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
                                                                        withReuseIdentifier: ProfileCell.reuseIdentifier,
@@ -57,12 +57,14 @@ class ProfileViewController: CollectionViewController {
             
             if let cell = cell as? ProfileCell, let userViewModel = viewModel?.userViewModel {
                 cell.configure(with: userViewModel)
+                
+                self?.bindSettingsButton(button: cell.settingsButton)
+                self?.bindEditProfileButton(button: cell.editProfileButton)
             }
             
             let size = cell.systemLayoutSizeFitting(CGSize(width: collectionView.frame.width, height: 1000),
                                                     withHorizontalFittingPriority: .required,
                                                     verticalFittingPriority: .defaultLow)
-            
             
             (collectionView.collectionViewLayout as? UICollectionViewFlowLayout)?.headerReferenceSize = size
             
@@ -86,12 +88,33 @@ class ProfileViewController: CollectionViewController {
     
     // MARK: - Reactive
     
-    func bindEditProfileButton(button: UIButton) {
-        
+    func bindEditProfileButton(button: UIButton?) {
+        button?.rx.tap.subscribe(onNext: { [weak self] in
+            self?.openEditProfile()
+        }).disposed(by: disposeBag)
     }
     
-    func bindSettingsButton(button: UIButton) {
+    func bindSettingsButton(button: UIButton?) {
+        button?.rx.tap.subscribe(onNext: { [weak self] in
+            self?.openSettings()
+        }).disposed(by: disposeBag)
+    }
+    
+    // MARK: - Navigation
+    
+    func openEditProfile() {
+        let viewController = instantiateViewController(withIdentifier:
+            EditProfileViewController.storyboardIdentifier)
         
+        present(UINavigationController(rootViewController: viewController),
+                animated: true, completion: nil)
+    }
+    
+    func openSettings() {
+        let viewController = instantiateViewController(withIdentifier:
+            SettingsViewController.storyboardIdentifier)
+        
+        navigationController?.pushViewController(viewController, animated: true)
     }
     
     // MARK: - Config

@@ -82,5 +82,16 @@ class ViewController: UIViewController {
     func closeButtonItem() -> UIBarButtonItem {
         return buttonItem(with: "Close")
     }
+    
+    // MARK: - Storyboard
+    
+    func instantiateViewController(withIdentifier identifier: String) -> UIViewController {
+        guard let storyboard = storyboard else {
+            print("Storyboard is nil")
+            return UIViewController()
+        }
+        
+        return storyboard.instantiateViewController(withIdentifier: identifier)
+    }
 
 }

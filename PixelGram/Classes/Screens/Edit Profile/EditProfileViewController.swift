@@ -15,24 +15,36 @@ class EditProfileViewController: CollectionViewController {
     
     var viewModel: EditProfileViewModel?
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-    }
-    
-    // Config
+    // MARK: - Config
     
     override func setupNavigationItem() {
         super.setupNavigationItem()
         
         title = "Edit Profile"
-        
-//        let doneButton = doneButtonItem()
-//        let cancelButton = cancelButtonItem()
-//
-//        doneButton.rx.tap
     }
     
+    override func leftButtonItems() -> [UIBarButtonItem]? {
+        let cancelButton = cancelButtonItem()
+        cancelButton.rx.tap.subscribe(onNext: { [weak self] in
+            self?.dismiss(animated: true, completion: nil)
+        }).disposed(by: disposeBag)
+        
+        return [cancelButton]
+    }
     
+    override func rightButtonItems() -> [UIBarButtonItem]? {
+        let doneButton = doneButtonItem()
+        doneButton.rx.tap.subscribe(onNext: { [weak self] in
+            self?.saveUser()
+        }).disposed(by: disposeBag)
+        
+        return [doneButton]
+    }
+    
+    // MARK: - Methods
+    
+    func saveUser() {
+        
+    }
 
 }

@@ -130,7 +130,8 @@ class TabViewController: UIViewController {
     
     private func instantiateViewControllerForIndex(_ index: Int) -> UIViewController {
         let identifier = Tab(rawValue: index)?.identifier
-        let viewController = self.storyboard?.instantiateViewController(withIdentifier: identifier ?? "") ?? UIViewController()
+        let viewController = self.storyboard?.instantiateViewController(withIdentifier:
+            identifier ?? "") ?? UIViewController()
         
         return UINavigationController(rootViewController: viewController)
     }

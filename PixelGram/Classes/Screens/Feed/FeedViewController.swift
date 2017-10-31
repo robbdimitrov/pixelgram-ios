@@ -63,5 +63,14 @@ class FeedViewController: CollectionViewController {
                 
         }.disposed(by: disposeBag)
     }
+    
+    // MARK: - Navigation
+    
+    func openUserProfile() {
+        let viewController = instantiateViewController(withIdentifier:
+            ProfileViewController.storyboardIdentifier)
+        
+        navigationController?.pushViewController(viewController, animated: true)
+    }
 
 }

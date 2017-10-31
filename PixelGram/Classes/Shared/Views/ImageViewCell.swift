@@ -8,6 +8,8 @@
 
 import UIKit
 
+import RxSwift
+
 class ImageViewCell: FullWidthCollectionViewCell {
     
     @IBOutlet var avatarImageView: UIImageView? {
@@ -22,8 +24,16 @@ class ImageViewCell: FullWidthCollectionViewCell {
     @IBOutlet var shareButton: UIButton?
     @IBOutlet var descriptionLabel: UILabel?
     @IBOutlet var dateCreatedLabel: UILabel?
+    @IBOutlet var userButton: UIButton?
+    
+    private(set) var disposeBag = DisposeBag()
     
     var viewModel: ImageViewModel?
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = DisposeBag() // because life cicle of every cell ends on prepare for reuse
+    }
     
     // MARK: - Config
     

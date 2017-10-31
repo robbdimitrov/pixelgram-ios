@@ -804,6 +804,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8AA51776F9D770C0EEBF72C9 /* Pods-PixelGram.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = PixelGram/PixelGram.entitlements;
@@ -823,6 +824,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1F2D0F7DF1843C9765F3749D /* Pods-PixelGram.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = PixelGram/PixelGram.entitlements;
@@ -841,7 +843,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 239FA130D5F8554CCB938646 /* Pods-PixelGramTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = PixelGramTests/Info.plist;
@@ -858,7 +860,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ECF04226D5F81C6187E8B9D8 /* Pods-PixelGramTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = PixelGramTests/Info.plist;

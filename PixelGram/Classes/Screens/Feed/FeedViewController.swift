@@ -57,18 +57,26 @@ class FeedViewController: CollectionViewController {
         viewModel.imagesObservable
             .bind(to: collectionView.rx.items(cellIdentifier:
             ImageViewCell.reuseIdentifier,
-            cellType: ImageViewCell.self)) { (row, element, cell) in
+            cellType: ImageViewCell.self)) { [weak self] (row, element, cell) in
                 
                 cell.configure(with: ImageViewModel(with: element))
+                
+                cell.userButton?.rx.tap.subscribe(onNext: { [weak element] in
+                    if let user = element?.owner {
+                        self?.openUserProfile(with: user)
+                    }
+                }).disposed(by: cell.disposeBag)
                 
         }.disposed(by: disposeBag)
     }
     
     // MARK: - Navigation
     
-    func openUserProfile() {
+    func openUserProfile(with user: User) {
         let viewController = instantiateViewController(withIdentifier:
             ProfileViewController.storyboardIdentifier)
+        
+        (viewController as? ProfileViewController)?.viewModel = ProfileViewModel(with: user)
         
         navigationController?.pushViewController(viewController, animated: true)
     }

@@ -13,7 +13,7 @@ import RxCocoa
 
 class ProfileViewController: CollectionViewController {
 
-    private var viewModel: ProfileViewModel?
+    var viewModel: ProfileViewModel?
     private var dataSource: CollectionViewDataSource?
     
     // MARK: - View Lifecycle

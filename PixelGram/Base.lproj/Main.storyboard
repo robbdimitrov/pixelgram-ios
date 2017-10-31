@@ -36,6 +36,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="372" height="564"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DcU-7j-JOE" userLabel="UserButton">
+                                                    <rect key="frame" x="0.0" y="0.0" width="372" height="54"/>
+                                                </button>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2Bu-1c-LZY">
                                                     <rect key="frame" x="0.0" y="55" width="372" height="372"/>
                                                     <gestureRecognizers/>
@@ -45,6 +48,7 @@
                                                 </imageView>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lbf-H3-gbO">
                                                     <rect key="frame" x="12" y="12" width="30" height="30"/>
+                                                    <gestureRecognizers/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="lbf-H3-gbO" secondAttribute="height" multiplier="1:1" id="LQS-Nt-ko9"/>
                                                         <constraint firstAttribute="width" constant="30" id="dQX-1K-Gl4"/>
@@ -120,6 +124,7 @@
                                         </view>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="djM-zO-dFw" secondAttribute="trailing" constant="12" id="2OA-YP-LG7"/>
+                                            <constraint firstItem="Cbq-3w-9Rc" firstAttribute="top" secondItem="DcU-7j-JOE" secondAttribute="bottom" id="2bl-kb-9nf"/>
                                             <constraint firstItem="cgy-Fq-bZK" firstAttribute="leading" secondItem="FtC-1f-DcQ" secondAttribute="leading" constant="12" id="3HW-AE-Hqd"/>
                                             <constraint firstItem="MTN-Tt-t4P" firstAttribute="top" secondItem="2Bu-1c-LZY" secondAttribute="bottom" constant="12" id="5vi-Fh-3J1"/>
                                             <constraint firstAttribute="trailing" secondItem="cgy-Fq-bZK" secondAttribute="trailing" constant="12" id="IVs-S4-vk9"/>
@@ -128,12 +133,15 @@
                                             <constraint firstItem="2Bu-1c-LZY" firstAttribute="leading" secondItem="FtC-1f-DcQ" secondAttribute="leading" id="TCa-h5-1Zp"/>
                                             <constraint firstAttribute="trailing" secondItem="2Bu-1c-LZY" secondAttribute="trailing" id="WTd-c2-E0Y"/>
                                             <constraint firstItem="djM-zO-dFw" firstAttribute="centerY" secondItem="lbf-H3-gbO" secondAttribute="centerY" id="Zid-Hg-58G"/>
+                                            <constraint firstAttribute="trailing" secondItem="DcU-7j-JOE" secondAttribute="trailing" id="afc-hL-7TG"/>
                                             <constraint firstItem="cgy-Fq-bZK" firstAttribute="top" secondItem="MTN-Tt-t4P" secondAttribute="bottom" constant="6" id="bIg-k8-Lix"/>
+                                            <constraint firstItem="DcU-7j-JOE" firstAttribute="top" secondItem="FtC-1f-DcQ" secondAttribute="top" id="cHn-9D-Mbw"/>
                                             <constraint firstItem="djM-zO-dFw" firstAttribute="leading" secondItem="lbf-H3-gbO" secondAttribute="trailing" constant="12" id="cMO-2z-skc"/>
                                             <constraint firstAttribute="trailing" secondItem="MTN-Tt-t4P" secondAttribute="trailing" constant="12" id="dYw-Zc-B25"/>
                                             <constraint firstItem="lbf-H3-gbO" firstAttribute="top" secondItem="FtC-1f-DcQ" secondAttribute="top" constant="12" id="eCZ-HL-2ce"/>
                                             <constraint firstItem="Cbq-3w-9Rc" firstAttribute="top" secondItem="lbf-H3-gbO" secondAttribute="bottom" constant="12" id="ek0-Kd-uJ1"/>
                                             <constraint firstItem="MTN-Tt-t4P" firstAttribute="leading" secondItem="FtC-1f-DcQ" secondAttribute="leading" constant="12" id="fUc-xo-IlX"/>
+                                            <constraint firstItem="DcU-7j-JOE" firstAttribute="leading" secondItem="FtC-1f-DcQ" secondAttribute="leading" id="hAs-nr-ssU"/>
                                             <constraint firstItem="Cbq-3w-9Rc" firstAttribute="leading" secondItem="FtC-1f-DcQ" secondAttribute="leading" id="iJl-bq-iT8"/>
                                             <constraint firstItem="d1r-2i-3d3" firstAttribute="top" secondItem="cgy-Fq-bZK" secondAttribute="bottom" constant="6" id="kSG-Ff-1it"/>
                                             <constraint firstAttribute="trailing" secondItem="Cbq-3w-9Rc" secondAttribute="trailing" id="lBr-HQ-gjr"/>
@@ -149,6 +157,7 @@
                                             <outlet property="likeButton" destination="SoD-le-jMC" id="HMN-8h-Wkf"/>
                                             <outlet property="likesLabel" destination="I1h-fk-Ve7" id="0bS-fb-5yH"/>
                                             <outlet property="shareButton" destination="0ow-TF-bSD" id="Kma-U8-oTm"/>
+                                            <outlet property="userButton" destination="DcU-7j-JOE" id="5Bi-Op-kVa"/>
                                             <outlet property="usernameLabel" destination="djM-zO-dFw" id="tIu-Sy-Ele"/>
                                         </connections>
                                     </collectionViewCell>

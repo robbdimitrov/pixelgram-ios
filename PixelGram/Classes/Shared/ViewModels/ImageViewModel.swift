@@ -64,7 +64,8 @@ class ImageViewModel {
     
     func configureDateFormatter() {
         dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .none
+        dateFormatter.timeStyle = .short
+        dateFormatter.doesRelativeDateFormatting = true
     }
     
 }

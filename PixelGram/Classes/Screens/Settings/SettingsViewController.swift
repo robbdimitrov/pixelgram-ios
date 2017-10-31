@@ -8,11 +8,11 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController {
+class SettingsViewController: CollectionViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
+    override func setupNavigationItem() {
+        super.setupNavigationItem()
+        
         title = "Settings"
     }
     

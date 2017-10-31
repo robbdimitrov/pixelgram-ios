@@ -11,29 +11,22 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-class CameraViewController: UIViewController {
+class CameraViewController: ViewController {
 
-    private let disposeBag = DisposeBag()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        title = "Photo"
+    override func setupNavigationItem() {
+        super.setupNavigationItem()
         
-        setupNavigationBar()
+        title = "Photo"
     }
     
-    func setupNavigationBar() {
-        let closeButton = UIBarButtonItem(title: "Close",
-                                          style: .plain,
-                                          target: nil,
-                                          action: nil)
+    override func leftButtonItems() -> [UIBarButtonItem]? {
+        let closeButton = closeButtonItem()
         
         closeButton.rx.tap.subscribe(onNext: { [weak self] in
             self?.dismiss(animated: true, completion: nil)
         }).disposed(by: disposeBag)
         
-        self.navigationItem.leftBarButtonItem = closeButton
+        return [closeButton]
     }
 
 }

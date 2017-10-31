@@ -10,6 +10,7 @@ import UIKit
 
 class InputCell: UICollectionViewCell {
     
+    @IBOutlet var textLabel: UILabel?
     @IBOutlet var textField: UITextField?
     
 }

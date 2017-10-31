@@ -1,5 +1,5 @@
 //
-//  ButtonCell.swift
+//  TextLabelCell.swift
 //  PixelGram
 //
 //  Created by Robert Dimitrov on 10/28/17.
@@ -8,8 +8,8 @@
 
 import UIKit
 
-class LabelCell: UICollectionViewCell {
+class TextLabelCell: UICollectionViewCell {
     
-    @IBOutlet var label: UILabel?
+    @IBOutlet var textLabel: UILabel?
     
 }

@@ -19,6 +19,8 @@ class ProfileCell: FullWidthCollectionReusableView {
     @IBOutlet var bioLabel: UILabel?
     @IBOutlet var numberImagesLabel: UILabel?
     @IBOutlet var numberLikesLabel: UILabel?
+    @IBOutlet var editProfileButton: UIButton?
+    @IBOutlet var settingsButton: UIButton?
     
     var viewModel: UserViewModel?
     
@@ -34,6 +36,9 @@ class ProfileCell: FullWidthCollectionReusableView {
         bioLabel?.text = viewModel.bioText
         numberImagesLabel?.text = viewModel.imagesNumberText
         numberLikesLabel?.text = viewModel.likesNumberText
+        
+        editProfileButton?.isHidden = !viewModel.isCurrentUser
+        settingsButton?.isHidden = !viewModel.isCurrentUser
     }
     
 }

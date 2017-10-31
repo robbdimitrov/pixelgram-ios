@@ -43,4 +43,8 @@ class UserViewModel {
         return user.bio;
     }
     
+    var isCurrentUser: Bool {
+        return user === Session.sharedInstance.currentUser
+    }
+    
 }

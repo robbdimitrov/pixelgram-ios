@@ -15,9 +15,8 @@ class ProfileViewController: UIViewController {
 
     @IBOutlet var collectionView: UICollectionView?
     
-    private let disposeBag = DisposeBag()
     private var viewModel: ProfileViewModel?
-    private var dataSource: ProfileDataSource?
+    private var dataSource: SupplementaryElementCollectionViewDataSource?
     
     // MARK: - View Lifecycle
     
@@ -29,14 +28,13 @@ class ProfileViewController: UIViewController {
         createViewModel()
         configureCollectionView()
         updateHeaderView()
-        registerCells()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
         if let collectionView = collectionView, let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            flowLayout.headerReferenceSize = CGSize(width: collectionView.frame.width, height: 0)
+            flowLayout.headerReferenceSize = CGSize(width: collectionView.frame.width, height: 170)
             
             let cellSide: CGFloat = collectionView.frame.width / 2
             flowLayout.estimatedItemSize = CGSize(width: cellSide, height: cellSide)
@@ -52,17 +50,11 @@ class ProfileViewController: UIViewController {
         }
     }
     
-    func registerCells() {
-        collectionView?.register(ProfileCell.self,
-                                 forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
-                                 withReuseIdentifier: ProfileCell.reuseIdentifier)
-    }
-    
     // MARK: - Config
     
     func updateHeaderView() {
-        if let user = viewModel?.user.value {
-            configureHeaderView(with: UserViewModel(with: user).usernameText)
+        if let userViewModel = viewModel?.userViewModel {
+            configureHeaderView(with: userViewModel.usernameText)
         }
     }
     
@@ -85,27 +77,32 @@ class ProfileViewController: UIViewController {
             return
         }
         
-        let dataSource = ProfileDataSource(configureUserCell: { (collectionView, indexPath, user) -> UICollectionViewCell in
-
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProfileCell.reuseIdentifier, for: indexPath)
-
-            if let cell = cell as? ProfileCell {
-                cell.configure(with: UserViewModel(with: user))
+        let dataSource = SupplementaryElementCollectionViewDataSource(configureHeader: {
+            [weak viewModel] (collectionView, kind, indexPath) -> UICollectionReusableView in
+            
+            let cell = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                       withReuseIdentifier: ProfileCell.reuseIdentifier,
+                                                                       for: indexPath)
+            
+            if let cell = cell as? ProfileCell, let userViewModel = viewModel?.userViewModel {
+                cell.configure(with: userViewModel)
             }
-
+            
             return cell
-
-        }, configureImageCell: { (collectionView, indexPath, image) -> UICollectionViewCell in
-
+            
+        }, configureCell: { [weak viewModel] (collectionView, indexPath) -> UICollectionViewCell in
+            
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThumbImageCell.reuseIdentifier, for: indexPath)
-
-            if let cell = cell as? ThumbImageCell {
-                cell.configure(with: ImageViewModel(with: image))
+            
+            if let cell = cell as? ThumbImageCell, let imageViewModel = viewModel?.imageViewModel(forIndex: indexPath.row) {
+                cell.configure(with: imageViewModel)
             }
-
+            
             return cell
-
-        }, viewModel: viewModel)
+            
+        }, numberOfItems: { [weak viewModel] (collectionView, section)  -> Int in
+            return viewModel?.numberOfItems ?? 0
+        })
 
         self.dataSource = dataSource
         collectionView.dataSource = dataSource

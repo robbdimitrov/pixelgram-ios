@@ -10,8 +10,14 @@ import RxSwift
 
 class ProfileViewModel {
 
-    var user: Variable<User>
-    var images: Variable<[Image]>
+    // MARK: - Internal
+    
+    private var user: Variable<User>
+    private var images: Variable<[Image]>
+    
+    // MARK: - Properties
+    
+    var userViewModel: UserViewModel
     
     var userObservable: Observable<User> {
         return user.asObservable()
@@ -19,16 +25,24 @@ class ProfileViewModel {
     var imagesObservable: Observable<[Image]> {
         return images.asObservable()
     }
-    
-    var userViewModel: UserViewModel {
-        return UserViewModel(with: user.value)
+    var numberOfItems: Int {
+        return images.value.count
     }
+    
+    // MARK: - Lifecycle
     
     init(with user: User) {
         self.user = Variable(user)
         images = Variable(user.images ?? [])
+        userViewModel = UserViewModel(with: self.user.value)
         
         print("ProfileViewModel created: number of images: \(images.value.count)")
+    }
+    
+    // MARK: - Getters
+    
+    func imageViewModel(forIndex index: Int) -> ImageViewModel {
+        return ImageViewModel(with: images.value[index])
     }
     
 }

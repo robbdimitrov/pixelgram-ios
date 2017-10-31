@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ThumbImageCell: FullWidthCell {
+class ThumbImageCell: FullWidthCollectionViewCell {
     
     @IBOutlet var imageView: UIImageView?
     

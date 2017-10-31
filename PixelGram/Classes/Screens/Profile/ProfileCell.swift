@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileCell: FullWidthCell {
+class ProfileCell: FullWidthCollectionReusableView {
     
     @IBOutlet var avatarImageView: UIImageView? {
         didSet {

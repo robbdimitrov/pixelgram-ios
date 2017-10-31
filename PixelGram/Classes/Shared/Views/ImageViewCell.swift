@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ImageViewCell: FullWidthCell {
+class ImageViewCell: FullWidthCollectionViewCell {
     
     @IBOutlet var avatarImageView: UIImageView? {
         didSet {

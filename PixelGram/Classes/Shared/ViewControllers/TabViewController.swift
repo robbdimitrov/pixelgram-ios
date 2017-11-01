@@ -108,10 +108,10 @@ class TabViewController: UIViewController {
         if index == Tab.camera.rawValue {
             // Open the camera, don't change the selected tab value
             
-            let viewController = viewControllerForIndex(index)
+            let viewController = instantiateViewControllerForIndex(index)
             present(viewController, animated: true, completion: nil)
         } else {
-            self.selectedTab.value = index
+            selectedTab.value = index
         }
     }
     
@@ -130,7 +130,7 @@ class TabViewController: UIViewController {
     
     private func instantiateViewControllerForIndex(_ index: Int) -> UIViewController {
         let identifier = Tab(rawValue: index)?.identifier
-        let viewController = self.storyboard?.instantiateViewController(withIdentifier:
+        let viewController = storyboard?.instantiateViewController(withIdentifier:
             identifier ?? "") ?? UIViewController()
         
         return UINavigationController(rootViewController: viewController)
@@ -170,7 +170,7 @@ class TabViewController: UIViewController {
         }
         
         // Add the selected view controller as a child subview
-        self.addChildViewController(currentViewController)
+        addChildViewController(currentViewController)
         currentViewController.view.frame = contentView?.bounds ?? CGRect.zero
         currentViewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         contentView?.addSubview(currentViewController.view)

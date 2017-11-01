@@ -12,4 +12,15 @@ class CollectionViewController: ViewController {
 
     @IBOutlet var collectionView: UICollectionView?
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        configureCollectionView()
+    }
+    
+    // Add delegate method, data sources, etc.
+    func configureCollectionView() {
+        // Implemented by sublclasses
+    }
+    
 }

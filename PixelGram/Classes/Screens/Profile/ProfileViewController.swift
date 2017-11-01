@@ -23,7 +23,6 @@ class ProfileViewController: CollectionViewController {
         
         super.viewDidLoad()
         
-        configureCollectionView()
         configureInitialHeaderSize()
     }
     
@@ -164,7 +163,7 @@ class ProfileViewController: CollectionViewController {
         }
     }
     
-    func configureCollectionView() {
+    override func configureCollectionView() {
         dataSource = createDataSource()
 
         collectionView?.dataSource = dataSource

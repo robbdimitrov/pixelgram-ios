@@ -6,6 +6,11 @@
 //  Copyright © 2017 Robert Dimitrov. All rights reserved.
 //
 
+import Foundation
+import Photos
+
 class CameraViewModel {
 
+
+    
 }

@@ -17,12 +17,6 @@ class FeedViewController: CollectionViewController {
     
     // MARK: - View lifecycle
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        configureCollectionView()
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -48,7 +42,7 @@ class FeedViewController: CollectionViewController {
         }
     }
     
-    func configureCollectionView() {
+    override func configureCollectionView() {
         guard let collectionView = collectionView else {
             print("Error: collection view is nil")
             return

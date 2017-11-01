@@ -38,6 +38,14 @@
 		B40897191FA8610E006088EE /* InputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E9CC3D1FA4C308009ECF88 /* InputCell.swift */; };
 		B408971B1FA8610E006088EE /* ThumbImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E940011FA747BF0098AEA2 /* ThumbImageCell.swift */; };
 		B408971D1FA87F80006088EE /* UICollectionReusableView+FullWidth.swift in Sources */ = {isa = PBXBuildFile; fileRef = B408971C1FA87F80006088EE /* UICollectionReusableView+FullWidth.swift */; };
+		B477E0CC1FAA24CC0079CCAF /* CropImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B477E0C61FAA1E930079CCAF /* CropImageViewController.swift */; };
+		B477E0CD1FAA24CC0079CCAF /* CropImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B477E0C71FAA1E930079CCAF /* CropImageViewModel.swift */; };
+		B477E0CE1FAA24CC0079CCAF /* GalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B477E0C91FAA1E930079CCAF /* GalleryCell.swift */; };
+		B477E0CF1FAA24CC0079CCAF /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B477E0CA1FAA1E930079CCAF /* GalleryViewController.swift */; };
+		B477E0D01FAA24CC0079CCAF /* GalleryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B477E0CB1FAA1E930079CCAF /* GalleryViewModel.swift */; };
+		B477E0D11FAA24CC0079CCAF /* ShareImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B477E0C31FAA1E930079CCAF /* ShareImageViewController.swift */; };
+		B477E0D21FAA24CC0079CCAF /* ShareImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B477E0C41FAA1E930079CCAF /* ShareImageViewModel.swift */; };
+		B477E0D41FAA3A500079CCAF /* BarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B477E0D31FAA3A500079CCAF /* BarButtonItem.swift */; };
 		B48915691FA8B1EF00F1CF44 /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48915681FA8B1EF00F1CF44 /* CameraViewModel.swift */; };
 		B489156B1FA8D04600F1CF44 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B489156A1FA8D04600F1CF44 /* RoundedButton.swift */; };
 		B489156D1FA8D6AA00F1CF44 /* UIColor+Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B489156C1FA8D6AA00F1CF44 /* UIColor+Colors.swift */; };
@@ -85,6 +93,14 @@
 		B40F9D881F9F837E00243953 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		B40F9D891F9F837E00243953 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		B470DDFA1FA7AD6A00B0E3E9 /* MockServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockServer.swift; sourceTree = "<group>"; };
+		B477E0C31FAA1E930079CCAF /* ShareImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareImageViewController.swift; sourceTree = "<group>"; };
+		B477E0C41FAA1E930079CCAF /* ShareImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareImageViewModel.swift; sourceTree = "<group>"; };
+		B477E0C61FAA1E930079CCAF /* CropImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropImageViewController.swift; sourceTree = "<group>"; };
+		B477E0C71FAA1E930079CCAF /* CropImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropImageViewModel.swift; sourceTree = "<group>"; };
+		B477E0C91FAA1E930079CCAF /* GalleryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCell.swift; sourceTree = "<group>"; };
+		B477E0CA1FAA1E930079CCAF /* GalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
+		B477E0CB1FAA1E930079CCAF /* GalleryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewModel.swift; sourceTree = "<group>"; };
+		B477E0D31FAA3A500079CCAF /* BarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarButtonItem.swift; sourceTree = "<group>"; };
 		B48915681FA8B1EF00F1CF44 /* CameraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewModel.swift; sourceTree = "<group>"; };
 		B489156A1FA8D04600F1CF44 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		B489156C1FA8D6AA00F1CF44 /* UIColor+Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Colors.swift"; sourceTree = "<group>"; };
@@ -188,6 +204,9 @@
 		B40896DD1FA85E50006088EE /* Camera */ = {
 			isa = PBXGroup;
 			children = (
+				B477E0C51FAA1E930079CCAF /* Crop */,
+				B477E0C81FAA1E930079CCAF /* Gallery */,
+				B477E0C21FAA1E930079CCAF /* Share */,
 				B40896DE1FA85E50006088EE /* CameraViewController.swift */,
 				B48915681FA8B1EF00F1CF44 /* CameraViewModel.swift */,
 			);
@@ -231,6 +250,34 @@
 				B40896ED1FA85E50006088EE /* SettingsViewModel.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		B477E0C21FAA1E930079CCAF /* Share */ = {
+			isa = PBXGroup;
+			children = (
+				B477E0C31FAA1E930079CCAF /* ShareImageViewController.swift */,
+				B477E0C41FAA1E930079CCAF /* ShareImageViewModel.swift */,
+			);
+			path = Share;
+			sourceTree = "<group>";
+		};
+		B477E0C51FAA1E930079CCAF /* Crop */ = {
+			isa = PBXGroup;
+			children = (
+				B477E0C61FAA1E930079CCAF /* CropImageViewController.swift */,
+				B477E0C71FAA1E930079CCAF /* CropImageViewModel.swift */,
+			);
+			path = Crop;
+			sourceTree = "<group>";
+		};
+		B477E0C81FAA1E930079CCAF /* Gallery */ = {
+			isa = PBXGroup;
+			children = (
+				B477E0C91FAA1E930079CCAF /* GalleryCell.swift */,
+				B477E0CA1FAA1E930079CCAF /* GalleryViewController.swift */,
+				B477E0CB1FAA1E930079CCAF /* GalleryViewModel.swift */,
+			);
+			path = Gallery;
 			sourceTree = "<group>";
 		};
 		B48915701FA8E98300F1CF44 /* Edit Profile */ = {
@@ -302,6 +349,7 @@
 				B4E940011FA747BF0098AEA2 /* ThumbImageCell.swift */,
 				B489156A1FA8D04600F1CF44 /* RoundedButton.swift */,
 				B489156E1FA8DAAB00F1CF44 /* ObservableButton.swift */,
+				B477E0D31FAA3A500079CCAF /* BarButtonItem.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -619,7 +667,9 @@
 				B40897001FA8610E006088EE /* User.swift in Sources */,
 				B40897121FA8610E006088EE /* UIView+ReuseIdentifier.swift in Sources */,
 				B48915691FA8B1EF00F1CF44 /* CameraViewModel.swift in Sources */,
+				B477E0CC1FAA24CC0079CCAF /* CropImageViewController.swift in Sources */,
 				B40896FF1FA8610E006088EE /* AppDelegate.swift in Sources */,
+				B477E0D21FAA24CC0079CCAF /* ShareImageViewModel.swift in Sources */,
 				B40897071FA8610E006088EE /* LoginViewModel.swift in Sources */,
 				B408970A1FA8610E006088EE /* ProfileViewController.swift in Sources */,
 				B40897021FA8610E006088EE /* Session.swift in Sources */,
@@ -639,7 +689,11 @@
 				B408971D1FA87F80006088EE /* UICollectionReusableView+FullWidth.swift in Sources */,
 				B40897041FA8610E006088EE /* FeedViewController.swift in Sources */,
 				B408970D1FA8610E006088EE /* SettingsViewController.swift in Sources */,
+				B477E0CD1FAA24CC0079CCAF /* CropImageViewModel.swift in Sources */,
+				B477E0D11FAA24CC0079CCAF /* ShareImageViewController.swift in Sources */,
 				B40897131FA8610E006088EE /* UIImageView+Networking.swift in Sources */,
+				B477E0D01FAA24CC0079CCAF /* GalleryViewModel.swift in Sources */,
+				B477E0D41FAA3A500079CCAF /* BarButtonItem.swift in Sources */,
 				B40897011FA8610E006088EE /* Image.swift in Sources */,
 				B40897171FA8610E006088EE /* ImageViewCell.swift in Sources */,
 				B40897101FA8610E006088EE /* SupplementaryElementCollectionViewDataSource.swift in Sources */,
@@ -647,6 +701,8 @@
 				B48915741FA8E9C200F1CF44 /* EditProfileViewController.swift in Sources */,
 				B40897051FA8610E006088EE /* FeedViewModel.swift in Sources */,
 				B408970F1FA8610E006088EE /* CollectionViewDataSource.swift in Sources */,
+				B477E0CE1FAA24CC0079CCAF /* GalleryCell.swift in Sources */,
+				B477E0CF1FAA24CC0079CCAF /* GalleryViewController.swift in Sources */,
 				B489156B1FA8D04600F1CF44 /* RoundedButton.swift in Sources */,
 				B408970E1FA8610E006088EE /* SettingsViewModel.swift in Sources */,
 				B489156D1FA8D6AA00F1CF44 /* UIColor+Colors.swift in Sources */,

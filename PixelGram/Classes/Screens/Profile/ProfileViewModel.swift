@@ -12,8 +12,8 @@ class ProfileViewModel {
 
     // MARK: - Internal
     
-    private var user: Variable<User>
-    private var images: Variable<[Image]>
+    var user: Variable<User>
+    var images: Variable<[Image]>
     
     // MARK: - Properties
     

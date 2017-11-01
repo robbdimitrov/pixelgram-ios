@@ -13,7 +13,7 @@ import RxCocoa
 
 class FeedViewController: CollectionViewController {
 
-    private var viewModel = FeedViewModel()
+    var viewModel = FeedViewModel()
     
     // MARK: - View lifecycle
     
@@ -42,8 +42,8 @@ class FeedViewController: CollectionViewController {
     override func setupNavigationItem() {
         super.setupNavigationItem()
         
-        title = "Feed"
-        if let image = UIImage(named: "logo") {
+        title = viewModel.title
+        if viewModel.type == .feed, let image = UIImage(named: "logo") {
             setupTitleView(with: image)
         }
     }

@@ -49,41 +49,51 @@ class ProfileViewController: CollectionViewController {
     
     func createDataSource() -> CollectionViewDataSource {
         let dataSource = SupplementaryElementCollectionViewDataSource(configureHeader: {
-            [weak viewModel, weak self] (collectionView, kind, indexPath) -> UICollectionReusableView in
+            [weak self] (collectionView, kind, indexPath) -> UICollectionReusableView in
             
-            let cell = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                       withReuseIdentifier: ProfileCell.reuseIdentifier,
-                                                                       for: indexPath)
+                return (self?.configureHeaderCell(collectionView: collectionView, kind: kind, indexPath: indexPath))!
             
-            if let cell = cell as? ProfileCell, let userViewModel = viewModel?.userViewModel {
-                cell.configure(with: userViewModel)
+            }, configureCell: { [weak self] (collectionView, indexPath) -> UICollectionViewCell in
                 
-                self?.bindSettingsButton(button: cell.settingsButton)
-                self?.bindEditProfileButton(button: cell.editProfileButton)
-            }
-            
-            let size = cell.systemLayoutSizeFitting(CGSize(width: collectionView.frame.width, height: 1000),
-                                                    withHorizontalFittingPriority: .required,
-                                                    verticalFittingPriority: .defaultLow)
-            
-            (collectionView.collectionViewLayout as? UICollectionViewFlowLayout)?.headerReferenceSize = size
-            
-            return cell
-            
-            }, configureCell: { [weak viewModel] (collectionView, indexPath) -> UICollectionViewCell in
-                
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThumbImageCell.reuseIdentifier, for: indexPath)
-                
-                if let cell = cell as? ThumbImageCell, let imageViewModel = viewModel?.imageViewModel(forIndex: indexPath.row) {
-                    cell.configure(with: imageViewModel)
-                }
-                
-                return cell
+                return (self?.configureCell(collectionView: collectionView, indexPath: indexPath))!
                 
             }, numberOfItems: { [weak viewModel] (collectionView, section)  -> Int in
                 return viewModel?.numberOfItems ?? 0
         })
         return dataSource
+    }
+    
+    // MARK: - Cells
+    
+    func configureHeaderCell(collectionView: UICollectionView, kind: String, indexPath: IndexPath) -> UICollectionReusableView {
+        let cell = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                   withReuseIdentifier: ProfileCell.reuseIdentifier,
+                                                                   for: indexPath)
+        
+        if let cell = cell as? ProfileCell, let userViewModel = viewModel?.userViewModel {
+            cell.configure(with: userViewModel)
+            
+            bindSettingsButton(button: cell.settingsButton)
+            bindEditProfileButton(button: cell.editProfileButton)
+        }
+        
+        let size = cell.systemLayoutSizeFitting(CGSize(width: collectionView.frame.width, height: 1000),
+                                                withHorizontalFittingPriority: .required,
+                                                verticalFittingPriority: .defaultLow)
+        
+        (collectionView.collectionViewLayout as? UICollectionViewFlowLayout)?.headerReferenceSize = size
+        
+        return cell
+    }
+    
+    func configureCell(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThumbImageCell.reuseIdentifier, for: indexPath)
+        
+        if let cell = cell as? ThumbImageCell, let imageViewModel = viewModel?.imageViewModel(forIndex: indexPath.row) {
+            cell.configure(with: imageViewModel)
+        }
+        
+        return cell
     }
     
     // MARK: - Reactive
@@ -100,6 +110,12 @@ class ProfileViewController: CollectionViewController {
         }).disposed(by: disposeBag)
     }
     
+    func handleCellSelection(collectionView: UICollectionView?) {
+        collectionView?.rx.itemSelected.bind { [weak self] indexPath in
+            self?.openFeed(withSelected: indexPath.item)
+        }.disposed(by: disposeBag)
+    }
+    
     // MARK: - Navigation
     
     func openEditProfile() {
@@ -113,6 +129,17 @@ class ProfileViewController: CollectionViewController {
     func openSettings() {
         let viewController = instantiateViewController(withIdentifier:
             SettingsViewController.storyboardIdentifier)
+        
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    func openFeed(withSelected index: Int) {
+        let viewController = instantiateViewController(withIdentifier:
+            FeedViewController.storyboardIdentifier)
+        
+        if let image = viewModel?.images.value[index] {
+            (viewController as? FeedViewController)?.viewModel = FeedViewModel(with: .single, images: [image])
+        }
         
         navigationController?.pushViewController(viewController, animated: true)
     }
@@ -141,6 +168,8 @@ class ProfileViewController: CollectionViewController {
         dataSource = createDataSource()
 
         collectionView?.dataSource = dataSource
+        
+        handleCellSelection(collectionView: collectionView)
     }
 
 }

@@ -10,11 +10,16 @@ import Foundation
 
 class APIClient {
     
+    typealias ImageCompletion = ([Image]) -> Void
+    typealias UserCompletion = (User) -> Void
+    typealias CompletionBlock = () -> Void
+    typealias ErrorBlock = (Error) -> Void
+    
     static let sharedInstance = APIClient()
     
     private init() {}
     
-    func login(completion: () -> Void, failure: (Error) -> Void) {
+    func login(completion: CompletionBlock, failure: ErrorBlock) {
         
         loadUser(with: "identifier", completion: { (user) in
             Session.sharedInstance.currentUser = user
@@ -27,7 +32,7 @@ class APIClient {
         completion()
     }
     
-    func logout(completion: () -> Void, failure: (Error) -> Void) {
+    func logout(completion: CompletionBlock, failure: ErrorBlock) {
         Session.sharedInstance.currentUser = nil
         Session.sharedInstance.token = nil
         Session.sharedInstance.authDate = nil
@@ -35,7 +40,7 @@ class APIClient {
         completion()
     }
     
-    func loadUser(with id: String, completion: (User) -> Void, failure: (Error) -> Void) {
+    func loadUser(with id: String, completion: UserCompletion, failure: ErrorBlock) {
         
         if let user = MockServer.sharedInstance.users.first {
             completion(user)
@@ -44,12 +49,20 @@ class APIClient {
         }
     }
     
-    func loadImages(for page: Int, limit: Int, completion: ([Image]) -> Void,
-                    failure: (_ error: Error) -> Void) {
+    func loadImages(for page: Int, limit: Int, completion: ImageCompletion,
+                    failure: ErrorBlock) {
         
         let images = MockServer.sharedInstance.images
         
         completion(images)
+    }
+    
+    func loadImages(forUser user: User, page: Int, limit: Int,
+                    completion: ImageCompletion, failure: ErrorBlock) {
+        
+        if let images = user.images {
+            completion(images)
+        }
     }
     
 }

@@ -9,6 +9,9 @@
 import UIKit
 import Photos
 
+import RxCocoa
+import RxSwift
+
 class CropImageViewController: ViewController {
     
     @IBOutlet var imageView: UIImageView?
@@ -20,6 +23,17 @@ class CropImageViewController: ViewController {
     var asset: PHAsset? {
         didSet {
             updateContent()
+        }
+    }
+    
+    @IBOutlet var scrollView: UIScrollView? {
+        didSet {
+            scrollView?.delegate = self
+            scrollView?.minimumZoomScale = 1.0
+            scrollView?.maximumZoomScale = 3.0
+            
+            scrollView?.layer.borderWidth = 1.0
+            scrollView?.layer.borderColor = UIColor.buttonColor.cgColor
         }
     }
     
@@ -87,6 +101,18 @@ class CropImageViewController: ViewController {
                                                 
                                                 self?.image = image
         })
+    }
+    
+}
+
+extension CropImageViewController: UIScrollViewDelegate {
+    
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return imageView
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        print(scrollView.contentOffset)
     }
     
 }

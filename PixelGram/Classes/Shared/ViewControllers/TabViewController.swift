@@ -133,7 +133,7 @@ class TabViewController: UIViewController {
         let viewController = storyboard?.instantiateViewController(withIdentifier:
             identifier ?? "") ?? UIViewController()
         
-        return UINavigationController(rootViewController: viewController)
+        return NavigationController(rootViewController: viewController)
     }
     
     // MARK: - Update state

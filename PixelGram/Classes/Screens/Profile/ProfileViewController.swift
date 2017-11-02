@@ -121,7 +121,7 @@ class ProfileViewController: CollectionViewController {
         let viewController = instantiateViewController(withIdentifier:
             EditProfileViewController.storyboardIdentifier)
         
-        present(UINavigationController(rootViewController: viewController),
+        present(NavigationController(rootViewController: viewController),
                 animated: true, completion: nil)
     }
     

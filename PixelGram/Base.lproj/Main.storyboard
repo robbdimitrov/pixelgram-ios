@@ -920,9 +920,25 @@
                     <view key="view" contentMode="scaleToFill" id="pGp-UC-IJ4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YmM-HQ-hNt">
+                                <rect key="frame" x="0.0" y="20" width="375" height="375"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="YmM-HQ-hNt" secondAttribute="height" multiplier="1:1" id="RB1-Y8-p39"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Y7u-Bk-epH" firstAttribute="trailing" secondItem="YmM-HQ-hNt" secondAttribute="trailing" id="GWN-ud-M5x"/>
+                            <constraint firstItem="YmM-HQ-hNt" firstAttribute="top" secondItem="Y7u-Bk-epH" secondAttribute="top" id="UP4-x6-8UN"/>
+                            <constraint firstItem="YmM-HQ-hNt" firstAttribute="leading" secondItem="Y7u-Bk-epH" secondAttribute="leading" id="agi-dV-7MJ"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Y7u-Bk-epH"/>
                     </view>
+                    <connections>
+                        <outlet property="imageView" destination="YmM-HQ-hNt" id="TyG-0J-ugn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iCC-PC-d0g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

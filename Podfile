@@ -8,6 +8,7 @@ target 'PixelGram' do
   pod 'SDWebImage', '~> 4.0'
   pod 'RxSwift', '~> 4.0'
   pod 'RxCocoa', '~> 4.0'
+  pod 'MBProgressHUD', '~> 1.0'
 
   target 'PixelGramTests' do
     inherit! :search_paths

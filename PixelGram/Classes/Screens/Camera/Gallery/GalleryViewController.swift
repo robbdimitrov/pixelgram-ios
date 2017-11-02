@@ -25,11 +25,6 @@ private extension UICollectionView {
 }
 
 class GalleryViewController: CollectionViewController {
-    
-    struct SelectedAsset {
-        let asset: PHAsset
-        let assetCollection: PHAssetCollection
-    }
 
     var fetchResult: PHFetchResult<PHAsset>?
     var assetCollection: PHAssetCollection?
@@ -37,17 +32,12 @@ class GalleryViewController: CollectionViewController {
     let imageManager = PHCachingImageManager()
     var thumbnailSize = CGSize.zero
     var previousPreheatRect = CGRect.zero
-    var selectedAsset: SelectedAsset? {
+    var selectedAsset: PHAsset? {
         guard let selectedIndexPath = collectionView?.indexPathsForSelectedItems?.first else {
             return nil
         }
         
-        guard let asset = fetchResult?.object(at: selectedIndexPath.item), let assetCollection = assetCollection else {
-            return nil
-        }
-        
-        return SelectedAsset(asset: asset,
-                             assetCollection: assetCollection)
+        return fetchResult?.object(at: selectedIndexPath.item)
     }
     
     var dataSource: CollectionViewDataSource?

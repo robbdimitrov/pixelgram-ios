@@ -40,6 +40,7 @@
 		B408971D1FA87F80006088EE /* UICollectionReusableView+FullWidth.swift in Sources */ = {isa = PBXBuildFile; fileRef = B408971C1FA87F80006088EE /* UICollectionReusableView+FullWidth.swift */; };
 		B4250A031FAB312300063635 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4250A021FAB312300063635 /* NavigationController.swift */; };
 		B4250A051FAB321100063635 /* UIImage+Generation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4250A041FAB321100063635 /* UIImage+Generation.swift */; };
+		B4250A071FAB63A400063635 /* UIWindow+HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4250A061FAB63A400063635 /* UIWindow+HUD.swift */; };
 		B477E0CC1FAA24CC0079CCAF /* CropImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B477E0C61FAA1E930079CCAF /* CropImageViewController.swift */; };
 		B477E0CD1FAA24CC0079CCAF /* CropImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B477E0C71FAA1E930079CCAF /* CropImageViewModel.swift */; };
 		B477E0CE1FAA24CC0079CCAF /* GalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B477E0C91FAA1E930079CCAF /* GalleryCell.swift */; };
@@ -95,6 +96,7 @@
 		B40F9D891F9F837E00243953 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		B4250A021FAB312300063635 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		B4250A041FAB321100063635 /* UIImage+Generation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Generation.swift"; sourceTree = "<group>"; };
+		B4250A061FAB63A400063635 /* UIWindow+HUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+HUD.swift"; sourceTree = "<group>"; };
 		B470DDFA1FA7AD6A00B0E3E9 /* MockServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockServer.swift; sourceTree = "<group>"; };
 		B477E0C31FAA1E930079CCAF /* ShareImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareImageViewController.swift; sourceTree = "<group>"; };
 		B477E0C41FAA1E930079CCAF /* ShareImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareImageViewModel.swift; sourceTree = "<group>"; };
@@ -419,6 +421,7 @@
 				B408971C1FA87F80006088EE /* UICollectionReusableView+FullWidth.swift */,
 				B489156C1FA8D6AA00F1CF44 /* UIColor+Colors.swift */,
 				B4250A041FAB321100063635 /* UIImage+Generation.swift */,
+				B4250A061FAB63A400063635 /* UIWindow+HUD.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -622,6 +625,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-PixelGram/Pods-PixelGram-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Locksmith/Locksmith.framework",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
@@ -630,6 +634,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Locksmith.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
@@ -706,6 +711,7 @@
 				B40897051FA8610E006088EE /* FeedViewModel.swift in Sources */,
 				B408970F1FA8610E006088EE /* CollectionViewDataSource.swift in Sources */,
 				B477E0CE1FAA24CC0079CCAF /* GalleryCell.swift in Sources */,
+				B4250A071FAB63A400063635 /* UIWindow+HUD.swift in Sources */,
 				B477E0CF1FAA24CC0079CCAF /* GalleryViewController.swift in Sources */,
 				B489156B1FA8D04600F1CF44 /* RoundedButton.swift in Sources */,
 				B408970E1FA8610E006088EE /* SettingsViewModel.swift in Sources */,

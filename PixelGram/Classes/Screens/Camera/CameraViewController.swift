@@ -57,6 +57,22 @@ class CameraViewController: ViewController {
     
     // MARK: - Paging
     
+    func nextPage(_ currentPage: Page?) {
+        let pageValue = currentPage?.rawValue ?? 0
+        
+        if let page = Page(rawValue: pageValue + 1) {
+            self.page.value = page
+        }
+    }
+    
+    func previousPage(_ currentPage: Page?) {
+        let pageValue = currentPage?.rawValue ?? 0
+        
+        if let page = Page(rawValue: pageValue - 1) {
+            self.page.value = page
+        }
+    }
+    
     func updateButtonItems(forPage page: Page, animated: Bool = true) {
         
         var leftButton: BarButtonItem
@@ -73,39 +89,27 @@ class CameraViewController: ViewController {
             rightButton = BarButtonItem(title: "Next", style: .plain, target: nil, action: nil)
             
             rightButton.rx.tap.subscribe(onNext: { [weak self] in
-                let pageValue = self?.page.value.rawValue ?? 0
-                if let page = Page(rawValue: pageValue + 1) {
-                    self?.page.value = page
-                }
+                self?.nextPage(self?.page.value)
             }).disposed(by: rightButton.disposeBag)
             
         case .crop:
             leftButton = BarButtonItem(title: "Back", style: .plain, target: nil, action: nil)
             
             leftButton.rx.tap.subscribe(onNext: { [weak self] in
-                let pageValue = self?.page.value.rawValue ?? 0
-                if let page = Page(rawValue: pageValue - 1) {
-                    self?.page.value = page
-                }
+                self?.previousPage(self?.page.value)
             }).disposed(by: leftButton.disposeBag)
             
             rightButton = BarButtonItem(title: "Next", style: .plain, target: nil, action: nil)
             
             rightButton.rx.tap.subscribe(onNext: { [weak self] in
-                let pageValue = self?.page.value.rawValue ?? 0
-                if let page = Page(rawValue: pageValue + 1) {
-                    self?.page.value = page
-                }
+                self?.nextPage(self?.page.value)
             }).disposed(by: rightButton.disposeBag)
             
         case .share:
             leftButton = BarButtonItem(title: "Back", style: .plain, target: nil, action: nil)
             
             leftButton.rx.tap.subscribe(onNext: { [weak self] in
-                let pageValue = self?.page.value.rawValue ?? 0
-                if let page = Page(rawValue: pageValue - 1) {
-                    self?.page.value = page
-                }
+                self?.previousPage(self?.page.value)
             }).disposed(by: leftButton.disposeBag)
             
             rightButton = BarButtonItem(title: "Share", style: .plain, target: nil, action: nil)
@@ -123,6 +127,17 @@ class CameraViewController: ViewController {
     
     func updateActiveController(forPage page: Page, animated: Bool = true) {
         scrollView?.setContentOffset(CGPoint(x: CGFloat(page.rawValue) * (scrollView?.bounds.width ?? 0), y: 0), animated: animated)
+        
+        switch page {
+        case .crop:
+            cropImageViewController?.asset = galleryViewController?.selectedAsset
+            break
+        case .share:
+            
+            break
+        default:
+            break
+        }
     }
     
     // MARK: - Reactive

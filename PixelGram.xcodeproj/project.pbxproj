@@ -41,6 +41,8 @@
 		B4250A031FAB312300063635 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4250A021FAB312300063635 /* NavigationController.swift */; };
 		B4250A051FAB321100063635 /* UIImage+Generation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4250A041FAB321100063635 /* UIImage+Generation.swift */; };
 		B4250A071FAB63A400063635 /* UIWindow+HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4250A061FAB63A400063635 /* UIWindow+HUD.swift */; };
+		B4250A091FAB75F600063635 /* PhotoAccessDisabledView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4250A081FAB75F600063635 /* PhotoAccessDisabledView.swift */; };
+		B4250A0B1FAB7AD900063635 /* SubmitImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4250A0A1FAB7AD900063635 /* SubmitImageCell.swift */; };
 		B477E0CC1FAA24CC0079CCAF /* CropImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B477E0C61FAA1E930079CCAF /* CropImageViewController.swift */; };
 		B477E0CD1FAA24CC0079CCAF /* CropImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B477E0C71FAA1E930079CCAF /* CropImageViewModel.swift */; };
 		B477E0CE1FAA24CC0079CCAF /* GalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B477E0C91FAA1E930079CCAF /* GalleryCell.swift */; };
@@ -97,6 +99,8 @@
 		B4250A021FAB312300063635 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		B4250A041FAB321100063635 /* UIImage+Generation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Generation.swift"; sourceTree = "<group>"; };
 		B4250A061FAB63A400063635 /* UIWindow+HUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+HUD.swift"; sourceTree = "<group>"; };
+		B4250A081FAB75F600063635 /* PhotoAccessDisabledView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAccessDisabledView.swift; sourceTree = "<group>"; };
+		B4250A0A1FAB7AD900063635 /* SubmitImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitImageCell.swift; sourceTree = "<group>"; };
 		B470DDFA1FA7AD6A00B0E3E9 /* MockServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockServer.swift; sourceTree = "<group>"; };
 		B477E0C31FAA1E930079CCAF /* ShareImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareImageViewController.swift; sourceTree = "<group>"; };
 		B477E0C41FAA1E930079CCAF /* ShareImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareImageViewModel.swift; sourceTree = "<group>"; };
@@ -213,6 +217,7 @@
 				B477E0C21FAA1E930079CCAF /* Share */,
 				B40896DE1FA85E50006088EE /* CameraViewController.swift */,
 				B48915681FA8B1EF00F1CF44 /* CameraViewModel.swift */,
+				B4250A081FAB75F600063635 /* PhotoAccessDisabledView.swift */,
 			);
 			path = Camera;
 			sourceTree = "<group>";
@@ -261,6 +266,7 @@
 			children = (
 				B477E0C31FAA1E930079CCAF /* ShareImageViewController.swift */,
 				B477E0C41FAA1E930079CCAF /* ShareImageViewModel.swift */,
+				B4250A0A1FAB7AD900063635 /* SubmitImageCell.swift */,
 			);
 			path = Share;
 			sourceTree = "<group>";
@@ -691,6 +697,7 @@
 				B40897151FA8610E006088EE /* ImageViewModel.swift in Sources */,
 				B408970B1FA8610E006088EE /* ProfileViewModel.swift in Sources */,
 				B4250A051FAB321100063635 /* UIImage+Generation.swift in Sources */,
+				B4250A0B1FAB7AD900063635 /* SubmitImageCell.swift in Sources */,
 				B489156F1FA8DAAB00F1CF44 /* ObservableButton.swift in Sources */,
 				B40896FD1FA8610E006088EE /* APIClient.swift in Sources */,
 				B48915761FA8E9CC00F1CF44 /* EditProfileViewModel.swift in Sources */,
@@ -708,6 +715,7 @@
 				B40897101FA8610E006088EE /* SupplementaryElementCollectionViewDataSource.swift in Sources */,
 				B40897061FA8610E006088EE /* LoginViewController.swift in Sources */,
 				B48915741FA8E9C200F1CF44 /* EditProfileViewController.swift in Sources */,
+				B4250A091FAB75F600063635 /* PhotoAccessDisabledView.swift in Sources */,
 				B40897051FA8610E006088EE /* FeedViewModel.swift in Sources */,
 				B408970F1FA8610E006088EE /* CollectionViewDataSource.swift in Sources */,
 				B477E0CE1FAA24CC0079CCAF /* GalleryCell.swift in Sources */,

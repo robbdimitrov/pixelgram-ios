@@ -10,5 +10,15 @@ import UIKit
 
 class ShareImageViewModel {
 
-
+    private var selectedImage: UIImage
+    var caption = ""
+    
+    var image: UIImage {
+        return selectedImage
+    }
+    
+    init(with image: UIImage) {
+        selectedImage = image
+    }
+    
 }

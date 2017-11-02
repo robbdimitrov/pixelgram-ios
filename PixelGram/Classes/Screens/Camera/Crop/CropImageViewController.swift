@@ -9,8 +9,6 @@
 import UIKit
 import Photos
 
-import MBProgressHUD
-
 class CropImageViewController: ViewController {
     
     @IBOutlet var imageView: UIImageView?

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Photos
 
 import RxCocoa
 import RxSwift
@@ -25,6 +26,17 @@ class CameraViewController: ViewController {
     var cropImageViewController: CropImageViewController?
     var shareViewController: ShareImageViewController?
     
+    var authorizationStatus = Variable(PHPhotoLibrary.authorizationStatus())
+    
+    @IBOutlet var accessDisabledView: PhotoAccessDisabledView? {
+        didSet {
+            accessDisabledView?.actionButton?.rx.tap
+                .subscribe(onNext: { [weak self] in
+                self?.openPhotosPrivacySettings()
+            }).disposed(by: disposeBag)
+        }
+    }
+    
     var page = Variable(Page.gallery)
     var viewControllers = [UIViewController]()
     
@@ -35,7 +47,14 @@ class CameraViewController: ViewController {
         
         setupViewControllers()
         observePages()
+        observePhotoAuthorizationStatus()
         updateButtonItems(forPage: page.value, animated: false)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        authorizationStatus.value = PHPhotoLibrary.authorizationStatus()
     }
     
     override func viewDidLayoutSubviews() {
@@ -53,6 +72,12 @@ class CameraViewController: ViewController {
         
         scrollView?.contentSize = CGSize(width: CGFloat(viewControllers.count) * scrollViewSize.width,
                                          height: scrollViewSize.height)
+    }
+    
+    // MARK: - Helpers
+    
+    func openPhotosPrivacySettings() {
+        UIApplication.shared.open(URL(string:"App-Prefs:root=Photos")!, options: [:], completionHandler: nil)
     }
     
     // MARK: - Paging
@@ -133,14 +158,28 @@ class CameraViewController: ViewController {
             cropImageViewController?.asset = galleryViewController?.selectedAsset
             break
         case .share:
-            
+            if let croppedImage = cropImageViewController?.image {
+                shareViewController?.viewModel = ShareImageViewModel(with: croppedImage)
+            }
             break
         default:
             break
         }
     }
     
+    // MARK: - Photo Auth status
+    
+    func updateAuthInterface(status: PHAuthorizationStatus) {
+        accessDisabledView?.isHidden = (status == .authorized)
+    }
+    
     // MARK: - Reactive
+    
+    func observePhotoAuthorizationStatus() {
+        authorizationStatus.asObservable().subscribe(onNext: { [weak self] (status) in
+            self?.updateAuthInterface(status: status)
+        }).disposed(by: disposeBag)
+    }
     
     func observePages() {
         page.asObservable().subscribe(onNext: { [weak self] (page) in

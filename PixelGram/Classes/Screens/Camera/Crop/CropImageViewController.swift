@@ -22,6 +22,14 @@ class CropImageViewController: ViewController {
             updateContent()
         }
     }
+    
+    func setAsset(asset: PHAsset?) {
+        if asset === self.asset {
+            return
+        }
+        
+        self.asset = asset
+    }
 
     // MARK: Image display
     

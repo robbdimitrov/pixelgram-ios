@@ -155,7 +155,7 @@ class CameraViewController: ViewController {
         
         switch page {
         case .crop:
-            cropImageViewController?.asset = galleryViewController?.selectedAsset
+            cropImageViewController?.setAsset(asset: galleryViewController?.selectedAsset)
             break
         case .share:
             if let croppedImage = cropImageViewController?.image {

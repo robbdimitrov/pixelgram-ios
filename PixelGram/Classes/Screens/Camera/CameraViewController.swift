@@ -158,7 +158,7 @@ class CameraViewController: ViewController {
             cropImageViewController?.setAsset(asset: galleryViewController?.selectedAsset)
             break
         case .share:
-            if let croppedImage = cropImageViewController?.image {
+            if let croppedImage = cropImageViewController?.croppedImage {
                 shareViewController?.viewModel = ShareImageViewModel(with: croppedImage)
             }
             break

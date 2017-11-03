@@ -25,6 +25,39 @@ class CropImageViewController: ViewController {
             updateContent()
         }
     }
+    var croppedImage: UIImage? {
+        guard let image = image else {
+            return nil
+        }
+        guard let croppedCGImage = image.cgImage?.cropping(to: cropArea) else {
+            return image
+        }
+        let croppedImage = UIImage(cgImage: croppedCGImage)
+        return croppedImage
+    }
+    
+    var cropArea:CGRect {
+        get{
+            guard let image = image, let scrollView = scrollView else {
+                return CGRect.zero
+            }
+            
+            let imageFrame = imageView?.imageRect() ?? CGRect.zero
+            
+            let factor = (imageFrame.minX == 0 ? image.size.width / scrollView.frame.width :
+                image.size.height / scrollView.frame.height)
+            
+            let scale = 1 / scrollView.zoomScale
+            
+            let origin = CGPoint(x: (scrollView.contentOffset.x - imageFrame.origin.x) * scale * factor,
+                                 y: (scrollView.contentOffset.y - imageFrame.origin.y) * scale * factor)
+            
+            let size = CGSize(width: scrollView.frame.size.width * scale * factor,
+                              height: scrollView.frame.size.height * scale * factor)
+            
+            return CGRect(origin: origin, size: size)
+        }
+    }
     
     @IBOutlet var scrollView: UIScrollView? {
         didSet {
@@ -46,36 +79,6 @@ class CropImageViewController: ViewController {
     }
 
     // MARK: Image display
-    
-    func imageRect() -> CGRect {
-        guard let image = image, let imageView = imageView else {
-            return CGRect.zero
-        }
-        
-        let imageSize = image.size
-        let imageSizeRatio: CGFloat = imageSize.width / imageSize.height
-        
-        let width = imageView.frame.width
-        let height = imageView.frame.height
-        
-        if imageSizeRatio > 1 {
-            // horizontal lines
-            
-            let size = CGSize(width: width, height: width * (1.0 / imageSizeRatio))
-            
-            return CGRect(origin: CGPoint(x: 0, y: (height / 2.0) - (size.height / 2.0)),
-                          size: size)
-        } else if imageSizeRatio < 1 {
-            // vertical lines
-         
-            let size = CGSize(width: height * imageSizeRatio, height: height)
-            
-            return CGRect(origin: CGPoint(x: (width / 2.0) - (size.width / 2.0), y: 0),
-                          size: size)
-        }
-        
-        return imageView.frame
-    }
     
     var targetSize: CGSize {
         let scale = UIScreen.main.scale
@@ -143,7 +146,7 @@ extension CropImageViewController: UIScrollViewDelegate {
     
     func centerOrPositionImageContentOffset(scrollView: UIScrollView, targetContentOffset: CGPoint? = nil) -> CGPoint {
         
-        let imageFrame = imageRect()
+        let imageFrame = imageView?.imageRect() ?? CGRect.zero
         let visibleFrame = visibleRect(scrollView: scrollView)
         
         var contentOffset = targetContentOffset ?? scrollView.contentOffset

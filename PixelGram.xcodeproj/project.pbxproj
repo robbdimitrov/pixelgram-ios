@@ -59,6 +59,7 @@
 		B48915781FA8EE8E00F1CF44 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48915771FA8EE8E00F1CF44 /* CollectionViewController.swift */; };
 		B489157A1FA8F0E200F1CF44 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48915791FA8F0E200F1CF44 /* ViewController.swift */; };
 		B489157C1FA8F40F00F1CF44 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B489157B1FA8F40E00F1CF44 /* HeaderView.swift */; };
+		B48A8D7A1FAD09BC00A8CBBB /* UIImageView+Sizing.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48A8D791FAD09BC00A8CBBB /* UIImageView+Sizing.swift */; };
 		B4BADC631F9F7F6200651842 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4BADC611F9F7F6200651842 /* Main.storyboard */; };
 		B4BADC681F9F7F6200651842 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4BADC671F9F7F6200651842 /* Assets.xcassets */; };
 		B4BADC6B1F9F7F6200651842 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4BADC691F9F7F6200651842 /* LaunchScreen.storyboard */; };
@@ -118,6 +119,7 @@
 		B48915771FA8EE8E00F1CF44 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		B48915791FA8F0E200F1CF44 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B489157B1FA8F40E00F1CF44 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		B48A8D791FAD09BC00A8CBBB /* UIImageView+Sizing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Sizing.swift"; sourceTree = "<group>"; };
 		B4B0CD561FA63D290099768C /* UIImageView+Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Networking.swift"; sourceTree = "<group>"; };
 		B4B2B9001FA3B21900454DE3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B4B2B9171FA3B39B00454DE3 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -428,6 +430,7 @@
 				B489156C1FA8D6AA00F1CF44 /* UIColor+Colors.swift */,
 				B4250A041FAB321100063635 /* UIImage+Generation.swift */,
 				B4250A061FAB63A400063635 /* UIWindow+HUD.swift */,
+				B48A8D791FAD09BC00A8CBBB /* UIImageView+Sizing.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -709,6 +712,7 @@
 				B477E0CD1FAA24CC0079CCAF /* CropImageViewModel.swift in Sources */,
 				B477E0D11FAA24CC0079CCAF /* ShareImageViewController.swift in Sources */,
 				B40897131FA8610E006088EE /* UIImageView+Networking.swift in Sources */,
+				B48A8D7A1FAD09BC00A8CBBB /* UIImageView+Sizing.swift in Sources */,
 				B477E0D41FAA3A500079CCAF /* BarButtonItem.swift in Sources */,
 				B40897011FA8610E006088EE /* Image.swift in Sources */,
 				B40897171FA8610E006088EE /* ImageViewCell.swift in Sources */,

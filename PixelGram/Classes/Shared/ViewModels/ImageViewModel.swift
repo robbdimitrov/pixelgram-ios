@@ -8,19 +8,51 @@
 
 import UIKit
 
+import RxSwift
+
 class ImageViewModel {
     
     private var image: Image
+    var usersLiked: Variable<[User]>
     
     private var dateFormatter = DateFormatter()
     
     init(with image: Image) {
+        usersLiked = Variable(image.usersLiked ?? [])
         self.image = image
         
         configureDateFormatter()
     }
     
     // Getters
+    
+    func likeImage(with user: User) {
+        let alreadyLiked = user.likedImages?.contains(where: { [weak self] (image) -> Bool in
+            image === self?.image
+        }) ?? false
+        
+        if alreadyLiked {
+            guard let index = user.likedImages?.index(where: { [weak self] image -> Bool in
+                image === self?.image
+            }) else {
+                return
+            }
+            
+            guard let userIndex = image.usersLiked?.index(where: { user -> Bool in
+                user === Session.sharedInstance.currentUser
+            }) else {
+                return
+            }
+            
+            user.likedImages?.remove(at: index)
+            image.usersLiked?.remove(at: userIndex)
+            usersLiked.value = image.usersLiked ?? []
+        } else {
+            user.likedImages?.append(image)
+            image.usersLiked?.append(user)
+            usersLiked.value = image.usersLiked ?? []
+        }
+    }
     
     var imageURL: URL? {
         return URL(string: image.url)

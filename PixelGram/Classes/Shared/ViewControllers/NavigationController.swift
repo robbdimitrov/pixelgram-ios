@@ -20,6 +20,10 @@ class NavigationController: UINavigationController {
         navigationBar.setBackgroundImage(backgroundImage?.resizableImage(withCapInsets: UIEdgeInsetsMake(0, 0, 5, 0)), for: .default)
         navigationBar.isTranslucent = false
         navigationBar.shadowImage = UIImage()
+        
+        navigationBar.backIndicatorImage = UIImage(named: "back")
+        navigationBar.backIndicatorTransitionMaskImage = UIImage(named: "back")
+        navigationBar.tintColor = UIColor.buttonSelectedColor
     }
 
 }

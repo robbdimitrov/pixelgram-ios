@@ -69,11 +69,8 @@
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="30" id="siH-TW-aVu"/>
                                                             </constraints>
-                                                            <state key="normal" image="ic_favorite_border"/>
-                                                            <state key="selected" image="ic_favorite"/>
-                                                            <connections>
-                                                                <action selector="likeTapped:" destination="FtC-1f-DcQ" eventType="touchUpInside" id="e9a-YZ-OaX"/>
-                                                            </connections>
+                                                            <state key="normal" image="like"/>
+                                                            <state key="selected" image="like_active"/>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0ow-TF-bSD">
                                                             <rect key="frame" x="36" y="0.0" width="30" height="30"/>
@@ -81,9 +78,6 @@
                                                                 <constraint firstAttribute="width" constant="30" id="pWc-me-YIq"/>
                                                             </constraints>
                                                             <state key="normal" image="ic_open_in_new"/>
-                                                            <connections>
-                                                                <action selector="shareTapped:" destination="FtC-1f-DcQ" eventType="touchUpInside" id="hHV-JK-AAW"/>
-                                                            </connections>
                                                         </button>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Likes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I1h-fk-Ve7">
                                                             <rect key="frame" x="72" y="0.0" width="276" height="30"/>
@@ -328,15 +322,15 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QXZ-vo-up7">
                                                 <rect key="frame" x="0.0" y="0.0" width="125" height="59"/>
-                                                <state key="normal" image="ic_home"/>
+                                                <state key="normal" image="home"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yKr-3A-pmb">
                                                 <rect key="frame" x="125" y="0.0" width="125" height="59"/>
-                                                <state key="normal" image="ic_add_a_photo"/>
+                                                <state key="normal" image="add_image"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B9P-ZY-Ude">
                                                 <rect key="frame" x="250" y="0.0" width="125" height="59"/>
-                                                <state key="normal" image="ic_account_box"/>
+                                                <state key="normal" image="profile"/>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -1066,12 +1060,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ic_account_box" width="24" height="24"/>
-        <image name="ic_add_a_photo" width="24" height="24"/>
-        <image name="ic_favorite" width="24" height="24"/>
-        <image name="ic_favorite_border" width="24" height="24"/>
-        <image name="ic_home" width="24" height="24"/>
+        <image name="add_image" width="26" height="26"/>
+        <image name="home" width="26" height="26"/>
         <image name="ic_open_in_new" width="24" height="24"/>
         <image name="ic_settings" width="24" height="24"/>
+        <image name="like" width="24" height="24"/>
+        <image name="like_active" width="24" height="24"/>
+        <image name="profile" width="26" height="26"/>
     </resources>
 </document>

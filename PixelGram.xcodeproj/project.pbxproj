@@ -44,7 +44,6 @@
 		B4250A091FAB75F600063635 /* PhotoAccessDisabledView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4250A081FAB75F600063635 /* PhotoAccessDisabledView.swift */; };
 		B4250A0B1FAB7AD900063635 /* SubmitImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4250A0A1FAB7AD900063635 /* SubmitImageCell.swift */; };
 		B477E0CC1FAA24CC0079CCAF /* CropImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B477E0C61FAA1E930079CCAF /* CropImageViewController.swift */; };
-		B477E0CD1FAA24CC0079CCAF /* CropImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B477E0C71FAA1E930079CCAF /* CropImageViewModel.swift */; };
 		B477E0CE1FAA24CC0079CCAF /* GalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B477E0C91FAA1E930079CCAF /* GalleryCell.swift */; };
 		B477E0CF1FAA24CC0079CCAF /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B477E0CA1FAA1E930079CCAF /* GalleryViewController.swift */; };
 		B477E0D11FAA24CC0079CCAF /* ShareImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B477E0C31FAA1E930079CCAF /* ShareImageViewController.swift */; };
@@ -106,7 +105,6 @@
 		B477E0C31FAA1E930079CCAF /* ShareImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareImageViewController.swift; sourceTree = "<group>"; };
 		B477E0C41FAA1E930079CCAF /* ShareImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareImageViewModel.swift; sourceTree = "<group>"; };
 		B477E0C61FAA1E930079CCAF /* CropImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropImageViewController.swift; sourceTree = "<group>"; };
-		B477E0C71FAA1E930079CCAF /* CropImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropImageViewModel.swift; sourceTree = "<group>"; };
 		B477E0C91FAA1E930079CCAF /* GalleryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCell.swift; sourceTree = "<group>"; };
 		B477E0CA1FAA1E930079CCAF /* GalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		B477E0D31FAA3A500079CCAF /* BarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarButtonItem.swift; sourceTree = "<group>"; };
@@ -277,7 +275,6 @@
 			isa = PBXGroup;
 			children = (
 				B477E0C61FAA1E930079CCAF /* CropImageViewController.swift */,
-				B477E0C71FAA1E930079CCAF /* CropImageViewModel.swift */,
 			);
 			path = Crop;
 			sourceTree = "<group>";
@@ -709,7 +706,6 @@
 				B408971D1FA87F80006088EE /* UICollectionReusableView+FullWidth.swift in Sources */,
 				B40897041FA8610E006088EE /* FeedViewController.swift in Sources */,
 				B408970D1FA8610E006088EE /* SettingsViewController.swift in Sources */,
-				B477E0CD1FAA24CC0079CCAF /* CropImageViewModel.swift in Sources */,
 				B477E0D11FAA24CC0079CCAF /* ShareImageViewController.swift in Sources */,
 				B40897131FA8610E006088EE /* UIImageView+Networking.swift in Sources */,
 				B48A8D7A1FAD09BC00A8CBBB /* UIImageView+Sizing.swift in Sources */,

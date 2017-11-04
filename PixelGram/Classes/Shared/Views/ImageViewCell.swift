@@ -9,6 +9,7 @@
 import UIKit
 
 import RxSwift
+import RxCocoa
 
 class ImageViewCell: FullWidthCollectionViewCell {
     
@@ -52,6 +53,26 @@ class ImageViewCell: FullWidthCollectionViewCell {
         likesLabel?.text = viewModel.likesText
         descriptionLabel?.attributedText = viewModel.descriptionText
         dateCreatedLabel?.text = viewModel.dateCreatedText
+        
+        guard let likeButton = likeButton else {
+            return
+        }
+        
+        likeButton.rx.tap.bind { [weak self] in
+            if let currentUser = Session.sharedInstance.currentUser {
+                self?.viewModel?.likeImage(with: currentUser)
+            }
+        }.disposed(by: disposeBag)
+        
+        viewModel.usersLiked.asObservable().map { users -> Bool in
+            if let currentUser = Session.sharedInstance.currentUser {
+                return users.contains(where: { user -> Bool in
+                    user === currentUser
+                })
+            }
+            return false
+        }.bind(to: likeButton.rx.isSelected)
+            .disposed(by: disposeBag)
     }
     
 }

@@ -31,6 +31,15 @@ class FeedViewController: CollectionViewController {
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+//        if !Session.sharedInstance.currentUser {
+            let viewController = instantiateViewController(withIdentifier: LoginViewController.storyboardIdentifier)
+            present(NavigationController(rootViewController: viewController), animated: true, completion: nil)
+//        }
+    }
+    
     // MARK: - Config
     
     override func setupNavigationItem() {

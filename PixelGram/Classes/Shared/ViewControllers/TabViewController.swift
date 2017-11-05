@@ -159,6 +159,7 @@ class TabViewController: UIViewController {
         
         guard previousViewController != currentViewController else {
             print("View controller didn't change")
+            (currentViewController as? UINavigationController)?.popToRootViewController(animated: true)
             return
         }
         

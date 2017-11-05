@@ -59,6 +59,8 @@
 		B489157A1FA8F0E200F1CF44 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48915791FA8F0E200F1CF44 /* ViewController.swift */; };
 		B489157C1FA8F40F00F1CF44 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B489157B1FA8F40E00F1CF44 /* HeaderView.swift */; };
 		B48A8D7A1FAD09BC00A8CBBB /* UIImageView+Sizing.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48A8D791FAD09BC00A8CBBB /* UIImageView+Sizing.swift */; };
+		B48BF8C61FAF20EB00F28F74 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48BF8C51FAF20EB00F28F74 /* SignupViewController.swift */; };
+		B48BF8C91FAF406C00F28F74 /* EmailValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48BF8C81FAF406C00F28F74 /* EmailValidator.swift */; };
 		B4BADC631F9F7F6200651842 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4BADC611F9F7F6200651842 /* Main.storyboard */; };
 		B4BADC681F9F7F6200651842 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4BADC671F9F7F6200651842 /* Assets.xcassets */; };
 		B4BADC6B1F9F7F6200651842 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4BADC691F9F7F6200651842 /* LaunchScreen.storyboard */; };
@@ -118,6 +120,8 @@
 		B48915791FA8F0E200F1CF44 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B489157B1FA8F40E00F1CF44 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		B48A8D791FAD09BC00A8CBBB /* UIImageView+Sizing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Sizing.swift"; sourceTree = "<group>"; };
+		B48BF8C51FAF20EB00F28F74 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		B48BF8C81FAF406C00F28F74 /* EmailValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidator.swift; sourceTree = "<group>"; };
 		B4B0CD561FA63D290099768C /* UIImageView+Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Networking.swift"; sourceTree = "<group>"; };
 		B4B2B9001FA3B21900454DE3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B4B2B9171FA3B39B00454DE3 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -238,6 +242,7 @@
 				B40896E31FA85E50006088EE /* LoginViewController.swift */,
 				B40896E41FA85E50006088EE /* LoginViewModel.swift */,
 				B40896E51FA85E50006088EE /* SignupViewModel.swift */,
+				B48BF8C51FAF20EB00F28F74 /* SignupViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -297,6 +302,14 @@
 			path = "Edit Profile";
 			sourceTree = "<group>";
 		};
+		B48BF8C71FAF405D00F28F74 /* Validators */ = {
+			isa = PBXGroup;
+			children = (
+				B48BF8C81FAF406C00F28F74 /* EmailValidator.swift */,
+			);
+			path = Validators;
+			sourceTree = "<group>";
+		};
 		B4B2B8FC1FA3B20000454DE3 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -322,6 +335,7 @@
 			children = (
 				B40896DA1FA85E35006088EE /* DataSources */,
 				B4E9CC491FA5C974009ECF88 /* Extensions */,
+				B48BF8C71FAF405D00F28F74 /* Validators */,
 				B4E9CC441FA4CEAE009ECF88 /* ViewControllers */,
 				B4B2B91B1FA3B45500454DE3 /* ViewModels */,
 				B4B2B91C1FA3B45500454DE3 /* Views */,
@@ -697,6 +711,7 @@
 				B40897151FA8610E006088EE /* ImageViewModel.swift in Sources */,
 				B408970B1FA8610E006088EE /* ProfileViewModel.swift in Sources */,
 				B4250A051FAB321100063635 /* UIImage+Generation.swift in Sources */,
+				B48BF8C61FAF20EB00F28F74 /* SignupViewController.swift in Sources */,
 				B4250A0B1FAB7AD900063635 /* SubmitImageCell.swift in Sources */,
 				B489156F1FA8DAAB00F1CF44 /* ObservableButton.swift in Sources */,
 				B40896FD1FA8610E006088EE /* APIClient.swift in Sources */,
@@ -717,6 +732,7 @@
 				B48915741FA8E9C200F1CF44 /* EditProfileViewController.swift in Sources */,
 				B4250A091FAB75F600063635 /* PhotoAccessDisabledView.swift in Sources */,
 				B40897051FA8610E006088EE /* FeedViewModel.swift in Sources */,
+				B48BF8C91FAF406C00F28F74 /* EmailValidator.swift in Sources */,
 				B408970F1FA8610E006088EE /* CollectionViewDataSource.swift in Sources */,
 				B477E0CE1FAA24CC0079CCAF /* GalleryCell.swift in Sources */,
 				B4250A071FAB63A400063635 /* UIWindow+HUD.swift in Sources */,

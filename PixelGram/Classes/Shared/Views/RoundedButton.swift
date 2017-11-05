@@ -29,6 +29,7 @@ class RoundedButton: ObservableButton {
                 self?.layer.borderColor = UIColor.black.withAlphaComponent(0.2).cgColor
             }
         }).disposed(by: disposeBag)
+        
     }
     
     func configureBorder() {

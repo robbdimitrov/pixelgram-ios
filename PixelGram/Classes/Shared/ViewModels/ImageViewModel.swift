@@ -54,6 +54,10 @@ class ImageViewModel {
         }
     }
     
+    var isOwnedByCurrentUser: Bool {
+        return image.owner === Session.sharedInstance.currentUser
+    }
+    
     var imageURL: URL? {
         return URL(string: image.url)
     }

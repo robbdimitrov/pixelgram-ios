@@ -1,5 +1,5 @@
 //
-//  UIImage+Generation.swift
+//  ImageGeneration.swift
 //  PixelGram
 //
 //  Created by Robert Dimitrov on 11/2/17.

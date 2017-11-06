@@ -34,10 +34,10 @@ class FeedViewController: CollectionViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-//        if !Session.sharedInstance.currentUser {
+        if Session.sharedInstance.currentUser == nil {
             let viewController = instantiateViewController(withIdentifier: LoginViewController.storyboardIdentifier)
             present(NavigationController(rootViewController: viewController), animated: true, completion: nil)
-//        }
+        }
     }
     
     // MARK: - Config
@@ -70,7 +70,44 @@ class FeedViewController: CollectionViewController {
                     }
                 }).disposed(by: cell.disposeBag)
                 
+                cell.optionsButton?.rx.tap.subscribe(onNext: { [weak self] in
+                    self?.openOptions()
+                }).disposed(by: cell.disposeBag)
+                
         }.disposed(by: disposeBag)
+    }
+    
+    // MARK: - Actions
+    
+    func openOptions() {
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { action in
+        }
+        alertController.addAction(cancelAction)
+        
+        let destroyAction = UIAlertAction(title: "Delete", style: .destructive) { [weak self] action in
+            self?.deleteAction()
+        }
+        alertController.addAction(destroyAction)
+        
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    func deleteAction() {
+        let alertController = UIAlertController(title: "Delete Post?", message: "Do you want to delete the post permanently?",
+                                                preferredStyle: .alert)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { action in
+        }
+        alertController.addAction(cancelAction)
+        
+        let OKAction = UIAlertAction(title: "Delete", style: .destructive) { action in
+            
+        }
+        alertController.addAction(OKAction)
+        
+        present(alertController, animated: true, completion: nil)
     }
     
     // MARK: - Navigation

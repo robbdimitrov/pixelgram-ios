@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  ViewReuse.swift
 //  PixelGram
 //
 //  Created by Robert Dimitrov on 10/29/17.
@@ -8,10 +8,10 @@
 
 import UIKit
 
-extension UIViewController {
+extension UIView {
 
-    static var storyboardIdentifier: String {
+    static var reuseIdentifier: String {
         return String(describing: self.self)
     }
-    
+
 }

@@ -26,6 +26,7 @@ class ImageViewCell: FullWidthCollectionViewCell {
     @IBOutlet var descriptionLabel: UILabel?
     @IBOutlet var dateCreatedLabel: UILabel?
     @IBOutlet var userButton: UIButton?
+    @IBOutlet var optionsButton: UIButton?
     
     private(set) var disposeBag = DisposeBag()
     
@@ -73,6 +74,8 @@ class ImageViewCell: FullWidthCollectionViewCell {
             return false
         }.bind(to: likeButton.rx.isSelected)
             .disposed(by: disposeBag)
+        
+        optionsButton?.isHidden = !viewModel.isOwnedByCurrentUser
     }
     
 }

@@ -1,5 +1,5 @@
 //
-//  UICollectionReusableView.swift
+//  FullWidthCell.swift
 //  PixelGram
 //
 //  Created by Robert Dimitrov on 10/31/17.

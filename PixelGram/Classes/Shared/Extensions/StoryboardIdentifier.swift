@@ -1,5 +1,5 @@
 //
-//  View.swift
+//  StoryboardIdentifier.swift
 //  PixelGram
 //
 //  Created by Robert Dimitrov on 10/29/17.
@@ -8,10 +8,10 @@
 
 import UIKit
 
-extension UIView {
+extension UIViewController {
 
-    static var reuseIdentifier: String {
+    static var storyboardIdentifier: String {
         return String(describing: self.self)
     }
-
+    
 }

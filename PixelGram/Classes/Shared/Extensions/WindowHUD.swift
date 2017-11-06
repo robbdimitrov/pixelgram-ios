@@ -1,5 +1,5 @@
 //
-//  UIWindow+HUD.swift
+//  WindowHUD.swift
 //  PixelGram
 //
 //  Created by Robert Dimitrov on 11/2/17.

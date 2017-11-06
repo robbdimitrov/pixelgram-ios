@@ -38,7 +38,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DcU-7j-JOE" userLabel="UserButton">
-                                                    <rect key="frame" x="0.0" y="0.0" width="372" height="54"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="318" height="54"/>
                                                 </button>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2Bu-1c-LZY">
                                                     <rect key="frame" x="0.0" y="55" width="372" height="372"/>
@@ -92,7 +92,7 @@
                                                     </constraints>
                                                 </stackView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="djM-zO-dFw">
-                                                    <rect key="frame" x="54" y="18" width="306" height="18"/>
+                                                    <rect key="frame" x="54" y="18" width="264" height="18"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -115,20 +115,28 @@
                                                     <color key="textColor" red="0.49803921579999999" green="0.49803921579999999" blue="0.49803921579999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bqC-B8-2K2">
+                                                    <rect key="frame" x="330" y="16" width="30" height="22"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="30" id="xRC-v1-eYm"/>
+                                                    </constraints>
+                                                    <state key="normal" image="options"/>
+                                                </button>
                                             </subviews>
                                         </view>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="djM-zO-dFw" secondAttribute="trailing" constant="12" id="2OA-YP-LG7"/>
+                                            <constraint firstItem="bqC-B8-2K2" firstAttribute="leading" secondItem="DcU-7j-JOE" secondAttribute="trailing" constant="12" id="2QU-CZ-n0T"/>
                                             <constraint firstItem="Cbq-3w-9Rc" firstAttribute="top" secondItem="DcU-7j-JOE" secondAttribute="bottom" id="2bl-kb-9nf"/>
                                             <constraint firstItem="cgy-Fq-bZK" firstAttribute="leading" secondItem="FtC-1f-DcQ" secondAttribute="leading" constant="12" id="3HW-AE-Hqd"/>
                                             <constraint firstItem="MTN-Tt-t4P" firstAttribute="top" secondItem="2Bu-1c-LZY" secondAttribute="bottom" constant="12" id="5vi-Fh-3J1"/>
                                             <constraint firstAttribute="trailing" secondItem="cgy-Fq-bZK" secondAttribute="trailing" constant="12" id="IVs-S4-vk9"/>
                                             <constraint firstAttribute="trailing" secondItem="d1r-2i-3d3" secondAttribute="trailing" constant="12" id="LlN-sd-6aX"/>
+                                            <constraint firstItem="bqC-B8-2K2" firstAttribute="leading" secondItem="djM-zO-dFw" secondAttribute="trailing" constant="12" id="Mdl-Fd-pJV"/>
                                             <constraint firstItem="d1r-2i-3d3" firstAttribute="leading" secondItem="FtC-1f-DcQ" secondAttribute="leading" constant="12" id="OKF-bf-y9y"/>
                                             <constraint firstItem="2Bu-1c-LZY" firstAttribute="leading" secondItem="FtC-1f-DcQ" secondAttribute="leading" id="TCa-h5-1Zp"/>
+                                            <constraint firstAttribute="trailing" secondItem="bqC-B8-2K2" secondAttribute="trailing" constant="12" id="UX5-Ta-IDJ"/>
                                             <constraint firstAttribute="trailing" secondItem="2Bu-1c-LZY" secondAttribute="trailing" id="WTd-c2-E0Y"/>
                                             <constraint firstItem="djM-zO-dFw" firstAttribute="centerY" secondItem="lbf-H3-gbO" secondAttribute="centerY" id="Zid-Hg-58G"/>
-                                            <constraint firstAttribute="trailing" secondItem="DcU-7j-JOE" secondAttribute="trailing" id="afc-hL-7TG"/>
                                             <constraint firstItem="cgy-Fq-bZK" firstAttribute="top" secondItem="MTN-Tt-t4P" secondAttribute="bottom" constant="6" id="bIg-k8-Lix"/>
                                             <constraint firstItem="DcU-7j-JOE" firstAttribute="top" secondItem="FtC-1f-DcQ" secondAttribute="top" id="cHn-9D-Mbw"/>
                                             <constraint firstItem="djM-zO-dFw" firstAttribute="leading" secondItem="lbf-H3-gbO" secondAttribute="trailing" constant="12" id="cMO-2z-skc"/>
@@ -143,6 +151,7 @@
                                             <constraint firstAttribute="bottom" secondItem="d1r-2i-3d3" secondAttribute="bottom" constant="12" id="pjM-Cu-DbB"/>
                                             <constraint firstItem="lbf-H3-gbO" firstAttribute="leading" secondItem="FtC-1f-DcQ" secondAttribute="leading" constant="12" id="qn3-aP-Cwu"/>
                                             <constraint firstItem="2Bu-1c-LZY" firstAttribute="top" secondItem="Cbq-3w-9Rc" secondAttribute="bottom" id="sjF-5t-sob"/>
+                                            <constraint firstItem="bqC-B8-2K2" firstAttribute="centerY" secondItem="djM-zO-dFw" secondAttribute="centerY" id="zj2-tl-1rR"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="avatarImageView" destination="lbf-H3-gbO" id="HpN-mp-9du"/>
@@ -151,6 +160,7 @@
                                             <outlet property="imageView" destination="2Bu-1c-LZY" id="w7h-5M-sJ7"/>
                                             <outlet property="likeButton" destination="SoD-le-jMC" id="HMN-8h-Wkf"/>
                                             <outlet property="likesLabel" destination="I1h-fk-Ve7" id="0bS-fb-5yH"/>
+                                            <outlet property="optionsButton" destination="bqC-B8-2K2" id="2vg-fu-d8r"/>
                                             <outlet property="shareButton" destination="0ow-TF-bSD" id="Kma-U8-oTm"/>
                                             <outlet property="userButton" destination="DcU-7j-JOE" id="5Bi-Op-kVa"/>
                                             <outlet property="usernameLabel" destination="djM-zO-dFw" id="tIu-Sy-Ele"/>
@@ -1147,6 +1157,7 @@
         <image name="ic_settings" width="24" height="24"/>
         <image name="like" width="24" height="24"/>
         <image name="like_active" width="24" height="24"/>
+        <image name="options" width="22" height="11"/>
         <image name="profile" width="26" height="26"/>
     </resources>
 </document>

@@ -1,5 +1,5 @@
 //
-//  UIImageView+Sizing.swift
+//  ImageSizing.swift
 //  PixelGram
 //
 //  Created by Robert Dimitrov on 11/3/17.

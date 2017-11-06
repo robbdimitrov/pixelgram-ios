@@ -57,7 +57,6 @@
 		B48915761FA8E9CC00F1CF44 /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48915751FA8E9CC00F1CF44 /* EditProfileViewModel.swift */; };
 		B48915781FA8EE8E00F1CF44 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48915771FA8EE8E00F1CF44 /* CollectionViewController.swift */; };
 		B489157A1FA8F0E200F1CF44 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48915791FA8F0E200F1CF44 /* ViewController.swift */; };
-		B489157C1FA8F40F00F1CF44 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B489157B1FA8F40E00F1CF44 /* HeaderView.swift */; };
 		B48A8D7A1FAD09BC00A8CBBB /* UIImageView+Sizing.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48A8D791FAD09BC00A8CBBB /* UIImageView+Sizing.swift */; };
 		B48BF8C61FAF20EB00F28F74 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48BF8C51FAF20EB00F28F74 /* SignupViewController.swift */; };
 		B48BF8C91FAF406C00F28F74 /* EmailValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48BF8C81FAF406C00F28F74 /* EmailValidator.swift */; };
@@ -65,6 +64,7 @@
 		B4BADC681F9F7F6200651842 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4BADC671F9F7F6200651842 /* Assets.xcassets */; };
 		B4BADC6B1F9F7F6200651842 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4BADC691F9F7F6200651842 /* LaunchScreen.storyboard */; };
 		B4BADC761F9F7F6200651842 /* PixelGramTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BADC751F9F7F6200651842 /* PixelGramTests.swift */; };
+		B4C273C91FB04CAE00248444 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C273C81FB04CAE00248444 /* InputView.swift */; };
 		EE66EED9888004422CFEA730 /* Pods_PixelGram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E47333A63EEDE7FE606960C0 /* Pods_PixelGram.framework */; };
 /* End PBXBuildFile section */
 
@@ -118,7 +118,6 @@
 		B48915751FA8E9CC00F1CF44 /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
 		B48915771FA8EE8E00F1CF44 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		B48915791FA8F0E200F1CF44 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		B489157B1FA8F40E00F1CF44 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		B48A8D791FAD09BC00A8CBBB /* UIImageView+Sizing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Sizing.swift"; sourceTree = "<group>"; };
 		B48BF8C51FAF20EB00F28F74 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		B48BF8C81FAF406C00F28F74 /* EmailValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidator.swift; sourceTree = "<group>"; };
@@ -138,6 +137,7 @@
 		B4BADC711F9F7F6200651842 /* PixelGramTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PixelGramTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4BADC751F9F7F6200651842 /* PixelGramTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelGramTests.swift; sourceTree = "<group>"; };
 		B4BADC771F9F7F6200651842 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B4C273C81FB04CAE00248444 /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
 		B4E940001FA70E300098AEA2 /* PixelGram.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PixelGram.entitlements; sourceTree = "<group>"; };
 		B4E940011FA747BF0098AEA2 /* ThumbImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbImageCell.swift; sourceTree = "<group>"; };
 		B4E9CC3B1FA4C16F009ECF88 /* TextLabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextLabelCell.swift; sourceTree = "<group>"; };
@@ -238,7 +238,6 @@
 		B40896E21FA85E50006088EE /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				B489157B1FA8F40E00F1CF44 /* HeaderView.swift */,
 				B40896E31FA85E50006088EE /* LoginViewController.swift */,
 				B40896E41FA85E50006088EE /* LoginViewModel.swift */,
 				B40896E51FA85E50006088EE /* SignupViewModel.swift */,
@@ -372,6 +371,7 @@
 				B489156A1FA8D04600F1CF44 /* RoundedButton.swift */,
 				B489156E1FA8DAAB00F1CF44 /* ObservableButton.swift */,
 				B477E0D31FAA3A500079CCAF /* BarButtonItem.swift */,
+				B4C273C81FB04CAE00248444 /* InputView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -644,6 +644,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-PixelGram/Pods-PixelGram-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Locksmith/Locksmith.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
@@ -653,6 +654,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Locksmith.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
@@ -706,7 +708,7 @@
 				B48915781FA8EE8E00F1CF44 /* CollectionViewController.swift in Sources */,
 				B40897161FA8610E006088EE /* UserViewModel.swift in Sources */,
 				B40897031FA8610E006088EE /* CameraViewController.swift in Sources */,
-				B489157C1FA8F40F00F1CF44 /* HeaderView.swift in Sources */,
+				B4C273C91FB04CAE00248444 /* InputView.swift in Sources */,
 				B40897081FA8610E006088EE /* SignupViewModel.swift in Sources */,
 				B40897151FA8610E006088EE /* ImageViewModel.swift in Sources */,
 				B408970B1FA8610E006088EE /* ProfileViewModel.swift in Sources */,

@@ -13,8 +13,8 @@ import RxCocoa
 
 class LoginViewController: ViewController {
 
-    @IBOutlet var emailField: UITextField?
-    @IBOutlet var passwordField: UITextField?
+    @IBOutlet var emailInput: InputView?
+    @IBOutlet var passwordInput: InputView?
     @IBOutlet var loginButton: UIButton?
     @IBOutlet var registerButton: UIButton?
     
@@ -23,14 +23,22 @@ class LoginViewController: ViewController {
 
         title = "Log In"
         
-        setupLoginForm();
-        setupRegisterButton();
+        setupInputElements()
+        setupLoginForm()
+        setupRegisterButton()
+    }
+    
+    // MARK: - Config
+    
+    func setupInputElements() {
+        emailInput?.setup(with: "Email", placeholder: "john@example.com")
+        passwordInput?.setup(with: "Password", placeholder: nil, isSecureField: true)
     }
     
     // MARK: - Reactive
     
     func setupLoginForm() {
-        guard let emailField = emailField, let passwordField = passwordField,
+        guard let emailField = emailInput?.textField, let passwordField = passwordInput?.textField,
             let loginButton = loginButton else {
             return
         }
@@ -58,8 +66,8 @@ class LoginViewController: ViewController {
             .disposed(by: disposeBag)
         
         loginButton.rx.tap.bind { [weak self] in
-            self?.login(with: self?.emailField?.text ?? "",
-                        password: self?.passwordField?.text ?? "")
+            self?.login(with: self?.emailInput?.textField?.text ?? "",
+                        password: self?.passwordInput?.textField?.text ?? "")
         }.disposed(by: disposeBag)
     }
     

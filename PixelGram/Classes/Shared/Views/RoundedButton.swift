@@ -15,6 +15,18 @@ class RoundedButton: ObservableButton {
 
     private let disposeBag = DisposeBag()
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        awakeFromNib()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        awakeFromNib()
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -29,7 +41,6 @@ class RoundedButton: ObservableButton {
                 self?.layer.borderColor = UIColor.black.withAlphaComponent(0.2).cgColor
             }
         }).disposed(by: disposeBag)
-        
     }
     
     func configureBorder() {

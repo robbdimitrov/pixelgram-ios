@@ -9,6 +9,7 @@ target 'PixelGram' do
   pod 'RxSwift', '~> 4.0'
   pod 'RxCocoa', '~> 4.0'
   pod 'MBProgressHUD', '~> 1.0'
+  pod 'IQKeyboardManagerSwift', '~> 5.0'
 
   target 'PixelGramTests' do
     inherit! :search_paths

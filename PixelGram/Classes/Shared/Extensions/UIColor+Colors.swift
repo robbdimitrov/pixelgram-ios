@@ -12,5 +12,6 @@ extension UIColor {
 
     static let buttonColor = UIColor.black.withAlphaComponent(0.2)
     static let buttonSelectedColor = UIColor.black
+    static let backgroundColor = UIColor.white
     
 }

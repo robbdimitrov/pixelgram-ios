@@ -11,17 +11,50 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class EditProfileViewController: CollectionViewController {
+class EditProfileViewController: ViewController {
     
-    var viewModel: EditProfileViewModel?
+    var viewModel = EditProfileViewModel()
+    
+    @IBOutlet var avatarImageView: UIImageView?
+    @IBOutlet var changeAvatarButton: UIButton?
+    @IBOutlet var nameInput: InputView?
+    @IBOutlet var usernameInput: InputView?
+    @IBOutlet var emailInput: InputView?
+    @IBOutlet var bioInput: FreeformInputView?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        title = "Edit Profile"
+        
+        setupAvatarControls()
+        setupInputElements()
+    }
     
     // MARK: - Config
     
-    override func setupNavigationItem() {
-        super.setupNavigationItem()
+    func setupAvatarControls() {
+        if let avatarURL = viewModel.avatarURL {
+            avatarImageView?.setImage(with: avatarURL)
+        } else {
+            // Use placeholder image
+        }
         
-        title = "Edit Profile"
+        avatarImageView?.layer.cornerRadius = (avatarImageView?.bounds.width ?? 0) / 2.0
+        
+        changeAvatarButton?.rx.tap.bind { [weak self] in
+            self?.openImagePicker()
+        }.disposed(by: disposeBag)
     }
+    
+    func setupInputElements() {
+        nameInput?.setup(with: "Name", placeholder: "John Doe", textContent: viewModel.nameText)
+        usernameInput?.setup(with: "Username", placeholder: "johndoe", textContent: viewModel.usernameText)
+        emailInput?.setup(with: "Email", placeholder: "john@example.com", textContent: viewModel.emailText)
+        bioInput?.setup(with: "Bio", textContent: viewModel.bioText)
+    }
+    
+    // MARK: - Navigation Item
     
     override func leftButtonItems() -> [UIBarButtonItem]? {
         let cancelButton = cancelButtonItem()
@@ -43,8 +76,36 @@ class EditProfileViewController: CollectionViewController {
     
     // MARK: - Methods
     
+    func openImagePicker() {
+        let imagePicker = UIImagePickerController()
+        imagePicker.allowsEditing = false
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.delegate = self
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
     func saveUser() {
-        
+        viewModel.saveUser()
     }
 
+}
+
+extension EditProfileViewController: UIImagePickerControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            avatarImageView?.image = pickedImage
+        }
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+}
+
+extension EditProfileViewController: UINavigationControllerDelegate {
+    
 }

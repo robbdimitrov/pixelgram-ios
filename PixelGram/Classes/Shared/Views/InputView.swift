@@ -29,9 +29,10 @@ class InputView: UIView {
         }
     }
     
-    func setup(with label: String?, placeholder: String?, isSecureField: Bool = false) {
+    func setup(with label: String?, placeholder: String?, isSecureField: Bool = false, textContent: String? = "") {
         textLabel?.text = label
         textField?.placeholder = placeholder
+        textField?.text = textContent
         self.isSecureField = isSecureField
     }
     

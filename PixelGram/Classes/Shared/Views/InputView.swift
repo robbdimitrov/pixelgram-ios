@@ -11,13 +11,17 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class InputView: UIView {
+class InputView: UIView, Input {
 
     var textLabel: UILabel?
     var textField: UITextField?
     var separator: UIView?
     
     private let disposeBag = DisposeBag()
+    
+    var text: String? {
+        return textField?.text
+    }
     
     // MARK: - Setters
     

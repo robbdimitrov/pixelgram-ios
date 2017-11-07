@@ -68,6 +68,7 @@
 		B4C273CE1FB19A0C00248444 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C273CD1FB19A0C00248444 /* SettingsCell.swift */; };
 		B4C273D01FB1BC2B00248444 /* SettingItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C273CF1FB1BC2B00248444 /* SettingItemViewModel.swift */; };
 		B4C273D21FB205D600248444 /* FreeformInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C273D11FB205D600248444 /* FreeformInputView.swift */; };
+		B4C273D41FB220DA00248444 /* Input.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C273D31FB220DA00248444 /* Input.swift */; };
 		EE66EED9888004422CFEA730 /* Pods_PixelGram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E47333A63EEDE7FE606960C0 /* Pods_PixelGram.framework */; };
 /* End PBXBuildFile section */
 
@@ -145,6 +146,7 @@
 		B4C273CD1FB19A0C00248444 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		B4C273CF1FB1BC2B00248444 /* SettingItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingItemViewModel.swift; sourceTree = "<group>"; };
 		B4C273D11FB205D600248444 /* FreeformInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeformInputView.swift; sourceTree = "<group>"; };
+		B4C273D31FB220DA00248444 /* Input.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Input.swift; sourceTree = "<group>"; };
 		B4E940001FA70E300098AEA2 /* PixelGram.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PixelGram.entitlements; sourceTree = "<group>"; };
 		B4E940011FA747BF0098AEA2 /* ThumbImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbImageCell.swift; sourceTree = "<group>"; };
 		B4E9CC3B1FA4C16F009ECF88 /* TextLabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextLabelCell.swift; sourceTree = "<group>"; };
@@ -381,6 +383,7 @@
 				B477E0D31FAA3A500079CCAF /* BarButtonItem.swift */,
 				B4C273C81FB04CAE00248444 /* InputView.swift */,
 				B4C273D11FB205D600248444 /* FreeformInputView.swift */,
+				B4C273D31FB220DA00248444 /* Input.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -753,6 +756,7 @@
 				B48915741FA8E9C200F1CF44 /* EditProfileViewController.swift in Sources */,
 				B4250A091FAB75F600063635 /* PhotoAccessDisabledView.swift in Sources */,
 				B4C273D21FB205D600248444 /* FreeformInputView.swift in Sources */,
+				B4C273D41FB220DA00248444 /* Input.swift in Sources */,
 				B40897051FA8610E006088EE /* FeedViewModel.swift in Sources */,
 				B4C273D01FB1BC2B00248444 /* SettingItemViewModel.swift in Sources */,
 				B48BF8C91FAF406C00F28F74 /* EmailValidator.swift in Sources */,

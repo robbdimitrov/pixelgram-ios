@@ -8,14 +8,19 @@
 
 import UIKit
 
-class FreeformInputView: UIView {
+class FreeformInputView: UIView, Input {
 
     var textLabel: UILabel?
     var textView: UITextView?
     
+    var text: String? {
+        return textView?.text
+    }
+    
     // MARK: - Config
     
-    func setup(with label: String?, textContent: String? = "") {
+    // Note: placeholder and isSecureField aren't used in this class
+    func setup(with label: String?, placeholder: String? = "", isSecureField: Bool = false, textContent: String? = "") {
         textLabel?.text = label
         textView?.text = textContent ?? ""
     }

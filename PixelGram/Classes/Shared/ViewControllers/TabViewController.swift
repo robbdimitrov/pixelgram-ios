@@ -18,7 +18,7 @@ class TabViewController: UIViewController {
         case modal
     }
     
-    private enum Tab: Int {
+    enum Tab: Int {
         case feed = 0
         case camera
         case profile
@@ -34,7 +34,7 @@ class TabViewController: UIViewController {
             }
         }
         
-        var type: TabType {
+        private var type: TabType {
             switch self {
             case .camera:
                 return .modal
@@ -104,7 +104,7 @@ class TabViewController: UIViewController {
     
     // MARK: - Helpers
     
-    private func handleTabSelection(withSelected index: Int) {
+    func handleTabSelection(withSelected index: Int) {
         if index == Tab.camera.rawValue {
             // Open the camera, don't change the selected tab value
             
@@ -178,4 +178,18 @@ class TabViewController: UIViewController {
         currentViewController.didMove(toParentViewController: self)
     }
 
+}
+
+// MARK: - UIViewController extension
+
+extension UIViewController {
+    
+    var tabViewController: TabViewController? {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
+            let viewController = appDelegate.window?.rootViewController as? TabViewController else {
+            return nil
+        }
+        return viewController
+    }
+    
 }

@@ -64,6 +64,9 @@
 		B4BADC6B1F9F7F6200651842 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4BADC691F9F7F6200651842 /* LaunchScreen.storyboard */; };
 		B4BADC761F9F7F6200651842 /* PixelGramTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BADC751F9F7F6200651842 /* PixelGramTests.swift */; };
 		B4C273C91FB04CAE00248444 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C273C81FB04CAE00248444 /* InputView.swift */; };
+		B4C273CC1FB18B7400248444 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C273CB1FB18B7400248444 /* ChangePasswordViewController.swift */; };
+		B4C273CE1FB19A0C00248444 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C273CD1FB19A0C00248444 /* SettingsCell.swift */; };
+		B4C273D01FB1BC2B00248444 /* SettingItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C273CF1FB1BC2B00248444 /* SettingItemViewModel.swift */; };
 		EE66EED9888004422CFEA730 /* Pods_PixelGram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E47333A63EEDE7FE606960C0 /* Pods_PixelGram.framework */; };
 /* End PBXBuildFile section */
 
@@ -137,6 +140,9 @@
 		B4BADC751F9F7F6200651842 /* PixelGramTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelGramTests.swift; sourceTree = "<group>"; };
 		B4BADC771F9F7F6200651842 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B4C273C81FB04CAE00248444 /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
+		B4C273CB1FB18B7400248444 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
+		B4C273CD1FB19A0C00248444 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
+		B4C273CF1FB1BC2B00248444 /* SettingItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingItemViewModel.swift; sourceTree = "<group>"; };
 		B4E940001FA70E300098AEA2 /* PixelGram.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PixelGram.entitlements; sourceTree = "<group>"; };
 		B4E940011FA747BF0098AEA2 /* ThumbImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbImageCell.swift; sourceTree = "<group>"; };
 		B4E9CC3B1FA4C16F009ECF88 /* TextLabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextLabelCell.swift; sourceTree = "<group>"; };
@@ -257,8 +263,11 @@
 		B40896EA1FA85E50006088EE /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				B4C273CA1FB18B5900248444 /* Change Password */,
 				B40896EC1FA85E50006088EE /* SettingsViewController.swift */,
 				B40896ED1FA85E50006088EE /* SettingsViewModel.swift */,
+				B4C273CD1FB19A0C00248444 /* SettingsCell.swift */,
+				B4C273CF1FB1BC2B00248444 /* SettingItemViewModel.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -415,6 +424,14 @@
 				B4BADC771F9F7F6200651842 /* Info.plist */,
 			);
 			path = PixelGramTests;
+			sourceTree = "<group>";
+		};
+		B4C273CA1FB18B5900248444 /* Change Password */ = {
+			isa = PBXGroup;
+			children = (
+				B4C273CB1FB18B7400248444 /* ChangePasswordViewController.swift */,
+			);
+			path = "Change Password";
 			sourceTree = "<group>";
 		};
 		B4E9CC441FA4CEAE009ECF88 /* ViewControllers */ = {
@@ -708,6 +725,7 @@
 				B4C273C91FB04CAE00248444 /* InputView.swift in Sources */,
 				B40897081FA8610E006088EE /* SignupViewModel.swift in Sources */,
 				B40897151FA8610E006088EE /* ImageViewModel.swift in Sources */,
+				B4C273CE1FB19A0C00248444 /* SettingsCell.swift in Sources */,
 				B408970B1FA8610E006088EE /* ProfileViewModel.swift in Sources */,
 				B4250A051FAB321100063635 /* ImageGeneration.swift in Sources */,
 				B48BF8C61FAF20EB00F28F74 /* SignupViewController.swift in Sources */,
@@ -727,10 +745,12 @@
 				B40897011FA8610E006088EE /* Image.swift in Sources */,
 				B40897171FA8610E006088EE /* ImageViewCell.swift in Sources */,
 				B40897101FA8610E006088EE /* SupplementaryElementCollectionViewDataSource.swift in Sources */,
+				B4C273CC1FB18B7400248444 /* ChangePasswordViewController.swift in Sources */,
 				B40897061FA8610E006088EE /* LoginViewController.swift in Sources */,
 				B48915741FA8E9C200F1CF44 /* EditProfileViewController.swift in Sources */,
 				B4250A091FAB75F600063635 /* PhotoAccessDisabledView.swift in Sources */,
 				B40897051FA8610E006088EE /* FeedViewModel.swift in Sources */,
+				B4C273D01FB1BC2B00248444 /* SettingItemViewModel.swift in Sources */,
 				B48BF8C91FAF406C00F28F74 /* EmailValidator.swift in Sources */,
 				B408970F1FA8610E006088EE /* CollectionViewDataSource.swift in Sources */,
 				B477E0CE1FAA24CC0079CCAF /* GalleryCell.swift in Sources */,

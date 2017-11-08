@@ -40,6 +40,20 @@ class InputView: UIView, Input {
         self.isSecureField = isSecureField
     }
     
+    // MARK: - First responder
+    
+    override var isFirstResponder: Bool {
+        return textField?.isFirstResponder ?? false
+    }
+ 
+    func becomeFirstResponder() {
+        textField?.becomeFirstResponder
+    }
+    
+    func resignFirstResponder() {
+        textField?.resignFirstResponder()
+    }
+    
     // MARK: - Lifecycle
     
     override func awakeFromNib() {

@@ -49,9 +49,16 @@ class EditProfileViewController: ViewController {
     
     func setupInputElements() {
         nameInput?.setup(with: "Name", placeholder: "John Doe", textContent: viewModel.nameText)
+        nameInput?.textField?.returnKeyType = .next
+        
         usernameInput?.setup(with: "Username", placeholder: "johndoe", textContent: viewModel.usernameText)
+        usernameInput?.textField?.returnKeyType = .next
+        
         emailInput?.setup(with: "Email", placeholder: "john@example.com", textContent: viewModel.emailText)
+        emailInput?.textField?.returnKeyType = .next
+        
         bioInput?.setup(with: "Bio", textContent: viewModel.bioText)
+        bioInput?.textView?.returnKeyType = .default
     }
     
     // MARK: - Navigation Item

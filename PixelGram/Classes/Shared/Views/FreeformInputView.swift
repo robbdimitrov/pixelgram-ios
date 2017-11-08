@@ -54,6 +54,20 @@ class FreeformInputView: UIView, Input {
                                   width: textFieldWidth, height: frame.height)
     }
     
+    // MARK: - First responder
+    
+    override var isFirstResponder: Bool {
+        return textView?.isFirstResponder ?? false
+    }
+    
+    func becomeFirstResponder() {
+        textView?.becomeFirstResponder
+    }
+    
+    func resignFirstResponder() {
+        textView?.resignFirstResponder()
+    }
+    
     // MARK: - Config
     
     func setupTextLabel() {

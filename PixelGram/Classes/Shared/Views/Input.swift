@@ -6,10 +6,16 @@
 //  Copyright © 2017 Robert Dimitrov. All rights reserved.
 //
 
-protocol Input {
+protocol Input: class {
+    
+    var text: String? { get }
+    
+    var isFirstResponder: Bool { get }
     
     func setup(with label: String?, placeholder: String?, isSecureField: Bool, textContent: String?) -> Void
     
-    var text: String? { get }
+    func becomeFirstResponder()
+    
+    func resignFirstResponder()
     
 }

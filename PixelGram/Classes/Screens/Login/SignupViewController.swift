@@ -32,9 +32,16 @@ class SignupViewController: ViewController {
     
     func setupInputElements() {
         nameInput?.setup(with: "Name", placeholder: "John Doe")
+        nameInput?.textField?.returnKeyType = .next
+        
         usernameInput?.setup(with: "Username", placeholder: "johndoe")
+        usernameInput?.textField?.returnKeyType = .next
+        
         emailInput?.setup(with: "Email", placeholder: "john@example.com")
+        emailInput?.textField?.returnKeyType = .next
+        
         passwordInput?.setup(with: "Password", placeholder: nil, isSecureField: true)
+        passwordInput?.textField?.returnKeyType = .done
     }
     
     // MARK: - Reactive

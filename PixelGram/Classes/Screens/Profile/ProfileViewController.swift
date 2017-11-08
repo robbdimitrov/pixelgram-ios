@@ -72,8 +72,8 @@ class ProfileViewController: CollectionViewController {
         if let cell = cell as? ProfileCell, let userViewModel = viewModel?.userViewModel {
             cell.configure(with: userViewModel)
             
-            bindSettingsButton(button: cell.settingsButton)
-            bindEditProfileButton(button: cell.editProfileButton)
+            bindSettingsButton(button: cell.settingsButton)?.disposed(by: cell.disposeBag)
+            bindEditProfileButton(button: cell.editProfileButton)?.disposed(by: cell.disposeBag)
         }
         
         let size = cell.systemLayoutSizeFitting(CGSize(width: collectionView.frame.width, height: 1000),
@@ -97,16 +97,16 @@ class ProfileViewController: CollectionViewController {
     
     // MARK: - Reactive
     
-    func bindEditProfileButton(button: UIButton?) {
-        button?.rx.tap.subscribe(onNext: { [weak self] in
+    func bindEditProfileButton(button: UIButton?) -> Disposable? {
+        return button?.rx.tap.subscribe(onNext: { [weak self] in
             self?.openEditProfile()
-        }).disposed(by: disposeBag)
+        })
     }
     
-    func bindSettingsButton(button: UIButton?) {
-        button?.rx.tap.subscribe(onNext: { [weak self] in
+    func bindSettingsButton(button: UIButton?) -> Disposable? {
+        return button?.rx.tap.subscribe(onNext: { [weak self] in
             self?.openSettings()
-        }).disposed(by: disposeBag)
+        })
     }
     
     func handleCellSelection(collectionView: UICollectionView?) {

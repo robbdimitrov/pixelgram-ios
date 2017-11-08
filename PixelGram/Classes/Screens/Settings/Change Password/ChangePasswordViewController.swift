@@ -30,7 +30,10 @@ class ChangePasswordViewController: ViewController {
     
     func setupInputElements() {
         oldPassword?.setup(with: "Old Password", placeholder: nil, isSecureField: true)
+        oldPassword?.textField?.returnKeyType = .next
+        
         newPassword?.setup(with: "New Password", placeholder: nil, isSecureField: true)
+        newPassword?.textField?.returnKeyType = .done
     }
     
     // MARK: - Reactive

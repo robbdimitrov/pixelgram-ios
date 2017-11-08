@@ -8,6 +8,8 @@
 
 import UIKit
 
+import RxSwift
+
 class ProfileCell: FullWidthCollectionReusableView {
     
     @IBOutlet var avatarImageView: UIImageView? {
@@ -23,6 +25,13 @@ class ProfileCell: FullWidthCollectionReusableView {
     @IBOutlet var settingsButton: UIButton?
     
     var viewModel: UserViewModel?
+    
+    private(set) var disposeBag = DisposeBag()
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = DisposeBag() // because life cicle of every cell ends on prepare for reuse
+    }
     
     func configure(with viewModel: UserViewModel) {
         self.viewModel = viewModel

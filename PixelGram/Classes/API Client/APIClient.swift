@@ -15,6 +15,8 @@ class APIClient {
     typealias CompletionBlock = () -> Void
     typealias ErrorBlock = (Error) -> Void
     
+    let baseURL = "http://localhost:3000/api/v1.0/"
+    
     static let sharedInstance = APIClient()
     
     private init() {}

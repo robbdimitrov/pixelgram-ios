@@ -64,6 +64,21 @@ class ViewController: UIViewController {
         navigationItem.titleView = label
     }
     
+    // MARK: - State
+    
+    func showMessage(title: String, content: String) {
+        let alert = UIAlertController(title: title, message: content, preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        alert.addAction(okAction)
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func showError(error: String) {
+        showMessage(title: "Error", content: error)
+    }
+    
     // MARK: - Components
     
     func buttonItem(with title: String) -> UIBarButtonItem {

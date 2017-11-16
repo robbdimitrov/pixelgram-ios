@@ -20,6 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         IQKeyboardManager.sharedManager().enable = true
         
+        // Used for development purposes - resets the session
+//        Session.sharedInstance.currentUser = nil
+        
         return true
     }
 

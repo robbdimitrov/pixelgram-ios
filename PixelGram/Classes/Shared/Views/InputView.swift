@@ -30,6 +30,7 @@ class InputView: UIView, Input {
             textField?.rightView = isSecureField ? showHideButton() : nil
             textField?.rightViewMode = .always
             textField?.isSecureTextEntry = isSecureField
+            textField?.autocapitalizationType = .none
         }
     }
     

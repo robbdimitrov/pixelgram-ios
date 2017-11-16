@@ -8,48 +8,118 @@
 
 import Foundation
 
+import Alamofire
+
 class APIClient {
     
     typealias ImageCompletion = ([Image]) -> Void
     typealias UserCompletion = (User) -> Void
-    typealias CompletionBlock = () -> Void
-    typealias ErrorBlock = (Error) -> Void
+    typealias CompletionBlock = ([String: AnyObject]?) -> Void
+    typealias ErrorBlock = (String) -> Void
     
-    let baseURL = "http://localhost:3000/api/v1.0/"
+    let baseURL = "http://localhost:3000/api/v1.0"
     
     static let sharedInstance = APIClient()
     
+    var headers: HTTPHeaders {
+        get {
+            var headers: HTTPHeaders = [
+                "Accept": "application/json"
+            ]
+            if let token = Session.sharedInstance.token {
+                headers["token"] = token
+            }
+            return headers
+        }
+    }
+    
     private init() {}
     
-    func login(completion: CompletionBlock, failure: ErrorBlock) {
+    func request(with url: String, method: HTTPMethod, parameters: Parameters? = nil) -> DataRequest {
+        return Alamofire.request("\(baseURL)/\(url)", method: method, parameters: parameters,
+                                 encoding: URLEncoding.httpBody, headers: headers)
+    }
+    
+    // MARK: - Authentication
+    
+    func login(with email: String, password: String, completion: @escaping CompletionBlock, failure: @escaping ErrorBlock) {
+        let parameters = [
+            "email": email,
+            "password": password
+        ]
         
-        loadUser(with: "identifier", completion: { (user) in
-            Session.sharedInstance.currentUser = user
-            Session.sharedInstance.token = "secure-token"
-            Session.sharedInstance.authDate = Date()
-        }) { (error) in
-            
+        request(with: "sessions", method: .post, parameters: parameters).responseJSON { response in
+            guard let statusCode = response.response?.statusCode, let json = response.result.value as? [String: AnyObject] else {
+                return
+            }
+            if statusCode == 200, let dictionary = json["user"] as? [String: AnyObject], let token = json["token"] as? String {
+                let user = UserFactory.createUser(dictionary)
+                
+                Session.sharedInstance.currentUser = user
+                Session.sharedInstance.token = token
+                Session.sharedInstance.email = email
+                Session.sharedInstance.password = password
+                
+                completion(nil)
+            } else {
+                let error = json["error"]
+                failure((error as? String) ?? "Error")
+            }
         }
-        
-        completion()
     }
     
     func logout(completion: CompletionBlock, failure: ErrorBlock) {
         Session.sharedInstance.currentUser = nil
         Session.sharedInstance.token = nil
-        Session.sharedInstance.authDate = nil
         
-        completion()
+        completion(nil)
+    }
+    
+    // MARK: - Users
+    
+    func createUser(name: String, username: String, email: String, password: String, completion: CompletionBlock, failure: ErrorBlock) {
+        let parameters = [
+            "name": name,
+            "username": username,
+            "email": email,
+            "password": password
+        ]
+        
+        request(with: "users", method: .post, parameters: parameters).responseJSON { response in
+            
+        }
     }
     
     func loadUser(with id: String, completion: UserCompletion, failure: ErrorBlock) {
-        
-        if let user = MockServer.sharedInstance.users.first {
-            completion(user)
-        } else {
-            print("Loading user failed, network errors will be passed here")
+        request(with: "users/\(id)", method: .get).responseJSON { response in
+            
         }
     }
+    
+    func editUser(with id: String, name: String, username: String, email: String, bio: String, avatar: String, completion: CompletionBlock, failure: ErrorBlock) {
+        let parameters = [
+            "name": name,
+            "username": username,
+            "email": email,
+        ]
+        
+        request(with: "users/\(id)", method: .put, parameters: parameters).responseJSON { response in
+            
+        }
+    }
+    
+    func changePassword(with id: String, oldPassword: String, password: String, completion: CompletionBlock, failure: ErrorBlock) {
+        let parameters = [
+            "oldPassword": oldPassword,
+            "username": password
+        ]
+        
+        request(with: "users/\(id)", method: .put, parameters: parameters).responseJSON { response in
+            
+        }
+    }
+    
+    // MARK: - Images
     
     func loadImages(for page: Int, limit: Int, completion: ImageCompletion,
                     failure: ErrorBlock) {

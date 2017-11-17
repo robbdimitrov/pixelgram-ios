@@ -83,7 +83,7 @@ class LoginViewController: ViewController {
     // MARK: - Login
     
     func login(with email: String, password: String) {
-        APIClient.sharedInstance.login(with: email, password: password, completion: { [weak self] _ in
+        APIClient.sharedInstance.login(with: email, password: password, completion: { [weak self] in
             self?.dismiss(animated: true, completion: nil)
         }) { [weak self] error in
             self?.showError(error: error)

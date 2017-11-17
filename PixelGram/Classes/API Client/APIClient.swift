@@ -14,7 +14,8 @@ class APIClient {
     
     typealias ImageCompletion = ([Image]) -> Void
     typealias UserCompletion = (User) -> Void
-    typealias CompletionBlock = ([String: AnyObject]?) -> Void
+    typealias CompletionBlock = () -> Void
+    typealias ResponseBlock = ([String: AnyObject]?) -> Void
     typealias ErrorBlock = (String) -> Void
     
     let baseURL = "http://localhost:3000/api/v1.0"
@@ -60,7 +61,7 @@ class APIClient {
                 Session.sharedInstance.email = email
                 Session.sharedInstance.password = password
                 
-                completion(nil)
+                completion()
             } else {
                 let error = json["error"]
                 failure((error as? String) ?? "Error")
@@ -68,16 +69,16 @@ class APIClient {
         }
     }
     
-    func logout(completion: CompletionBlock, failure: ErrorBlock) {
+    func logout(completion: CompletionBlock) {
         Session.sharedInstance.currentUser = nil
-        Session.sharedInstance.token = nil
+        Session.sharedInstance.email = nil
         
-        completion(nil)
+        completion()
     }
     
     // MARK: - Users
     
-    func createUser(name: String, username: String, email: String, password: String, completion: CompletionBlock, failure: ErrorBlock) {
+    func createUser(name: String, username: String, email: String, password: String, completion: @escaping ResponseBlock, failure: @escaping ErrorBlock) {
         let parameters = [
             "name": name,
             "username": username,
@@ -86,7 +87,15 @@ class APIClient {
         ]
         
         request(with: "users", method: .post, parameters: parameters).responseJSON { response in
-            
+            guard let statusCode = response.response?.statusCode, let json = response.result.value as? [String: AnyObject] else {
+                return
+            }
+            if statusCode == 200 {
+                completion(json)
+            } else {
+                let error = json["error"]
+                failure((error as? String) ?? "Error")
+            }
         }
     }
     
@@ -96,7 +105,7 @@ class APIClient {
         }
     }
     
-    func editUser(with id: String, name: String, username: String, email: String, bio: String, avatar: String, completion: CompletionBlock, failure: ErrorBlock) {
+    func editUser(with id: String, name: String, username: String, email: String, bio: String, avatar: String, completion: ResponseBlock, failure: ErrorBlock) {
         let parameters = [
             "name": name,
             "username": username,

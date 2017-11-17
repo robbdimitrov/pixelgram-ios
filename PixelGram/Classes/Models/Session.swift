@@ -115,12 +115,5 @@ class Session {
             }
         }
     }
-    
-    func logoutUser() {
-        currentUser = nil
-        password = nil
-        token = nil
-        email = nil
-    }
 
 }

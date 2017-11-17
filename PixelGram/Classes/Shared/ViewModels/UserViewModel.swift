@@ -44,7 +44,7 @@ class UserViewModel {
     }
     
     var isCurrentUser: Bool {
-        return user === Session.sharedInstance.currentUser
+        return user.id == (Session.sharedInstance.currentUser?.id ?? "")
     }
     
 }

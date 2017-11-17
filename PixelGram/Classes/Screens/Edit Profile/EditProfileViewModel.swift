@@ -34,9 +34,5 @@ class EditProfileViewModel {
         }
         return nil
     }
-    
-    func saveUser() {
-        
-    }
 
 }

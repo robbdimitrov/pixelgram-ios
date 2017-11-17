@@ -39,7 +39,7 @@ class ProfileCell: FullWidthCollectionReusableView {
         if let avatarURL = viewModel.avatarURL {
             avatarImageView?.setImage(with: avatarURL)
         } else {
-            // Use placeholder image
+            avatarImageView?.image = UIImage(named: "avatar_placeholder")
         }
         nameLabel?.text = viewModel.nameText
         bioLabel?.text = viewModel.bioText

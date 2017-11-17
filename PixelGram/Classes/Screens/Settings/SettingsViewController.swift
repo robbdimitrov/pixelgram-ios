@@ -108,7 +108,10 @@ class SettingsViewController: CollectionViewController {
     }
     
     func logout() {
-        tabViewController?.handleTabSelection(withSelected: TabViewController.Tab.feed.rawValue)
+        APIClient.sharedInstance.logout { [weak self] in
+            self?.navigationController?.popViewController(animated: false)
+            self?.tabViewController?.handleTabSelection(withSelected: TabViewController.Tab.feed.rawValue)
+        }
     }
     
 }

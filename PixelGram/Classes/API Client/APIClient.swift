@@ -28,7 +28,7 @@ class APIClient {
                 "Accept": "application/json"
             ]
             if let token = Session.sharedInstance.token {
-                headers["token"] = token
+                headers["x-access-token"] = token
             }
             return headers
         }
@@ -56,9 +56,9 @@ class APIClient {
             if statusCode == 200, let dictionary = json["user"] as? [String: AnyObject], let token = json["token"] as? String {
                 let user = UserFactory.createUser(dictionary)
                 
+                Session.sharedInstance.email = email
                 Session.sharedInstance.currentUser = user
                 Session.sharedInstance.token = token
-                Session.sharedInstance.email = email
                 Session.sharedInstance.password = password
                 
                 completion()
@@ -66,6 +66,17 @@ class APIClient {
                 let error = json["error"]
                 failure((error as? String) ?? "Error")
             }
+        }
+    }
+    
+    func autoLogin(completion: @escaping CompletionBlock, failure: @escaping ErrorBlock) {
+        let email = Session.sharedInstance.email ?? ""
+        let password = Session.sharedInstance.password ?? ""
+        
+        if email.count < 1 || password.count < 1 {
+            failure("Something went wrong. Log in to access your account.")
+        } else {
+            login(with: email, password: password, completion: completion, failure: failure)
         }
     }
     
@@ -105,15 +116,33 @@ class APIClient {
         }
     }
     
-    func editUser(with id: String, name: String, username: String, email: String, bio: String, avatar: String, completion: ResponseBlock, failure: ErrorBlock) {
-        let parameters = [
+    func editUser(with id: String, name: String, username: String, email: String, bio: String, avatar: String?, completion: @escaping ResponseBlock, failure: @escaping ErrorBlock) {
+        var parameters = [
             "name": name,
             "username": username,
             "email": email,
         ]
         
-        request(with: "users/\(id)", method: .put, parameters: parameters).responseJSON { response in
-            
+        if let avatar = avatar {
+            parameters["avatar"] = avatar
+        }
+        
+        request(with: "users/\(id)", method: .put, parameters: parameters).responseJSON { [weak self] response in
+            guard let statusCode = response.response?.statusCode, let json = response.result.value as? [String: AnyObject] else {
+                return
+            }
+            if statusCode == 403 {
+                self?.autoLogin(completion: {
+                    self?.editUser(with: id, name: name, username: username, email: email, bio: bio, avatar: avatar, completion: completion, failure: failure)
+                }, failure: { error in
+                    failure(error)
+                })
+            } else if statusCode == 200 {
+                completion(json)
+            } else {
+                let error = json["error"]
+                failure((error as? String) ?? "Error")
+            }
         }
     }
     
@@ -125,6 +154,43 @@ class APIClient {
         
         request(with: "users/\(id)", method: .put, parameters: parameters).responseJSON { response in
             
+        }
+    }
+    
+    // MARK: - Image upload
+    
+    func uploadImage(image: UIImage, completion: @escaping ResponseBlock, failure: @escaping ErrorBlock) {
+        guard let imgData = UIImageJPEGRepresentation(image, 0.2) else {
+            failure("Could't upload image.")
+            return
+        }
+        
+        Alamofire.upload(multipartFormData: { multipartFormData in
+            multipartFormData.append(imgData, withName: "image", fileName: "file.jpg", mimeType: "image/jpg")
+        }, to: "\(baseURL)/upload/", method: .post, headers: headers) { [weak self] result in
+            switch result {
+            case .success(let upload, _, _):
+                upload.responseJSON { response in
+                    guard let statusCode = response.response?.statusCode else {
+                        return
+                    }
+                    if statusCode == 403 {
+                        self?.autoLogin(completion: {
+                            self?.uploadImage(image: image, completion: completion, failure: failure)
+                        }, failure: { error in
+                            failure(error)
+                        })
+                    } else if statusCode == 200 {
+                        if let json = response.result.value as? [String: AnyObject] {
+                            completion(json)
+                        }
+                    } else {
+                        failure("There was an error while uploading image.")
+                    }
+                }
+            case .failure(let encodingError):
+                print(encodingError)
+            }
         }
     }
     

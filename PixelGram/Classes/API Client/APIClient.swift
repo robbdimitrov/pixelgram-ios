@@ -146,14 +146,28 @@ class APIClient {
         }
     }
     
-    func changePassword(with id: String, oldPassword: String, password: String, completion: CompletionBlock, failure: ErrorBlock) {
+    func changePassword(with id: String, oldPassword: String, password: String, completion: @escaping CompletionBlock, failure: @escaping ErrorBlock) {
         let parameters = [
             "oldPassword": oldPassword,
-            "username": password
+            "password": password
         ]
         
-        request(with: "users/\(id)", method: .put, parameters: parameters).responseJSON { response in
-            
+        request(with: "users/\(id)", method: .put, parameters: parameters).responseJSON { [weak self] response in
+            guard let statusCode = response.response?.statusCode, let json = response.result.value as? [String: AnyObject] else {
+                return
+            }
+            if statusCode == 403 {
+                self?.autoLogin(completion: {
+                    self?.changePassword(with: id, oldPassword: oldPassword, password: password, completion: completion, failure: failure)
+                }, failure: { error in
+                    failure(error)
+                })
+            } else if statusCode == 200 {
+                completion()
+            } else {
+                let error = json["error"]
+                failure((error as? String) ?? "Error")
+            }
         }
     }
     

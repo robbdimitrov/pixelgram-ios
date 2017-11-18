@@ -13,7 +13,7 @@ import RxCocoa
 
 class EditProfileViewController: ViewController {
     
-    var viewModel = EditProfileViewModel()
+    var viewModel: UserViewModel?
     
     @IBOutlet var avatarImageView: UIImageView?
     @IBOutlet var changeAvatarButton: UIButton?
@@ -36,7 +36,7 @@ class EditProfileViewController: ViewController {
     // MARK: - Config
     
     func setupAvatarControls() {
-        if let avatarURL = viewModel.avatarURL {
+        if let avatarURL = viewModel?.avatarURL {
             avatarImageView?.setImage(with: avatarURL)
         } else {
             avatarImageView?.image = UIImage(named: "avatar_placeholder")
@@ -50,6 +50,10 @@ class EditProfileViewController: ViewController {
     }
     
     func setupInputElements() {
+        guard let viewModel = viewModel else {
+            return
+        }
+        
         nameInput?.setup(with: "Name", placeholder: "John Doe", textContent: viewModel.nameText)
         nameInput?.textField?.returnKeyType = .next
         

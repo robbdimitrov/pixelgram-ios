@@ -33,7 +33,7 @@ class ProfileViewModel {
     
     init(with user: User) {
         self.user = Variable(user)
-        images = Variable(user.images ?? [])
+        images = Variable([])
         userViewModel = UserViewModel(with: self.user.value)
     }
     

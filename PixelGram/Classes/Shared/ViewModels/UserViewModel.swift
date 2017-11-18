@@ -17,10 +17,7 @@ class UserViewModel {
     }
     
     var avatarURL: URL? {
-        if let avatarURL = user.avatarURL {
-            return URL(string: avatarURL)
-        }
-        return nil
+        return URL(string: APIClient.sharedInstance.urlForImage(user.avatarURL))
     }
     
     var nameText: String {
@@ -31,12 +28,16 @@ class UserViewModel {
         return user.username
     }
     
+    var emailText: String {
+        return user.email
+    }
+    
     var imagesNumberText: String {
-        return "\(user.images?.count ?? 0)"
+        return "\(user.images)"
     }
     
     var likesNumberText: String {
-        return "\(user.likedImages?.count ?? 0)"
+        return "\(user.likedImages)"
     }
     
     var bioText: String? {

@@ -51,7 +51,6 @@
 		B489156D1FA8D6AA00F1CF44 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B489156C1FA8D6AA00F1CF44 /* Colors.swift */; };
 		B489156F1FA8DAAB00F1CF44 /* ObservableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B489156E1FA8DAAB00F1CF44 /* ObservableButton.swift */; };
 		B48915741FA8E9C200F1CF44 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48915731FA8E9C200F1CF44 /* EditProfileViewController.swift */; };
-		B48915761FA8E9CC00F1CF44 /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48915751FA8E9CC00F1CF44 /* EditProfileViewModel.swift */; };
 		B48915781FA8EE8E00F1CF44 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48915771FA8EE8E00F1CF44 /* CollectionViewController.swift */; };
 		B489157A1FA8F0E200F1CF44 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48915791FA8F0E200F1CF44 /* ViewController.swift */; };
 		B48A8D7A1FAD09BC00A8CBBB /* ImageSizing.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48A8D791FAD09BC00A8CBBB /* ImageSizing.swift */; };
@@ -117,7 +116,6 @@
 		B489156C1FA8D6AA00F1CF44 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		B489156E1FA8DAAB00F1CF44 /* ObservableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableButton.swift; sourceTree = "<group>"; };
 		B48915731FA8E9C200F1CF44 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
-		B48915751FA8E9CC00F1CF44 /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
 		B48915771FA8EE8E00F1CF44 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		B48915791FA8F0E200F1CF44 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B48A8D791FAD09BC00A8CBBB /* ImageSizing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSizing.swift; sourceTree = "<group>"; };
@@ -305,7 +303,6 @@
 			isa = PBXGroup;
 			children = (
 				B48915731FA8E9C200F1CF44 /* EditProfileViewController.swift */,
-				B48915751FA8E9CC00F1CF44 /* EditProfileViewModel.swift */,
 			);
 			path = "Edit Profile";
 			sourceTree = "<group>";
@@ -744,7 +741,6 @@
 				B4250A0B1FAB7AD900063635 /* SubmitImageCell.swift in Sources */,
 				B489156F1FA8DAAB00F1CF44 /* ObservableButton.swift in Sources */,
 				B40896FD1FA8610E006088EE /* APIClient.swift in Sources */,
-				B48915761FA8E9CC00F1CF44 /* EditProfileViewModel.swift in Sources */,
 				B489157A1FA8F0E200F1CF44 /* ViewController.swift in Sources */,
 				B4250A031FAB312300063635 /* NavigationController.swift in Sources */,
 				B408971D1FA87F80006088EE /* FullWidthCell.swift in Sources */,

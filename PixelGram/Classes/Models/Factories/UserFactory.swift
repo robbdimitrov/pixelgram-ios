@@ -15,8 +15,10 @@ class UserFactory {
                         name: (dictionary["name"] as? String) ?? "",
                         username: (dictionary["username"] as? String) ?? "",
                         email: (dictionary["email"] as? String) ?? "",
-                        avatarURL: (dictionary["avatarURL"] as? String) ?? "",
-                        bio: (dictionary["bio"] as? String) ?? "")
+                        avatarURL: (dictionary["avatar"] as? String) ?? "",
+                        bio: (dictionary["bio"] as? String) ?? "",
+                        images: (dictionary["images"] as? [String])?.count ?? 0,
+                        likedImages: (dictionary["bio"] as? [String])?.count ?? 0)
         return user
     }
 

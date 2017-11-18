@@ -12,6 +12,14 @@ import Alamofire
 
 class APIClient {
     
+    enum APIStatusCode: Int {
+        case ok = 200
+        case badRequest = 400
+        case unauthorized = 401
+        case forbidden = 403
+        case notFound = 404
+    }
+    
     typealias ImageCompletion = ([Image]) -> Void
     typealias UserCompletion = (User) -> Void
     typealias CompletionBlock = () -> Void
@@ -53,7 +61,7 @@ class APIClient {
             guard let statusCode = response.response?.statusCode, let json = response.result.value as? [String: AnyObject] else {
                 return
             }
-            if statusCode == 200, let dictionary = json["user"] as? [String: AnyObject], let token = json["token"] as? String {
+            if statusCode == APIStatusCode.ok.rawValue, let dictionary = json["user"] as? [String: AnyObject], let token = json["token"] as? String {
                 let user = UserFactory.createUser(dictionary)
                 
                 Session.sharedInstance.email = email
@@ -101,7 +109,7 @@ class APIClient {
             guard let statusCode = response.response?.statusCode, let json = response.result.value as? [String: AnyObject] else {
                 return
             }
-            if statusCode == 200 {
+            if statusCode == APIStatusCode.ok.rawValue {
                 completion(json)
             } else {
                 let error = json["error"]
@@ -110,9 +118,26 @@ class APIClient {
         }
     }
     
-    func loadUser(with id: String, completion: UserCompletion, failure: ErrorBlock) {
-        request(with: "users/\(id)", method: .get).responseJSON { response in
-            
+    func loadUser(with id: String, completion: @escaping UserCompletion, failure: @escaping ErrorBlock) {
+        request(with: "users/\(id)", method: .get).responseJSON { [weak self] response in
+            guard let statusCode = response.response?.statusCode, let json = response.result.value as? [String: AnyObject] else {
+                return
+            }
+            if statusCode == APIStatusCode.unauthorized.rawValue {
+                self?.autoLogin(completion: {
+                    self?.loadUser(with: id, completion: completion, failure: failure)
+                }, failure: { error in
+                    failure(error)
+                })
+            } else if statusCode == APIStatusCode.ok.rawValue {
+                if let jsonUser = json["user"] as? [String: AnyObject] {
+                    let user = UserFactory.createUser(jsonUser)
+                    completion(user)
+                }
+            } else {
+                let error = json["error"]
+                failure((error as? String) ?? "Error")
+            }
         }
     }
     
@@ -131,13 +156,13 @@ class APIClient {
             guard let statusCode = response.response?.statusCode, let json = response.result.value as? [String: AnyObject] else {
                 return
             }
-            if statusCode == 403 {
+            if statusCode == APIStatusCode.unauthorized.rawValue {
                 self?.autoLogin(completion: {
                     self?.editUser(with: id, name: name, username: username, email: email, bio: bio, avatar: avatar, completion: completion, failure: failure)
                 }, failure: { error in
                     failure(error)
                 })
-            } else if statusCode == 200 {
+            } else if statusCode == APIStatusCode.ok.rawValue {
                 completion(json)
             } else {
                 let error = json["error"]
@@ -156,13 +181,13 @@ class APIClient {
             guard let statusCode = response.response?.statusCode, let json = response.result.value as? [String: AnyObject] else {
                 return
             }
-            if statusCode == 403 {
+            if statusCode == APIStatusCode.unauthorized.rawValue {
                 self?.autoLogin(completion: {
                     self?.changePassword(with: id, oldPassword: oldPassword, password: password, completion: completion, failure: failure)
                 }, failure: { error in
                     failure(error)
                 })
-            } else if statusCode == 200 {
+            } else if statusCode == APIStatusCode.ok.rawValue {
                 completion()
             } else {
                 let error = json["error"]
@@ -188,13 +213,13 @@ class APIClient {
                     guard let statusCode = response.response?.statusCode else {
                         return
                     }
-                    if statusCode == 403 {
+                    if statusCode == APIStatusCode.unauthorized.rawValue {
                         self?.autoLogin(completion: {
                             self?.uploadImage(image: image, completion: completion, failure: failure)
                         }, failure: { error in
                             failure(error)
                         })
-                    } else if statusCode == 200 {
+                    } else if statusCode == APIStatusCode.ok.rawValue {
                         if let json = response.result.value as? [String: AnyObject] {
                             completion(json)
                         }
@@ -210,6 +235,10 @@ class APIClient {
     
     // MARK: - Images
     
+    func urlForImage(_ imageId: String) -> String {
+        return "\(baseURL)/uploads/\(imageId)"
+    }
+    
     func loadImages(for page: Int, limit: Int, completion: ImageCompletion,
                     failure: ErrorBlock) {
         
@@ -221,9 +250,7 @@ class APIClient {
     func loadImages(forUser user: User, page: Int, limit: Int,
                     completion: ImageCompletion, failure: ErrorBlock) {
         
-        if let images = user.images {
-            completion(images)
-        }
+        
     }
     
 }

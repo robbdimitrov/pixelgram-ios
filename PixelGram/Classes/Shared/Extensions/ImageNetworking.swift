@@ -13,7 +13,10 @@ import SDWebImage
 extension UIImageView {
 
     func setImage(with url: URL) {
-        sd_setImage(with: url, completed: nil)
+        if let manager = SDWebImageManager.shared().imageDownloader {
+            manager.setValue(Session.sharedInstance.token, forHTTPHeaderField: "x-access-token")
+        }
+        sd_setImage(with: url)
     }
     
 }

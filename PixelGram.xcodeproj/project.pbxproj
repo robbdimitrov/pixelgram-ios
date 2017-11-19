@@ -12,7 +12,6 @@
 		B40896FF1FA8610E006088EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B2B9001FA3B21900454DE3 /* AppDelegate.swift */; };
 		B40897001FA8610E006088EE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B2B9171FA3B39B00454DE3 /* User.swift */; };
 		B40897011FA8610E006088EE /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B2B9191FA3B3A700454DE3 /* Image.swift */; };
-		B40897021FA8610E006088EE /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B2B9281FA3BAE800454DE3 /* Session.swift */; };
 		B40897031FA8610E006088EE /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40896DE1FA85E50006088EE /* CameraViewController.swift */; };
 		B40897041FA8610E006088EE /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40896E01FA85E50006088EE /* FeedViewController.swift */; };
 		B40897051FA8610E006088EE /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40896E11FA85E50006088EE /* FeedViewModel.swift */; };
@@ -39,6 +38,10 @@
 		B4250A071FAB63A400063635 /* WindowHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4250A061FAB63A400063635 /* WindowHUD.swift */; };
 		B4250A091FAB75F600063635 /* PhotoAccessDisabledView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4250A081FAB75F600063635 /* PhotoAccessDisabledView.swift */; };
 		B4250A0B1FAB7AD900063635 /* SubmitImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4250A0A1FAB7AD900063635 /* SubmitImageCell.swift */; };
+		B434C7D31FC21D7E00595C89 /* ImageFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B434C7CB1FC21C7F00595C89 /* ImageFactory.swift */; };
+		B434C7D41FC21D7E00595C89 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = B434C7CC1FC21C7F00595C89 /* Session.swift */; };
+		B434C7D51FC21D7E00595C89 /* UserFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B434C7CD1FC21C7F00595C89 /* UserFactory.swift */; };
+		B434C7D61FC21D7E00595C89 /* UserCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = B434C7CE1FC21C9A00595C89 /* UserCache.swift */; };
 		B477E0CC1FAA24CC0079CCAF /* CropImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B477E0C61FAA1E930079CCAF /* CropImageViewController.swift */; };
 		B477E0CE1FAA24CC0079CCAF /* GalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B477E0C91FAA1E930079CCAF /* GalleryCell.swift */; };
 		B477E0CF1FAA24CC0079CCAF /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B477E0CA1FAA1E930079CCAF /* GalleryViewController.swift */; };
@@ -55,8 +58,6 @@
 		B48A8D7A1FAD09BC00A8CBBB /* ImageSizing.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48A8D791FAD09BC00A8CBBB /* ImageSizing.swift */; };
 		B48BF8C61FAF20EB00F28F74 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48BF8C51FAF20EB00F28F74 /* SignupViewController.swift */; };
 		B48BF8C91FAF406C00F28F74 /* EmailValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48BF8C81FAF406C00F28F74 /* EmailValidator.swift */; };
-		B48F611B1FBDE77D0001AC4A /* UserFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48F611A1FBDE77D0001AC4A /* UserFactory.swift */; };
-		B48F611D1FBDE79F0001AC4A /* ImageFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48F611C1FBDE79F0001AC4A /* ImageFactory.swift */; };
 		B4BADC631F9F7F6200651842 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4BADC611F9F7F6200651842 /* Main.storyboard */; };
 		B4BADC681F9F7F6200651842 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4BADC671F9F7F6200651842 /* Assets.xcassets */; };
 		B4BADC6B1F9F7F6200651842 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4BADC691F9F7F6200651842 /* LaunchScreen.storyboard */; };
@@ -103,6 +104,10 @@
 		B4250A061FAB63A400063635 /* WindowHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowHUD.swift; sourceTree = "<group>"; };
 		B4250A081FAB75F600063635 /* PhotoAccessDisabledView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAccessDisabledView.swift; sourceTree = "<group>"; };
 		B4250A0A1FAB7AD900063635 /* SubmitImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitImageCell.swift; sourceTree = "<group>"; };
+		B434C7CB1FC21C7F00595C89 /* ImageFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFactory.swift; sourceTree = "<group>"; };
+		B434C7CC1FC21C7F00595C89 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		B434C7CD1FC21C7F00595C89 /* UserFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFactory.swift; sourceTree = "<group>"; };
+		B434C7CE1FC21C9A00595C89 /* UserCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCache.swift; sourceTree = "<group>"; };
 		B477E0C31FAA1E930079CCAF /* ShareImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareImageViewController.swift; sourceTree = "<group>"; };
 		B477E0C41FAA1E930079CCAF /* ShareImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareImageViewModel.swift; sourceTree = "<group>"; };
 		B477E0C61FAA1E930079CCAF /* CropImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropImageViewController.swift; sourceTree = "<group>"; };
@@ -119,8 +124,6 @@
 		B48A8D791FAD09BC00A8CBBB /* ImageSizing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSizing.swift; sourceTree = "<group>"; };
 		B48BF8C51FAF20EB00F28F74 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		B48BF8C81FAF406C00F28F74 /* EmailValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidator.swift; sourceTree = "<group>"; };
-		B48F611A1FBDE77D0001AC4A /* UserFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFactory.swift; sourceTree = "<group>"; };
-		B48F611C1FBDE79F0001AC4A /* ImageFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFactory.swift; sourceTree = "<group>"; };
 		B4B0CD561FA63D290099768C /* ImageNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageNetworking.swift; sourceTree = "<group>"; };
 		B4B2B9001FA3B21900454DE3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B4B2B9171FA3B39B00454DE3 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -128,7 +131,6 @@
 		B4B2B91D1FA3B47300454DE3 /* ImageViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewCell.swift; sourceTree = "<group>"; };
 		B4B2B91F1FA3B48700454DE3 /* ImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewModel.swift; sourceTree = "<group>"; };
 		B4B2B9261FA3B53800454DE3 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
-		B4B2B9281FA3BAE800454DE3 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		B4BADC5A1F9F7F6200651842 /* PixelGram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PixelGram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4BADC621F9F7F6200651842 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B4BADC671F9F7F6200651842 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -270,6 +272,17 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		B434C7CA1FC21C7F00595C89 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				B434C7CB1FC21C7F00595C89 /* ImageFactory.swift */,
+				B434C7CC1FC21C7F00595C89 /* Session.swift */,
+				B434C7CD1FC21C7F00595C89 /* UserFactory.swift */,
+				B434C7CE1FC21C9A00595C89 /* UserCache.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		B477E0C21FAA1E930079CCAF /* Share */ = {
 			isa = PBXGroup;
 			children = (
@@ -313,15 +326,6 @@
 			path = Validators;
 			sourceTree = "<group>";
 		};
-		B48F61191FBDE76C0001AC4A /* Factories */ = {
-			isa = PBXGroup;
-			children = (
-				B48F611A1FBDE77D0001AC4A /* UserFactory.swift */,
-				B48F611C1FBDE79F0001AC4A /* ImageFactory.swift */,
-			);
-			path = Factories;
-			sourceTree = "<group>";
-		};
 		B4B2B8FC1FA3B20000454DE3 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -347,6 +351,7 @@
 			children = (
 				B40896DA1FA85E35006088EE /* DataSources */,
 				B4E9CC491FA5C974009ECF88 /* Extensions */,
+				B434C7CA1FC21C7F00595C89 /* Services */,
 				B48BF8C71FAF405D00F28F74 /* Validators */,
 				B4E9CC441FA4CEAE009ECF88 /* ViewControllers */,
 				B4B2B91B1FA3B45500454DE3 /* ViewModels */,
@@ -358,10 +363,8 @@
 		B4B2B9161FA3B37F00454DE3 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				B48F61191FBDE76C0001AC4A /* Factories */,
 				B4B2B9171FA3B39B00454DE3 /* User.swift */,
 				B4B2B9191FA3B3A700454DE3 /* Image.swift */,
-				B4B2B9281FA3BAE800454DE3 /* Session.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -723,7 +726,6 @@
 				B40896FF1FA8610E006088EE /* AppDelegate.swift in Sources */,
 				B477E0D21FAA24CC0079CCAF /* ShareImageViewModel.swift in Sources */,
 				B408970A1FA8610E006088EE /* ProfileViewController.swift in Sources */,
-				B40897021FA8610E006088EE /* Session.swift in Sources */,
 				B408971B1FA8610E006088EE /* ThumbImageCell.swift in Sources */,
 				B48915781FA8EE8E00F1CF44 /* CollectionViewController.swift in Sources */,
 				B40897161FA8610E006088EE /* UserViewModel.swift in Sources */,
@@ -743,6 +745,7 @@
 				B40897041FA8610E006088EE /* FeedViewController.swift in Sources */,
 				B408970D1FA8610E006088EE /* SettingsViewController.swift in Sources */,
 				B477E0D11FAA24CC0079CCAF /* ShareImageViewController.swift in Sources */,
+				B434C7D61FC21D7E00595C89 /* UserCache.swift in Sources */,
 				B40897131FA8610E006088EE /* ImageNetworking.swift in Sources */,
 				B48A8D7A1FAD09BC00A8CBBB /* ImageSizing.swift in Sources */,
 				B477E0D41FAA3A500079CCAF /* BarButtonItem.swift in Sources */,
@@ -757,15 +760,16 @@
 				B4C273D41FB220DA00248444 /* Input.swift in Sources */,
 				B40897051FA8610E006088EE /* FeedViewModel.swift in Sources */,
 				B4C273D01FB1BC2B00248444 /* SettingItemViewModel.swift in Sources */,
+				B434C7D51FC21D7E00595C89 /* UserFactory.swift in Sources */,
 				B48BF8C91FAF406C00F28F74 /* EmailValidator.swift in Sources */,
-				B48F611D1FBDE79F0001AC4A /* ImageFactory.swift in Sources */,
-				B48F611B1FBDE77D0001AC4A /* UserFactory.swift in Sources */,
+				B434C7D41FC21D7E00595C89 /* Session.swift in Sources */,
 				B408970F1FA8610E006088EE /* CollectionViewDataSource.swift in Sources */,
 				B477E0CE1FAA24CC0079CCAF /* GalleryCell.swift in Sources */,
 				B4250A071FAB63A400063635 /* WindowHUD.swift in Sources */,
 				B477E0CF1FAA24CC0079CCAF /* GalleryViewController.swift in Sources */,
 				B489156B1FA8D04600F1CF44 /* RoundedButton.swift in Sources */,
 				B408970E1FA8610E006088EE /* SettingsViewModel.swift in Sources */,
+				B434C7D31FC21D7E00595C89 /* ImageFactory.swift in Sources */,
 				B489156D1FA8D6AA00F1CF44 /* Colors.swift in Sources */,
 				B40897111FA8610E006088EE /* StoryboardIdentifier.swift in Sources */,
 			);

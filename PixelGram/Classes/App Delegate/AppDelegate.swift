@@ -20,6 +20,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.sharedManager().enable = true
         return true
     }
+    
+    
+    func applicationDidReceiveMemoryWarning(_ application: UIApplication) {
+        UserCache.sharedInstance.deleteCache()
+    }
 
 }
 

@@ -12,6 +12,8 @@ import Alamofire
 
 class APIClient {
     
+    static let UserLoggedOutNotification = "UserLoggedOutNotification"
+    
     enum APIStatusCode: Int {
         case ok = 200
         case badRequest = 400
@@ -91,6 +93,9 @@ class APIClient {
     func logout(completion: CompletionBlock) {
         Session.sharedInstance.currentUser = nil
         Session.sharedInstance.email = nil
+        
+        NotificationCenter.default.post(name: Notification.Name(rawValue: APIClient.UserLoggedOutNotification),
+                                        object: nil, userInfo: nil)
         
         completion()
     }
@@ -235,22 +240,41 @@ class APIClient {
     
     // MARK: - Images
     
-    func urlForImage(_ imageId: String) -> String {
-        return "\(baseURL)/uploads/\(imageId)"
+    func urlForImage(_ filename: String) -> String {
+        return "\(baseURL)/uploads/\(filename)"
     }
     
-    func loadImages(for page: Int, limit: Int, completion: ImageCompletion,
+    func loadImages(forPage page: Int, limit: Int = 10, completion: ImageCompletion,
                     failure: ErrorBlock) {
         
-        let images = MockServer.sharedInstance.images
-        
-        completion(images)
     }
     
-    func loadImages(forUser user: User, page: Int, limit: Int,
-                    completion: ImageCompletion, failure: ErrorBlock) {
-        
-        
+    func loadImages(forUserId userId: String, page: Int, limit: Int = 10,
+                    completion: @escaping ImageCompletion, failure: @escaping ErrorBlock) {
+        request(with: "users/\(userId)/images?page=\(page)?limit=\(limit)", method: .get).responseJSON { [weak self] response in
+            guard let statusCode = response.response?.statusCode, let json = response.result.value as? [String: AnyObject] else {
+                return
+            }
+            if statusCode == APIStatusCode.unauthorized.rawValue {
+                self?.autoLogin(completion: {
+                    self?.loadImages(forUserId: userId, page: page, limit: limit, completion: completion, failure: failure)
+                }, failure: { error in
+                    failure(error)
+                })
+            } else if statusCode == APIStatusCode.ok.rawValue {
+                if let jsonImages = json["images"] as? [[String: AnyObject]] {
+                    var images = [Image]()
+                    for dictionary in jsonImages {
+                        let image = ImageFactory.createImage(dictionary)
+                        images.append(image)
+                    }
+                    completion(images)
+                }
+            } else {
+                let error = json["error"]
+                failure((error as? String) ?? "Error")
+            }
+        }
     }
     
 }

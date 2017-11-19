@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		9543049C5260C38B82037C92 /* Pods_PixelGramTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0CEE169CEA330C829D6D343 /* Pods_PixelGramTests.framework */; };
 		B40896FD1FA8610E006088EE /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E9CC4F1FA61ED6009ECF88 /* APIClient.swift */; };
-		B40896FE1FA8610E006088EE /* MockServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B470DDFA1FA7AD6A00B0E3E9 /* MockServer.swift */; };
 		B40896FF1FA8610E006088EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B2B9001FA3B21900454DE3 /* AppDelegate.swift */; };
 		B40897001FA8610E006088EE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B2B9171FA3B39B00454DE3 /* User.swift */; };
 		B40897011FA8610E006088EE /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B2B9191FA3B3A700454DE3 /* Image.swift */; };
@@ -104,7 +103,6 @@
 		B4250A061FAB63A400063635 /* WindowHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowHUD.swift; sourceTree = "<group>"; };
 		B4250A081FAB75F600063635 /* PhotoAccessDisabledView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAccessDisabledView.swift; sourceTree = "<group>"; };
 		B4250A0A1FAB7AD900063635 /* SubmitImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitImageCell.swift; sourceTree = "<group>"; };
-		B470DDFA1FA7AD6A00B0E3E9 /* MockServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockServer.swift; sourceTree = "<group>"; };
 		B477E0C31FAA1E930079CCAF /* ShareImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareImageViewController.swift; sourceTree = "<group>"; };
 		B477E0C41FAA1E930079CCAF /* ShareImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareImageViewModel.swift; sourceTree = "<group>"; };
 		B477E0C61FAA1E930079CCAF /* CropImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropImageViewController.swift; sourceTree = "<group>"; };
@@ -475,7 +473,6 @@
 			isa = PBXGroup;
 			children = (
 				B4E9CC4F1FA61ED6009ECF88 /* APIClient.swift */,
-				B470DDFA1FA7AD6A00B0E3E9 /* MockServer.swift */,
 			);
 			path = "API Client";
 			sourceTree = "<group>";
@@ -727,7 +724,6 @@
 				B477E0D21FAA24CC0079CCAF /* ShareImageViewModel.swift in Sources */,
 				B408970A1FA8610E006088EE /* ProfileViewController.swift in Sources */,
 				B40897021FA8610E006088EE /* Session.swift in Sources */,
-				B40896FE1FA8610E006088EE /* MockServer.swift in Sources */,
 				B408971B1FA8610E006088EE /* ThumbImageCell.swift in Sources */,
 				B48915781FA8EE8E00F1CF44 /* CollectionViewController.swift in Sources */,
 				B40897161FA8610E006088EE /* UserViewModel.swift in Sources */,

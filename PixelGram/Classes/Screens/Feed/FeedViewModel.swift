@@ -54,7 +54,7 @@ class FeedViewModel {
     }
     
     func loadImages() {
-        APIClient.sharedInstance.loadImages(for: page, limit: limit, completion: { [weak self] images in
+        APIClient.sharedInstance.loadImages(forPage: page, limit: limit, completion: { [weak self] images in
             
             page += 1
             self?.images.value.append(contentsOf: images)

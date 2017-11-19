@@ -37,7 +37,7 @@ class UserViewModel {
     }
     
     var likesNumberText: String {
-        return "\(user.likedImages)"
+        return "\(user.likes)"
     }
     
     var bioText: String? {

@@ -65,15 +65,15 @@ class ImageViewCell: FullWidthCollectionViewCell {
             }
         }.disposed(by: disposeBag)
         
-        viewModel.usersLiked.asObservable().map { users -> Bool in
-            if let currentUser = Session.sharedInstance.currentUser {
-                return users.contains(where: { user -> Bool in
-                    user === currentUser
-                })
-            }
-            return false
-        }.bind(to: likeButton.rx.isSelected)
-            .disposed(by: disposeBag)
+//        viewModel.usersLiked.asObservable().map { users -> Bool in
+//            if let currentUser = Session.sharedInstance.currentUser {
+//                return users.contains(where: { user -> Bool in
+//                    user === currentUser
+//                })
+//            }
+//            return false
+//        }.bind(to: likeButton.rx.isSelected)
+//            .disposed(by: disposeBag)
         
         optionsButton?.isHidden = !viewModel.isOwnedByCurrentUser
     }

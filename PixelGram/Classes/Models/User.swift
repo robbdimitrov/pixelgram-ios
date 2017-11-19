@@ -17,10 +17,10 @@ class User: NSObject, NSCoding {
     var avatarURL: String
     var bio: String
     var images: Int
-    var likedImages: Int
+    var likes: Int
     
     init(id: String, name: String, username: String, email: String, avatarURL: String,
-         bio: String, images: Int, likedImages: Int) {
+         bio: String, images: Int, likes: Int) {
         self.id = id
         self.name = name
         self.username = username
@@ -28,7 +28,7 @@ class User: NSObject, NSCoding {
         self.avatarURL = avatarURL
         self.bio = bio
         self.images = images
-        self.likedImages = likedImages
+        self.likes = likes
     }
     
     func encode(with aCoder: NSCoder) {
@@ -39,7 +39,7 @@ class User: NSObject, NSCoding {
         aCoder.encode(avatarURL, forKey: "avatarURL")
         aCoder.encode(bio, forKey: "bio")
         aCoder.encode(images, forKey: "images")
-        aCoder.encode(likedImages, forKey: "likedImages")
+        aCoder.encode(likes, forKey: "likes")
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -50,7 +50,7 @@ class User: NSObject, NSCoding {
         avatarURL = aDecoder.decodeObject(forKey: "avatarURL") as? String ?? ""
         bio = aDecoder.decodeObject(forKey: "bio") as? String ?? ""
         images = aDecoder.decodeObject(forKey: "images") as? Int ?? 0
-        likedImages = aDecoder.decodeObject(forKey: "likedImages") as? Int ?? 0
+        likes = aDecoder.decodeObject(forKey: "likes") as? Int ?? 0
     }
     
 }

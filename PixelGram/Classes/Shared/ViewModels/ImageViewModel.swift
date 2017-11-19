@@ -13,12 +13,12 @@ import RxSwift
 class ImageViewModel {
     
     private var image: Image
-    var usersLiked: Variable<[User]>
+    var likes: Variable<Int>
     
     private var dateFormatter = DateFormatter()
     
     init(with image: Image) {
-        usersLiked = Variable(image.usersLiked ?? [])
+        likes = Variable(image.likes)
         self.image = image
         
         configureDateFormatter()
@@ -55,36 +55,34 @@ class ImageViewModel {
     }
     
     var isOwnedByCurrentUser: Bool {
-        return image.owner === Session.sharedInstance.currentUser
+        if let currentUserId = Session.sharedInstance.currentUser?.id {
+            return image.owner == currentUserId
+        }
+        return false
     }
     
     var imageURL: URL? {
-        return URL(string: image.url)
+        return URL(string: APIClient.sharedInstance.urlForImage(image.filename))
     }
     
     var usernameText: String {
-        return image.owner.username
+        return "Namename"//image.owner.username
     }
     
     var ownerAvatarURL: URL? {
-        return URL(string: image.owner.avatarURL)
+        return nil//URL(string: image.owner.avatarURL)
     }
     
     var likesText: String {
-        return "\(image.usersLiked?.count ?? 0) likes"
+        return "\(image.likes) likes"
     }
     
     var descriptionText: NSAttributedString? {
-        guard let description = image.description else {
-            print("Image description is empty")
-            return nil
-        }
-        
         let usernameFont = UIFont.boldSystemFont(ofSize: 15.0)
         
-        let attributedString = NSMutableAttributedString(string: "\(image.owner.username) \(description)")
+        let attributedString = NSMutableAttributedString(string: "\("image.owner.username") \(image.description)")
         
-        attributedString.setAttributes([.font : usernameFont], range: (attributedString.string as NSString).range(of: image.owner.username))
+        attributedString.setAttributes([.font : usernameFont], range: (attributedString.string as NSString).range(of: "image.owner.username"))
         
         return attributedString
     }

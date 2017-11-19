@@ -65,9 +65,9 @@ class FeedViewController: CollectionViewController {
                 cell.configure(with: ImageViewModel(with: element))
                 
                 cell.userButton?.rx.tap.subscribe(onNext: { [weak element] in
-                    if let user = element?.owner {
-                        self?.openUserProfile(with: user)
-                    }
+//                    if let user = element?.owner {
+//                        self?.openUserProfile(with: user)
+//                    }
                 }).disposed(by: cell.disposeBag)
                 
                 cell.optionsButton?.rx.tap.subscribe(onNext: { [weak self] in

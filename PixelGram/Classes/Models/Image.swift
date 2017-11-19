@@ -10,19 +10,23 @@ import Foundation
 
 class Image {
 
-    var owner: User
-    var url: String
+    var id: String
+    var owner: String
+    var filename: String
     var dateCreated: Date
-    var description: String?
-    var usersLiked: [User]?
+    var description: String
+    var likes: Int
+    var isLiked: Bool
     
-    init(owner: User, url: String, dateCreated: Date,
-         description: String, usersLiked: [User]?) {
+    init(id: String, owner: String, filename: String, dateCreated: Date,
+         description: String, likes: Int, isLiked: Bool) {
+        self.id = id
         self.owner = owner
-        self.url = url
+        self.filename = filename
         self.dateCreated = dateCreated
         self.description = description
-        self.usersLiked = usersLiked
+        self.likes = likes
+        self.isLiked = isLiked
     }
     
 }

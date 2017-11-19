@@ -17,24 +17,37 @@ class ProfileViewController: CollectionViewController {
     private var dataSource: CollectionViewDataSource?
     private var page: Int = 0
     var userId: String?
-    var images: [Image]?
     
     // MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if userId == nil {
-            userId = Session.sharedInstance.currentUser?.id
-        }
-        
         configureInitialHeaderSize()
-        refreshUser { [weak self] in
-            self?.collectionView?.reloadData()
-        }
         
         collectionView?.alwaysBounceVertical = true
         collectionView?.addSubview(refreshControl)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if userId == nil {
+            userId = Session.sharedInstance.currentUser?.id
+            refreshUser { [weak self] in
+                self?.collectionView?.reloadData()
+            }
+            
+            NotificationCenter.default.addObserver(forName: Notification.Name(rawValue: APIClient.UserLoggedOutNotification), object: nil, queue: nil, using: { [weak self] notification in
+                self?.viewModel = nil
+                self?.userId = nil
+                self?.page = 0
+                self?.navigationController?.popToRootViewController(animated: false)
+                if let strongSelf = self {
+                    NotificationCenter.default.removeObserver(strongSelf)
+                }
+            })
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -44,6 +57,10 @@ class ProfileViewController: CollectionViewController {
             let cellSide: CGFloat = collectionView.frame.width / 2
             flowLayout.estimatedItemSize = CGSize(width: cellSide, height: cellSide)
         }
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     // MARK: - Data
@@ -69,11 +86,39 @@ class ProfileViewController: CollectionViewController {
     }
     
     func loadPosts(for page: Int, limit: Int = 10, completionBlock: (() -> Void)?) {
-        self.page = page
-        completionBlock?()
+        APIClient.sharedInstance.loadImages(forUserId: userId ?? "", page: page, limit: limit, completion: { [weak self] images in
+            self?.page = page
+            
+            self?.viewModel?.images.value.append(contentsOf: images)
+            
+            completionBlock?()
+        }) { [weak self] error in
+            self?.showError(error: error)
+        }
     }
     
     // MARK: - Helpers
+    
+    func loadNextPage() {
+        let oldCount = viewModel?.images.value.count ?? 0
+        
+        loadPosts(for: page + 1) { [weak self] in
+            let count = self?.viewModel?.images.value.count ?? 0
+            
+            guard count > oldCount else {
+                return
+            }
+            
+            var indexPaths = [IndexPath]()
+            
+            for index in oldCount...count {
+                let indexPath = IndexPath(row: index - 1, section: 0)
+                indexPaths.append(indexPath)
+            }
+            
+            self?.collectionView?.insertItems(at: indexPaths)
+        }
+    }
     
     func createViewModel(with user: User) {
         viewModel = ProfileViewModel(with: user)
@@ -86,9 +131,13 @@ class ProfileViewController: CollectionViewController {
             [weak self] (collectionView, kind, indexPath) -> UICollectionReusableView in
                 return (self?.configureHeaderCell(collectionView: collectionView, kind: kind, indexPath: indexPath))!
             }, configureCell: { [weak self] (collectionView, indexPath) -> UICollectionViewCell in
+                if indexPath.row == (self?.viewModel?.images.value.count ?? 0) - 1 {
+                    self?.loadNextPage()
+                }
+                
                 return (self?.configureCell(collectionView: collectionView, indexPath: indexPath))!
-            }, numberOfItems: { [weak viewModel] (collectionView, section)  -> Int in
-                return viewModel?.numberOfItems ?? 0
+            }, numberOfItems: { [weak self] (collectionView, section)  -> Int in
+                return self?.viewModel?.numberOfItems ?? 0
         })
         return dataSource
     }

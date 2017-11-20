@@ -14,16 +14,8 @@ import RxCocoa
 class FeedViewController: CollectionViewController {
 
     var viewModel = FeedViewModel()
-    
     var dataSource: CollectionViewDataSource?
-    
     var selectedIndex: Int?
-    
-    // MARK: - Object lifecycle
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
     
     // MARK: - View lifecycle
     
@@ -245,6 +237,12 @@ class FeedViewController: CollectionViewController {
             ProfileViewController.storyboardIdentifier)
         (viewController as? ProfileViewController)?.userId = userId
         navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    // MARK: - Object lifecycle
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 
 }

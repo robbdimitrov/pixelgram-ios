@@ -62,6 +62,7 @@
 		B4BADC681F9F7F6200651842 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4BADC671F9F7F6200651842 /* Assets.xcassets */; };
 		B4BADC6B1F9F7F6200651842 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4BADC691F9F7F6200651842 /* LaunchScreen.storyboard */; };
 		B4BADC761F9F7F6200651842 /* PixelGramTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BADC751F9F7F6200651842 /* PixelGramTests.swift */; };
+		B4C233A11FC37B64000097F6 /* NetworkActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C233A01FC37B64000097F6 /* NetworkActivity.swift */; };
 		B4C273C91FB04CAE00248444 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C273C81FB04CAE00248444 /* InputView.swift */; };
 		B4C273CC1FB18B7400248444 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C273CB1FB18B7400248444 /* ChangePasswordViewController.swift */; };
 		B4C273CE1FB19A0C00248444 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C273CD1FB19A0C00248444 /* SettingsCell.swift */; };
@@ -139,6 +140,7 @@
 		B4BADC711F9F7F6200651842 /* PixelGramTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PixelGramTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4BADC751F9F7F6200651842 /* PixelGramTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelGramTests.swift; sourceTree = "<group>"; };
 		B4BADC771F9F7F6200651842 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B4C233A01FC37B64000097F6 /* NetworkActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkActivity.swift; sourceTree = "<group>"; };
 		B4C273C81FB04CAE00248444 /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
 		B4C273CB1FB18B7400248444 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		B4C273CD1FB19A0C00248444 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
@@ -279,6 +281,7 @@
 				B434C7CD1FC21C7F00595C89 /* UserFactory.swift */,
 				B434C7CE1FC21C9A00595C89 /* UserCache.swift */,
 				B434C7D71FC2D0A100595C89 /* UserLoader.swift */,
+				B4C233A01FC37B64000097F6 /* NetworkActivity.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -729,6 +732,7 @@
 				B48915781FA8EE8E00F1CF44 /* CollectionViewController.swift in Sources */,
 				B40897161FA8610E006088EE /* UserViewModel.swift in Sources */,
 				B40897031FA8610E006088EE /* CameraViewController.swift in Sources */,
+				B4C233A11FC37B64000097F6 /* NetworkActivity.swift in Sources */,
 				B4C273C91FB04CAE00248444 /* InputView.swift in Sources */,
 				B40897151FA8610E006088EE /* ImageViewModel.swift in Sources */,
 				B4C273CE1FB19A0C00248444 /* SettingsCell.swift in Sources */,

@@ -14,6 +14,7 @@ class APIClient {
     
     // MARK: - Notifications
     
+    static let NetworkConnectionFailedNotification = "NewtorkConnectionFailedNotificationName"
     static let UserLoggedInNotification = "UserLoggedInNotificationName"
     static let UserLoggedOutNotification = "UserLoggedOutNotificationName"
     
@@ -35,6 +36,8 @@ class APIClient {
     typealias ResponseBlock = ([String: AnyObject]?) -> Void
     typealias ErrorBlock = (String) -> Void
     
+    // MARK: - Properties
+    
     static let sharedInstance = APIClient()
     
     private let baseURL = "http://localhost:3000/api/v1.0"
@@ -54,6 +57,11 @@ class APIClient {
     private init() {}
     
     // MARK: - Internal
+    
+    private func handleNewtorkError(error: String) {
+        NotificationCenter.default.post(name: Notification.Name(rawValue: APIClient.NetworkConnectionFailedNotification),
+                                        object: self, userInfo: ["error": error])
+    }
     
     private func request(with url: String, method: HTTPMethod, parameters: Parameters? = nil) -> DataRequest {
         return Alamofire.request("\(baseURL)/\(url)", method: method, parameters: parameters,
@@ -79,8 +87,16 @@ class APIClient {
             "password": password
         ]
         
-        request(with: "sessions", method: .post, parameters: parameters).responseJSON { response in
+        NetworkActivity.sharedInstance.pushTask()
+        
+        request(with: "sessions", method: .post, parameters: parameters).responseJSON { [weak self] response in
+            NetworkActivity.sharedInstance.popTask()
+            
             guard let statusCode = response.response?.statusCode, let json = response.result.value as? [String: AnyObject] else {
+                if let error = response.result.error?.localizedDescription {
+                    self?.handleNewtorkError(error: error)
+                }
+                
                 return
             }
             if statusCode == APIStatusCode.ok.rawValue, let dictionary = json["user"] as? [String: AnyObject], let token = json["token"] as? String {
@@ -124,8 +140,16 @@ class APIClient {
             "password": password
         ]
         
-        request(with: "users", method: .post, parameters: parameters).responseJSON { response in
+        NetworkActivity.sharedInstance.pushTask()
+        
+        request(with: "users", method: .post, parameters: parameters).responseJSON { [weak self] response in
+            NetworkActivity.sharedInstance.popTask()
+            
             guard let statusCode = response.response?.statusCode, let json = response.result.value as? [String: AnyObject] else {
+                if let error = response.result.error?.localizedDescription {
+                    self?.handleNewtorkError(error: error)
+                }
+                
                 return
             }
             if statusCode == APIStatusCode.ok.rawValue {
@@ -138,8 +162,16 @@ class APIClient {
     }
     
     func loadUser(with id: String, completion: @escaping UserCompletion, failure: @escaping ErrorBlock) {
+        NetworkActivity.sharedInstance.pushTask()
+        
         request(with: "users/\(id)", method: .get).responseJSON { [weak self] response in
+            NetworkActivity.sharedInstance.popTask()
+            
             guard let statusCode = response.response?.statusCode, let json = response.result.value as? [String: AnyObject] else {
+                if let error = response.result.error?.localizedDescription {
+                    self?.handleNewtorkError(error: error)
+                }
+                
                 return
             }
             if statusCode == APIStatusCode.unauthorized.rawValue {
@@ -175,8 +207,16 @@ class APIClient {
             parameters["avatar"] = avatar
         }
         
+        NetworkActivity.sharedInstance.pushTask()
+        
         request(with: "users/\(id)", method: .put, parameters: parameters).responseJSON { [weak self] response in
+            NetworkActivity.sharedInstance.popTask()
+            
             guard let statusCode = response.response?.statusCode, let json = response.result.value as? [String: AnyObject] else {
+                if let error = response.result.error?.localizedDescription {
+                    self?.handleNewtorkError(error: error)
+                }
+                
                 return
             }
             if statusCode == APIStatusCode.unauthorized.rawValue {
@@ -200,8 +240,16 @@ class APIClient {
             "password": password
         ]
         
+        NetworkActivity.sharedInstance.pushTask()
+        
         request(with: "users/\(id)", method: .put, parameters: parameters).responseJSON { [weak self] response in
+            NetworkActivity.sharedInstance.popTask()
+            
             guard let statusCode = response.response?.statusCode, let json = response.result.value as? [String: AnyObject] else {
+                if let error = response.result.error?.localizedDescription {
+                    self?.handleNewtorkError(error: error)
+                }
+                
                 return
             }
             if statusCode == APIStatusCode.unauthorized.rawValue {
@@ -227,13 +275,21 @@ class APIClient {
             return
         }
         
+        NetworkActivity.sharedInstance.pushTask()
+        
         Alamofire.upload(multipartFormData: { multipartFormData in
             multipartFormData.append(imgData, withName: "image", fileName: "file.jpg", mimeType: "image/jpg")
         }, to: "\(baseURL)/upload/", method: .post, headers: headers) { [weak self] result in
+            NetworkActivity.sharedInstance.popTask()
+            
             switch result {
             case .success(let upload, _, _):
                 upload.responseJSON { response in
                     guard let statusCode = response.response?.statusCode else {
+                        if let error = response.result.error?.localizedDescription {
+                            self?.handleNewtorkError(error: error)
+                        }
+                        
                         return
                     }
                     if statusCode == APIStatusCode.unauthorized.rawValue {
@@ -263,8 +319,16 @@ class APIClient {
     }
     
     private func loadImages(withURL url: String, completion: @escaping ImageCompletion, failure: @escaping ErrorBlock) {
+        NetworkActivity.sharedInstance.pushTask()
+
         request(with: url, method: .get).responseJSON { [weak self] response in
+            NetworkActivity.sharedInstance.popTask()
+
             guard let statusCode = response.response?.statusCode, let json = response.result.value as? [String: AnyObject] else {
+                if let error = response.result.error?.localizedDescription {
+                    self?.handleNewtorkError(error: error)
+                }
+
                 return
             }
             if statusCode == APIStatusCode.unauthorized.rawValue {
@@ -288,7 +352,7 @@ class APIClient {
             }
         }
     }
-    
+
     func loadImages(forPage page: Int, limit: Int = 10,
                     completion: @escaping ImageCompletion, failure: @escaping ErrorBlock) {
         let url = "images?page=\(page)?limit=\(limit)"
@@ -308,8 +372,16 @@ class APIClient {
             "description": description
         ]
         
+        NetworkActivity.sharedInstance.pushTask()
+        
         request(with: "images", method: .post, parameters: parameters).responseJSON { [weak self] response in
+            NetworkActivity.sharedInstance.popTask()
+            
             guard let statusCode = response.response?.statusCode, let json = response.result.value as? [String: AnyObject] else {
+                if let error = response.result.error?.localizedDescription {
+                    self?.handleNewtorkError(error: error)
+                }
+                
                 return
             }
             if statusCode == APIStatusCode.unauthorized.rawValue {
@@ -328,8 +400,16 @@ class APIClient {
     }
     
     func deleteImage(withId imageId: String, completion: @escaping CompletionBlock, failure: @escaping ErrorBlock) {
+        NetworkActivity.sharedInstance.pushTask()
+        
         request(with: "images/\(imageId)", method: .delete).responseJSON { [weak self] response in
+            NetworkActivity.sharedInstance.popTask()
+            
             guard let statusCode = response.response?.statusCode, let json = response.result.value as? [String: AnyObject] else {
+                if let error = response.result.error?.localizedDescription {
+                    self?.handleNewtorkError(error: error)
+                }
+                
                 return
             }
             if statusCode == APIStatusCode.unauthorized.rawValue {

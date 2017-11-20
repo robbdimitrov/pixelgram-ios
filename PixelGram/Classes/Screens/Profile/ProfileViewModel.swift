@@ -19,12 +19,6 @@ class ProfileViewModel {
     
     var userViewModel: UserViewModel
     
-    var userObservable: Observable<User> {
-        return user.asObservable()
-    }
-    var imagesObservable: Observable<[Image]> {
-        return images.asObservable()
-    }
     var numberOfItems: Int {
         return images.value.count
     }

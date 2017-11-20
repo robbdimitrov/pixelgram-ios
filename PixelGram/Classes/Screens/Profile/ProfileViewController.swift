@@ -24,9 +24,8 @@ class ProfileViewController: CollectionViewController {
         super.viewDidLoad()
         
         configureInitialHeaderSize()
-        
-        collectionView?.alwaysBounceVertical = true
-        collectionView?.addSubview(refreshControl)
+        setupRefreshControl()
+        setupUserLoadedNotification()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -34,19 +33,14 @@ class ProfileViewController: CollectionViewController {
         
         if userId == nil {
             userId = Session.sharedInstance.currentUser?.id
-            refreshUser { [weak self] in
-                self?.collectionView?.reloadData()
+            setupLogoutNotification()
+        }
+        
+        if let userId = userId {
+            guard let user = UserLoader.sharedInstance.user(withId: userId), viewModel?.user.value.id != user.id else {
+                return
             }
-            
-            NotificationCenter.default.addObserver(forName: Notification.Name(rawValue: APIClient.UserLoggedOutNotification), object: nil, queue: nil, using: { [weak self] notification in
-                self?.viewModel = nil
-                self?.userId = nil
-                self?.page = 0
-                self?.navigationController?.popToRootViewController(animated: false)
-                if let strongSelf = self {
-                    NotificationCenter.default.removeObserver(strongSelf)
-                }
-            })
+            setup(with: user)
         }
     }
     
@@ -63,34 +57,44 @@ class ProfileViewController: CollectionViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
+    // MARK: - Notifications
+    
+    func setupUserLoadedNotification() {
+        NotificationCenter.default.addObserver(forName: Notification.Name(rawValue: UserLoader.UserLoadedNotification), object: UserLoader.sharedInstance, queue: nil, using: { [weak self] notification in
+            guard let userId = self?.userId, let loadedUserId = notification.userInfo?["userId"] as? String, userId == loadedUserId else {
+                return
+            }
+            if let user = notification.userInfo?["user"] as? User {
+                self?.setup(with: user)
+            }
+        })
+    }
+    
+    func setupLogoutNotification() {
+        NotificationCenter.default.addObserver(forName: Notification.Name(rawValue: APIClient.UserLoggedOutNotification),
+                                               object: APIClient.sharedInstance, queue: nil, using: { [weak self] notification in
+                                                self?.viewModel = nil
+                                                self?.userId = nil
+                                                self?.page = 0
+                                                self?.navigationController?.popToRootViewController(animated: false)
+                                                if let strongSelf = self {
+                                                    NotificationCenter.default.removeObserver(strongSelf)
+                                                }
+        })
+    }
+    
     // MARK: - Data
     
     override func handleRefresh(_ sender: UIRefreshControl) {
-        refreshUser { [weak sender, weak self] in
-            sender?.endRefreshing()
-            self?.collectionView?.reloadData()
-        }
-    }
-    
-    func refreshUser(completionBlock: (() -> Void)?) {
-        guard let id = userId else {
+        guard let userId = userId else {
             return
         }
-        APIClient.sharedInstance.loadUser(with: id, completion: { [weak self] user in
-            self?.createViewModel(with: user)
-            self?.loadPosts(for: 0, completionBlock: completionBlock)
-        }) { [weak self] error in
-            self?.showError(error: error)
-            completionBlock?()
-        }
+        UserLoader.sharedInstance.loadUser(withId: userId)
     }
     
     func loadPosts(for page: Int, limit: Int = 10, completionBlock: (() -> Void)?) {
-        APIClient.sharedInstance.loadImages(forUserId: userId ?? "", page: page, limit: limit, completion: { [weak self] images in
-            self?.page = page
-            
+        APIClient.sharedInstance.loadImages(forUserId: userId ?? "", page: page, completion: { [weak self] images in
             self?.viewModel?.images.value.append(contentsOf: images)
-            
             completionBlock?()
         }) { [weak self] error in
             self?.showError(error: error)
@@ -98,6 +102,17 @@ class ProfileViewController: CollectionViewController {
     }
     
     // MARK: - Helpers
+    
+    func setup(with user: User) {
+        page = 0
+        createViewModel(with: user)
+        loadPosts(for: page, completionBlock: { [weak self] in
+            self?.collectionView?.reloadData()
+            if self?.collectionView?.refreshControl?.isRefreshing ?? false {
+                self?.collectionView?.refreshControl?.endRefreshing()
+            }
+        })
+    }
     
     func loadNextPage() {
         let oldCount = viewModel?.images.value.count ?? 0
@@ -109,13 +124,14 @@ class ProfileViewController: CollectionViewController {
                 return
             }
             
+            self?.page += 1
+            
             var indexPaths = [IndexPath]()
             
-            for index in oldCount...count {
-                let indexPath = IndexPath(row: index - 1, section: 0)
+            for index in oldCount...(count - 1) {
+                let indexPath = IndexPath(row: index, section: 0)
                 indexPaths.append(indexPath)
             }
-            
             self?.collectionView?.insertItems(at: indexPaths)
         }
     }
@@ -214,6 +230,11 @@ class ProfileViewController: CollectionViewController {
     }
     
     // MARK: - Config
+    
+    func setupRefreshControl() {
+        collectionView?.alwaysBounceVertical = true
+        collectionView?.refreshControl = refreshControl
+    }
     
     override func setupNavigationItem() {
         super.setupNavigationItem()

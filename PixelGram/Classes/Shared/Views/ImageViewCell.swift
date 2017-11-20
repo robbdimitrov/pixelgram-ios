@@ -45,7 +45,7 @@ class ImageViewCell: FullWidthCollectionViewCell {
         if let ownerAvatarURL = viewModel.ownerAvatarURL {
             avatarImageView?.setImage(with: ownerAvatarURL)
         } else {
-            // Use placeholder image
+            avatarImageView?.image = UIImage(named: "avatar_placeholder")
         }
         if let imageURL = viewModel.imageURL {
             imageView?.setImage(with: imageURL)

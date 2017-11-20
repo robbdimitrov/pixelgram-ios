@@ -13,6 +13,7 @@ class FeedViewModel {
     enum FeedType: Int {
         case feed
         case single
+        case likes
         
         var title: String {
             switch self {
@@ -20,20 +21,21 @@ class FeedViewModel {
                 return "Feed"
             case .single:
                 return "Photo"
+            case .likes:
+                return "Likes"
             }
         }
     }
 
     var type = FeedType.feed
     var images = Variable<[Image]>([])
+    var page = 0 // Page number (used for data loading)
     
-    // Page number (used for data loading)
-    var page = 0
-    // Limit per page
-    var limit = 20
+    var loadingFinished: ((Int, Int) -> Void)?
+    var loadingFailed: ((String) -> Void)?
     
-    var imagesObservable: Observable<[Image]> {
-        return images.asObservable()
+    var numberOfItems: Int {
+        return images.value.count
     }
     
     var title: String {
@@ -45,23 +47,45 @@ class FeedViewModel {
         self.images.value.append(contentsOf: images)
     }
     
+    // MARK: - Getters
+    
+    func imageViewModel(forIndex index: Int) -> ImageViewModel {
+        return ImageViewModel(with: images.value[index])
+    }
+    
     // MARK: - Data loading
     
     func loadData() {
-        if type == .feed {
+        if type != .single {
             loadImages()
         }
     }
     
-    func loadImages() {
-        APIClient.sharedInstance.loadImages(forPage: page, limit: limit, completion: { [weak self] images in
+    private func loadImages() {
+        let oldCount = numberOfItems
+        
+        let completion: APIClient.ImageCompletion = { [weak self] images in
+            if images.count > 0 {
+                self?.page += 1
+                self?.images.value.append(contentsOf: images)
+            }
             
-            page += 1
-            self?.images.value.append(contentsOf: images)
+            let count = self?.numberOfItems ?? 0
             
-        }) { error in
-            // TODO: Show error
-            print("Loading image failed: \(error)")
+            self?.loadingFinished?(oldCount, count)
+        }
+        
+        let failure: APIClient.ErrorBlock = { [weak self] error in
+            print("Loading images failed: \(error)")
+            self?.loadingFailed?(error)
+        }
+        
+        if type == .feed {
+            APIClient.sharedInstance.loadImages(forPage: page, completion: completion, failure: failure)
+        } else if type == .likes, let userId = Session.sharedInstance.currentUser?.id {
+            APIClient.sharedInstance.loadImages(forUserId: userId,
+                                                likes: true, page: page,
+                                                completion: completion, failure: failure)
         }
     }
     

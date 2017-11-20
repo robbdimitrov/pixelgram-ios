@@ -17,7 +17,10 @@ class UserViewModel {
     }
     
     var avatarURL: URL? {
-        return URL(string: APIClient.sharedInstance.urlForImage(user.avatarURL))
+        if user.avatarURL.count > 0 {
+            return URL(string: APIClient.sharedInstance.urlForImage(user.avatarURL))
+        }
+        return nil
     }
     
     var nameText: String {

@@ -12,14 +12,17 @@ import RxSwift
 
 class ImageViewModel {
     
-    private var image: Image
+    var image: Image
+    var user: User?
     var likes: Variable<Int>
     
-    private var dateFormatter = DateFormatter()
+    static let dateFormatter = DateFormatter()
     
     init(with image: Image) {
         likes = Variable(image.likes)
         self.image = image
+        
+        user = UserLoader.sharedInstance.user(withId: image.owner)
         
         configureDateFormatter()
     }
@@ -27,31 +30,7 @@ class ImageViewModel {
     // Getters
     
     func likeImage(with user: User) {
-//        let alreadyLiked = user.likedImages?.contains(where: { [weak self] (image) -> Bool in
-//            image === self?.image
-//        }) ?? false
-//        
-//        if alreadyLiked {
-//            guard let index = user.likedImages?.index(where: { [weak self] image -> Bool in
-//                image === self?.image
-//            }) else {
-//                return
-//            }
-//
-//            guard let userIndex = image.usersLiked?.index(where: { user -> Bool in
-//                user === Session.sharedInstance.currentUser
-//            }) else {
-//                return
-//            }
-//
-//            user.likedImages?.remove(at: index)
-//            image.usersLiked?.remove(at: userIndex)
-//            usersLiked.value = image.usersLiked ?? []
-//        } else {
-//            user.likedImages?.append(image)
-//            image.usersLiked?.append(user)
-//            usersLiked.value = image.usersLiked ?? []
-//        }
+        
     }
     
     var isOwnedByCurrentUser: Bool {
@@ -62,15 +41,21 @@ class ImageViewModel {
     }
     
     var imageURL: URL? {
-        return URL(string: APIClient.sharedInstance.urlForImage(image.filename))
+        if image.filename.count > 0 {
+            return URL(string: APIClient.sharedInstance.urlForImage(image.filename))
+        }
+        return nil
     }
     
     var usernameText: String {
-        return "Namename"//image.owner.username
+        return user?.username ?? "Loading.."
     }
     
     var ownerAvatarURL: URL? {
-        return nil//URL(string: image.owner.avatarURL)
+        if let avatarURL = user?.avatarURL, avatarURL.count > 0 {
+            return URL(string: APIClient.sharedInstance.urlForImage(avatarURL))
+        }
+        return nil
     }
     
     var likesText: String {
@@ -80,23 +65,23 @@ class ImageViewModel {
     var descriptionText: NSAttributedString? {
         let usernameFont = UIFont.boldSystemFont(ofSize: 15.0)
         
-        let attributedString = NSMutableAttributedString(string: "\("image.owner.username") \(image.description)")
+        let attributedString = NSMutableAttributedString(string: "\(user?.username ?? "Loading...") \(image.description)")
         
-        attributedString.setAttributes([.font : usernameFont], range: (attributedString.string as NSString).range(of: "image.owner.username"))
+        attributedString.setAttributes([.font : usernameFont], range: (attributedString.string as NSString).range(of: user?.username ?? "Loading..."))
         
         return attributedString
     }
     
     var dateCreatedText: String {
-        return dateFormatter.string(from: image.dateCreated)
+        return ImageViewModel.dateFormatter.string(from: image.dateCreated)
     }
     
     // Configure date formatter
     
     func configureDateFormatter() {
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .short
-        dateFormatter.doesRelativeDateFormatting = true
+        ImageViewModel.dateFormatter.dateStyle = .medium
+        ImageViewModel.dateFormatter.timeStyle = .short
+        ImageViewModel.dateFormatter.doesRelativeDateFormatting = true
     }
     
 }

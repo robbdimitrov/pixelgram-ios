@@ -42,6 +42,7 @@
 		B434C7D41FC21D7E00595C89 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = B434C7CC1FC21C7F00595C89 /* Session.swift */; };
 		B434C7D51FC21D7E00595C89 /* UserFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B434C7CD1FC21C7F00595C89 /* UserFactory.swift */; };
 		B434C7D61FC21D7E00595C89 /* UserCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = B434C7CE1FC21C9A00595C89 /* UserCache.swift */; };
+		B434C7D81FC2D0A100595C89 /* UserLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B434C7D71FC2D0A100595C89 /* UserLoader.swift */; };
 		B477E0CC1FAA24CC0079CCAF /* CropImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B477E0C61FAA1E930079CCAF /* CropImageViewController.swift */; };
 		B477E0CE1FAA24CC0079CCAF /* GalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B477E0C91FAA1E930079CCAF /* GalleryCell.swift */; };
 		B477E0CF1FAA24CC0079CCAF /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B477E0CA1FAA1E930079CCAF /* GalleryViewController.swift */; };
@@ -108,6 +109,7 @@
 		B434C7CC1FC21C7F00595C89 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		B434C7CD1FC21C7F00595C89 /* UserFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFactory.swift; sourceTree = "<group>"; };
 		B434C7CE1FC21C9A00595C89 /* UserCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCache.swift; sourceTree = "<group>"; };
+		B434C7D71FC2D0A100595C89 /* UserLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoader.swift; sourceTree = "<group>"; };
 		B477E0C31FAA1E930079CCAF /* ShareImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareImageViewController.swift; sourceTree = "<group>"; };
 		B477E0C41FAA1E930079CCAF /* ShareImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareImageViewModel.swift; sourceTree = "<group>"; };
 		B477E0C61FAA1E930079CCAF /* CropImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropImageViewController.swift; sourceTree = "<group>"; };
@@ -279,6 +281,7 @@
 				B434C7CC1FC21C7F00595C89 /* Session.swift */,
 				B434C7CD1FC21C7F00595C89 /* UserFactory.swift */,
 				B434C7CE1FC21C9A00595C89 /* UserCache.swift */,
+				B434C7D71FC2D0A100595C89 /* UserLoader.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -752,6 +755,7 @@
 				B40897011FA8610E006088EE /* Image.swift in Sources */,
 				B40897171FA8610E006088EE /* ImageViewCell.swift in Sources */,
 				B40897101FA8610E006088EE /* SupplementaryElementCollectionViewDataSource.swift in Sources */,
+				B434C7D81FC2D0A100595C89 /* UserLoader.swift in Sources */,
 				B4C273CC1FB18B7400248444 /* ChangePasswordViewController.swift in Sources */,
 				B40897061FA8610E006088EE /* LoginViewController.swift in Sources */,
 				B48915741FA8E9C200F1CF44 /* EditProfileViewController.swift in Sources */,

@@ -17,7 +17,7 @@ class ImageFactory {
         dateFormatter.dateFormat = dateFormat
         
         let image = Image(id: (dictionary["_id"] as? String) ?? "",
-                          owner: (dictionary["owner"] as? String) ?? "",
+                          owner: (dictionary["ownerId"] as? String) ?? "",
                           filename: (dictionary["filename"] as? String) ?? "",
                           dateCreated: dateFormatter.date(from: (dictionary["dateCreated"] as? String) ?? "") ?? Date(),
                           description: (dictionary["description"] as? String) ?? "",

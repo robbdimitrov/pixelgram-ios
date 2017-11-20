@@ -17,6 +17,8 @@ class FeedViewController: CollectionViewController {
     
     var dataSource: CollectionViewDataSource?
     
+    var selectedIndex: Int?
+    
     // MARK: - Object lifecycle
     
     deinit {
@@ -119,6 +121,7 @@ class FeedViewController: CollectionViewController {
             }).disposed(by: cell.disposeBag)
             
             cell.optionsButton?.rx.tap.subscribe(onNext: { [weak self] in
+                self?.selectedIndex = indexPath.row
                 self?.openOptions()
             }).disposed(by: cell.disposeBag)
         }
@@ -207,10 +210,32 @@ class FeedViewController: CollectionViewController {
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
         // Delete action
-        alertController.addAction(UIAlertAction(title: "Delete", style: .destructive) { action in
+        alertController.addAction(UIAlertAction(title: "Delete", style: .destructive) { [weak self] action in
+            if let selectedIndex = self?.selectedIndex {
+                self?.deleteImage(atIndex: selectedIndex)
+                self?.selectedIndex = nil
+            }
         })
         
         present(alertController, animated: true, completion: nil)
+    }
+    
+    func deleteImage(atIndex index: Int) {
+        let imageId = viewModel.images.value[index].id
+        let indexPath = IndexPath(row: index, section: 0)
+        
+        view.window?.showLoadingHUD()
+        
+        APIClient.sharedInstance.deleteImage(withId: imageId, completion: { [weak self] in
+            self?.view.window?.hideLoadingHUD()
+            
+            self?.viewModel.images.value.remove(at: index)
+            self?.collectionView?.deleteItems(at: [indexPath])
+        }) { [weak self] error in
+            self?.view.window?.hideLoadingHUD()
+            
+            self?.showError(error: error)
+        }
     }
     
     // MARK: - Navigation

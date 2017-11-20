@@ -327,4 +327,24 @@ class APIClient {
         }
     }
     
+    func deleteImage(withId imageId: String, completion: @escaping CompletionBlock, failure: @escaping ErrorBlock) {
+        request(with: "images/\(imageId)", method: .delete).responseJSON { [weak self] response in
+            guard let statusCode = response.response?.statusCode, let json = response.result.value as? [String: AnyObject] else {
+                return
+            }
+            if statusCode == APIStatusCode.unauthorized.rawValue {
+                self?.autoLogin(completion: {
+                    self?.deleteImage(withId: imageId, completion: completion, failure: failure)
+                }, failure: { error in
+                    failure(error)
+                })
+            } else if statusCode == APIStatusCode.ok.rawValue {
+                completion()
+            } else {
+                let error = json["error"]
+                failure((error as? String) ?? "Error")
+            }
+        }
+    }
+    
 }

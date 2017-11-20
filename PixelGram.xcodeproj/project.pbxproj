@@ -49,7 +49,6 @@
 		B477E0D11FAA24CC0079CCAF /* ShareImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B477E0C31FAA1E930079CCAF /* ShareImageViewController.swift */; };
 		B477E0D21FAA24CC0079CCAF /* ShareImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B477E0C41FAA1E930079CCAF /* ShareImageViewModel.swift */; };
 		B477E0D41FAA3A500079CCAF /* BarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B477E0D31FAA3A500079CCAF /* BarButtonItem.swift */; };
-		B48915691FA8B1EF00F1CF44 /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48915681FA8B1EF00F1CF44 /* CameraViewModel.swift */; };
 		B489156B1FA8D04600F1CF44 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B489156A1FA8D04600F1CF44 /* RoundedButton.swift */; };
 		B489156D1FA8D6AA00F1CF44 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B489156C1FA8D6AA00F1CF44 /* Colors.swift */; };
 		B489156F1FA8DAAB00F1CF44 /* ObservableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B489156E1FA8DAAB00F1CF44 /* ObservableButton.swift */; };
@@ -116,7 +115,6 @@
 		B477E0C91FAA1E930079CCAF /* GalleryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCell.swift; sourceTree = "<group>"; };
 		B477E0CA1FAA1E930079CCAF /* GalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		B477E0D31FAA3A500079CCAF /* BarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarButtonItem.swift; sourceTree = "<group>"; };
-		B48915681FA8B1EF00F1CF44 /* CameraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewModel.swift; sourceTree = "<group>"; };
 		B489156A1FA8D04600F1CF44 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		B489156C1FA8D6AA00F1CF44 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		B489156E1FA8DAAB00F1CF44 /* ObservableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableButton.swift; sourceTree = "<group>"; };
@@ -228,7 +226,6 @@
 				B477E0C81FAA1E930079CCAF /* Gallery */,
 				B477E0C21FAA1E930079CCAF /* Share */,
 				B40896DE1FA85E50006088EE /* CameraViewController.swift */,
-				B48915681FA8B1EF00F1CF44 /* CameraViewModel.swift */,
 				B4250A081FAB75F600063635 /* PhotoAccessDisabledView.swift */,
 			);
 			path = Camera;
@@ -724,7 +721,6 @@
 				B40897181FA8610E006088EE /* TextLabelCell.swift in Sources */,
 				B40897001FA8610E006088EE /* User.swift in Sources */,
 				B40897121FA8610E006088EE /* ViewReuse.swift in Sources */,
-				B48915691FA8B1EF00F1CF44 /* CameraViewModel.swift in Sources */,
 				B477E0CC1FAA24CC0079CCAF /* CropImageViewController.swift in Sources */,
 				B40896FF1FA8610E006088EE /* AppDelegate.swift in Sources */,
 				B477E0D21FAA24CC0079CCAF /* ShareImageViewModel.swift in Sources */,

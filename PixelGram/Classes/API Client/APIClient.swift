@@ -302,4 +302,29 @@ class APIClient {
         loadImages(withURL: url, completion: completion, failure: failure)
     }
     
+    func createImage(filename: String, description: String, completion: @escaping ResponseBlock, failure: @escaping ErrorBlock) {
+        let parameters = [
+            "filename": filename,
+            "description": description
+        ]
+        
+        request(with: "images", method: .post, parameters: parameters).responseJSON { [weak self] response in
+            guard let statusCode = response.response?.statusCode, let json = response.result.value as? [String: AnyObject] else {
+                return
+            }
+            if statusCode == APIStatusCode.unauthorized.rawValue {
+                self?.autoLogin(completion: {
+                    self?.createImage(filename: filename, description: description, completion: completion, failure: failure)
+                }, failure: { error in
+                    failure(error)
+                })
+            } else if statusCode == APIStatusCode.ok.rawValue {
+                completion(json)
+            } else {
+                let error = json["error"]
+                failure((error as? String) ?? "Error")
+            }
+        }
+    }
+    
 }

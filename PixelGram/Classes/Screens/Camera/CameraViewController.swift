@@ -99,7 +99,6 @@ class CameraViewController: ViewController {
     }
     
     func updateButtonItems(forPage page: Page, animated: Bool = true) {
-        
         var leftButton: BarButtonItem
         var rightButton: BarButtonItem
         
@@ -140,14 +139,12 @@ class CameraViewController: ViewController {
             rightButton = BarButtonItem(title: "Share", style: .plain, target: nil, action: nil)
             
             rightButton.rx.tap.subscribe(onNext: { [weak self] in
-                print("share image here")
-                self?.dismiss(animated: true, completion: nil)
+                self?.uploadAndShare()
             }).disposed(by: rightButton.disposeBag)
         }
         
         navigationItem.setLeftBarButton(leftButton, animated: animated)
         navigationItem.setRightBarButton(rightButton, animated: animated)
-        
     }
     
     func updateActiveController(forPage page: Page, animated: Bool = true) {
@@ -165,6 +162,38 @@ class CameraViewController: ViewController {
         default:
             break
         }
+    }
+    
+    // Upload and share the image
+    
+    func uploadAndShare() {
+        guard let image = shareViewController?.viewModel?.image, let caption = shareViewController?.viewModel?.caption else {
+            return
+        }
+        
+        view.window?.showLoadingHUD()
+        
+        APIClient.sharedInstance.uploadImage(image: image, completion: { [weak self] dictionary in
+            guard let filename = dictionary?["filename"] as? String else {
+                return
+            }
+            
+            APIClient.sharedInstance.createImage(filename: filename, description: caption, completion: { dictionary in
+                self?.view.window?.hideLoadingHUD()
+                
+                if let message = dictionary?["message"] as? String {
+                    self?.showMessage(title: "Image created", content: message)
+                }
+                self?.presentingViewController?.dismiss(animated: true, completion: nil)
+            }, failure: { error in
+                self?.view.window?.hideLoadingHUD()
+                self?.showError(error: error)
+            })
+        }) { [weak self] error in
+            self?.view.window?.hideLoadingHUD()
+            self?.showError(error: error)
+        }
+        
     }
     
     // MARK: - Photo Auth status
@@ -191,7 +220,6 @@ class CameraViewController: ViewController {
     // MARK: - Config
     
     func setupViewControllers() {
-        
         let galleryViewController = instantiateViewController(withIdentifier: GalleryViewController.storyboardIdentifier)
         append(viewController: galleryViewController, to: scrollView)
         self.galleryViewController = galleryViewController as? GalleryViewController
@@ -205,7 +233,6 @@ class CameraViewController: ViewController {
         self.shareViewController = shareViewController as? ShareImageViewController
         
         viewControllers.append(contentsOf: [galleryViewController, cropImageViewController, shareViewController])
-        
     }
     
     func append(viewController: UIViewController, to scrollView: UIScrollView?) {

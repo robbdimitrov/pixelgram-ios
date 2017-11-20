@@ -44,6 +44,10 @@ class ShareImageViewController: CollectionViewController {
             
             if let cell = cell as? SubmitImageCell {
                 self?.configureCell(cell, forIndexPath: indexPath)
+                
+                cell.textView?.rx.didChange.bind { [weak self, weak cell] in
+                    self?.viewModel?.caption = cell?.textView?.text ?? ""
+                }.disposed(by: cell.disposeBag)
             }
             
             return cell

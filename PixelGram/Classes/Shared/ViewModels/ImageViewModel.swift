@@ -29,8 +29,8 @@ class ImageViewModel {
     
     // Getters
     
-    func likeImage(with user: User) {
-        
+    var isLikedByCurrentUser: Bool {
+        return image.isLiked
     }
     
     var isOwnedByCurrentUser: Bool {
@@ -74,6 +74,28 @@ class ImageViewModel {
     
     var dateCreatedText: String {
         return ImageViewModel.dateFormatter.string(from: image.dateCreated)
+    }
+    
+    // MARK: - Actions
+    
+    func likeImage(with user: User) {
+        let imageId = image.id
+        
+        let completion: () -> Void = { [weak self] in
+            self?.image.isLiked = !(self?.image.isLiked ?? false)
+        }
+        
+        let failure: (String) -> Void = { error in
+            print("Liking image failed \(error)")
+        }
+        
+        if isLikedByCurrentUser {
+            if let userId = Session.shared.currentUser?.id {
+                APIClient.shared.dislikeImage(withUserId: userId, imageId: imageId, completion: completion, failure: failure)
+            }
+        } else {
+            APIClient.shared.likeImage(withImageId: imageId, completion: completion, failure: failure)
+        }
     }
     
     // Configure date formatter

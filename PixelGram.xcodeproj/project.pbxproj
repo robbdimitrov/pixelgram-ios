@@ -30,7 +30,6 @@
 		B40897151FA8610E006088EE /* ImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B2B91F1FA3B48700454DE3 /* ImageViewModel.swift */; };
 		B40897161FA8610E006088EE /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B2B9261FA3B53800454DE3 /* UserViewModel.swift */; };
 		B40897171FA8610E006088EE /* ImageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B2B91D1FA3B47300454DE3 /* ImageViewCell.swift */; };
-		B40897181FA8610E006088EE /* TextLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E9CC3B1FA4C16F009ECF88 /* TextLabelCell.swift */; };
 		B408971B1FA8610E006088EE /* ThumbImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E940011FA747BF0098AEA2 /* ThumbImageCell.swift */; };
 		B408971D1FA87F80006088EE /* FullWidthCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B408971C1FA87F80006088EE /* FullWidthCell.swift */; };
 		B4250A031FAB312300063635 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4250A021FAB312300063635 /* NavigationController.swift */; };
@@ -149,7 +148,6 @@
 		B4C273D31FB220DA00248444 /* Input.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Input.swift; sourceTree = "<group>"; };
 		B4E940001FA70E300098AEA2 /* PixelGram.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PixelGram.entitlements; sourceTree = "<group>"; };
 		B4E940011FA747BF0098AEA2 /* ThumbImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbImageCell.swift; sourceTree = "<group>"; };
-		B4E9CC3B1FA4C16F009ECF88 /* TextLabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextLabelCell.swift; sourceTree = "<group>"; };
 		B4E9CC451FA4CEBA009ECF88 /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 		B4E9CC4A1FA5C986009ECF88 /* StoryboardIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardIdentifier.swift; sourceTree = "<group>"; };
 		B4E9CC4C1FA5C992009ECF88 /* ViewReuse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewReuse.swift; sourceTree = "<group>"; };
@@ -385,7 +383,6 @@
 			isa = PBXGroup;
 			children = (
 				B4B2B91D1FA3B47300454DE3 /* ImageViewCell.swift */,
-				B4E9CC3B1FA4C16F009ECF88 /* TextLabelCell.swift */,
 				B4E940011FA747BF0098AEA2 /* ThumbImageCell.swift */,
 				B489156A1FA8D04600F1CF44 /* RoundedButton.swift */,
 				B489156E1FA8DAAB00F1CF44 /* ObservableButton.swift */,
@@ -721,7 +718,6 @@
 			files = (
 				B40897141FA8610E006088EE /* TabViewController.swift in Sources */,
 				B40897091FA8610E006088EE /* ProfileCell.swift in Sources */,
-				B40897181FA8610E006088EE /* TextLabelCell.swift in Sources */,
 				B40897001FA8610E006088EE /* User.swift in Sources */,
 				B40897121FA8610E006088EE /* ViewReuse.swift in Sources */,
 				B477E0CC1FAA24CC0079CCAF /* CropImageViewController.swift in Sources */,

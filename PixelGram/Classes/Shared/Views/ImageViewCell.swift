@@ -42,6 +42,8 @@ class ImageViewCell: FullWidthCollectionViewCell {
     func configure(with viewModel: ImageViewModel) {
         self.viewModel = viewModel
         
+        disposeBag = DisposeBag()
+        
         if let ownerAvatarURL = viewModel.ownerAvatarURL {
             avatarImageView?.setImage(with: ownerAvatarURL)
         } else {
@@ -59,21 +61,14 @@ class ImageViewCell: FullWidthCollectionViewCell {
             return
         }
         
-        likeButton.rx.tap.bind { [weak self] in
+        likeButton.rx.tap.bind { [weak self, weak likeButton] in
             if let currentUser = Session.shared.currentUser {
                 self?.viewModel?.likeImage(with: currentUser)
             }
+            likeButton?.isSelected = !(likeButton?.isSelected ?? false)
         }.disposed(by: disposeBag)
         
-//        viewModel.usersLiked.asObservable().map { users -> Bool in
-//            if let currentUser = Session.shared.currentUser {
-//                return users.contains(where: { user -> Bool in
-//                    user === currentUser
-//                })
-//            }
-//            return false
-//        }.bind(to: likeButton.rx.isSelected)
-//            .disposed(by: disposeBag)
+        likeButton.isSelected = viewModel.isLikedByCurrentUser
         
         optionsButton?.isHidden = !viewModel.isOwnedByCurrentUser
     }

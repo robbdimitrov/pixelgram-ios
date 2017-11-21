@@ -88,8 +88,7 @@ class FeedViewController: CollectionViewController {
         
         for cell in visibleCells {
             if let cell = cell as? ImageViewCell, cell.viewModel?.image.owner == userId, let indexPath = collectionView.indexPath(for: cell) {
-                let imageViewModel = viewModel.imageViewModel(forIndex: indexPath.row)
-                cell.configure(with: imageViewModel)
+                setupCell(cell, forIndexPath: indexPath)
             }
         }
     }
@@ -110,20 +109,26 @@ class FeedViewController: CollectionViewController {
     
     private func configureCell(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageViewCell.reuseIdentifier, for: indexPath)
-        if let cell = cell as? ImageViewCell {
-            let imageViewModel = viewModel.imageViewModel(forIndex: indexPath.row)
-            cell.configure(with: imageViewModel)
-            
-            cell.userButton?.rx.tap.subscribe(onNext: { [weak self] in
-                self?.openUserProfile(atIndex: indexPath.row)
-            }).disposed(by: cell.disposeBag)
-            
-            cell.optionsButton?.rx.tap.subscribe(onNext: { [weak self] in
-                self?.selectedIndex = indexPath.row
-                self?.openOptions()
-            }).disposed(by: cell.disposeBag)
-        }
+        setupCell(cell, forIndexPath: indexPath)
         return cell
+    }
+    
+    private func setupCell(_ cell: UICollectionViewCell, forIndexPath indexPath: IndexPath) {
+        guard let cell = cell as? ImageViewCell else {
+            return
+        }
+        
+        let imageViewModel = viewModel.imageViewModel(forIndex: indexPath.row)
+        cell.configure(with: imageViewModel)
+        
+        cell.userButton?.rx.tap.subscribe(onNext: { [weak self] in
+            self?.openUserProfile(atIndex: indexPath.row)
+        }).disposed(by: cell.disposeBag)
+        
+        cell.optionsButton?.rx.tap.subscribe(onNext: { [weak self] in
+            self?.selectedIndex = indexPath.row
+            self?.openOptions()
+        }).disposed(by: cell.disposeBag)
     }
     
     private func updateCells(oldCount: Int, count: Int) {
@@ -157,8 +162,7 @@ class FeedViewController: CollectionViewController {
     private func refreshCells(collectionView: UICollectionView) {
         for cell in collectionView.visibleCells {
             if let indexPath = collectionView.indexPath(for: cell) {
-                let imageViewModel = viewModel.imageViewModel(forIndex: indexPath.row)
-                (cell as? ImageViewCell)?.configure(with: imageViewModel)
+                setupCell(cell, forIndexPath: indexPath)
             }
         }
     }

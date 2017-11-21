@@ -462,4 +462,60 @@ class APIClient {
         }
     }
     
+    func likeImage(withImageId imageId: String, completion: @escaping CompletionBlock, failure: @escaping ErrorBlock) {
+        NetworkActivity.shared.pushTask()
+        
+        request(withURL: "images/\(imageId)/likes", method: .post).responseJSON { [weak self] response in
+            NetworkActivity.shared.popTask()
+            
+            guard let statusCode = response.response?.statusCode, let json = response.result.value as? [String: AnyObject] else {
+                if let error = response.result.error?.localizedDescription {
+                    self?.handleNewtorkError(error: error)
+                }
+                
+                return
+            }
+            if statusCode == APIStatusCode.unauthorized.rawValue {
+                self?.autoLogin(completion: {
+                    self?.likeImage(withImageId: imageId, completion: completion, failure: failure)
+                }, failure: { error in
+                    failure(error)
+                })
+            } else if statusCode == APIStatusCode.ok.rawValue {
+                completion()
+            } else {
+                let error = json["error"]
+                failure((error as? String) ?? "Error")
+            }
+        }
+    }
+    
+    func dislikeImage(withUserId userId: String, imageId: String, completion: @escaping CompletionBlock, failure: @escaping ErrorBlock) {
+        NetworkActivity.shared.pushTask()
+        
+        request(withURL: "images/\(imageId)/likes/\(userId)", method: .delete).responseJSON { [weak self] response in
+            NetworkActivity.shared.popTask()
+            
+            guard let statusCode = response.response?.statusCode, let json = response.result.value as? [String: AnyObject] else {
+                if let error = response.result.error?.localizedDescription {
+                    self?.handleNewtorkError(error: error)
+                }
+                
+                return
+            }
+            if statusCode == APIStatusCode.unauthorized.rawValue {
+                self?.autoLogin(completion: {
+                    self?.dislikeImage(withUserId: userId, imageId: imageId, completion: completion, failure: failure)
+                }, failure: { error in
+                    failure(error)
+                })
+            } else if statusCode == APIStatusCode.ok.rawValue {
+                completion()
+            } else {
+                let error = json["error"]
+                failure((error as? String) ?? "Error")
+            }
+        }
+    }
+    
 }

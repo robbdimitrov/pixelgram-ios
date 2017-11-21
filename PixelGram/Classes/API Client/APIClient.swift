@@ -32,6 +32,7 @@ class APIClient {
     
     typealias ImageCompletion = ([Image]) -> Void
     typealias UserCompletion = (User) -> Void
+    typealias UsersCompletion = ([User]) -> Void
     typealias CompletionBlock = () -> Void
     typealias ResponseBlock = ([String: AnyObject]?) -> Void
     typealias ErrorBlock = (String) -> Void
@@ -187,9 +188,7 @@ class APIClient {
             } else if statusCode == APIStatusCode.ok.rawValue {
                 if let jsonUser = json["user"] as? [String: AnyObject] {
                     let user = UserFactory.createUser(jsonUser)
-                    
                     UserCache.shared[user.id] = user
-                    
                     completion(user)
                 }
             } else {
@@ -269,6 +268,51 @@ class APIClient {
                 failure((error as? String) ?? "Error")
             }
         }
+    }
+    
+    // MARK: - Likes
+    
+    func loadUsersLikedImage(withId imageId: String, page: Int, limit: Int = 25, completion: @escaping UsersCompletion, failure: @escaping ErrorBlock) {
+        NetworkActivity.shared.pushTask()
+        
+        request(withURL: "images/\(imageId)/likes?page=\(page)&limit=\(limit)", method: .get).responseJSON { [weak self] response in
+            NetworkActivity.shared.popTask()
+            
+            guard let statusCode = response.response?.statusCode, let json = response.result.value as? [String: AnyObject] else {
+                if let error = response.result.error?.localizedDescription {
+                    self?.handleNewtorkError(error: error)
+                }
+                
+                return
+            }
+            if statusCode == APIStatusCode.unauthorized.rawValue {
+                self?.autoLogin(completion: {
+                    self?.loadUsersLikedImage(withId: imageId, page: page, limit: limit, completion: completion, failure: failure)
+                }, failure: { error in
+                    failure(error)
+                })
+            } else if statusCode == APIStatusCode.ok.rawValue {
+                if let jsonImages = json["likes"] as? [[String: AnyObject]] {
+                    var users = [User]()
+                    for dictionary in jsonImages {
+                        let user = UserFactory.createUser(dictionary)
+                        UserCache.shared[user.id] = user
+                        users.append(user)
+                    }
+                    completion(users)
+                }
+            } else {
+                let error = json["error"]
+                failure((error as? String) ?? "Error")
+            }
+        }
+    }
+    
+    func loadImagesLikedByUser(withId userId: String, page: Int, limit: Int = 10, completion: @escaping ImageCompletion, failure: @escaping ErrorBlock) {
+        NetworkActivity.shared.pushTask()
+        
+        let url = "users/\(userId)/likes?page=\(page)&limit=\(limit)"
+        loadImages(withURL: url, completion: completion, failure: failure)
     }
     
     // MARK: - Image upload

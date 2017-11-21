@@ -125,6 +125,10 @@ class FeedViewController: CollectionViewController {
             self?.openUserProfile(atIndex: indexPath.row)
         }).disposed(by: cell.disposeBag)
         
+        cell.likesButton?.rx.tap.subscribe(onNext: { [weak self] in
+            self?.openLikedUsers(selectedIndex: indexPath.row)
+        }).disposed(by: cell.disposeBag)
+        
         cell.optionsButton?.rx.tap.subscribe(onNext: { [weak self] in
             self?.selectedIndex = indexPath.row
             self?.openOptions()
@@ -281,6 +285,19 @@ class FeedViewController: CollectionViewController {
         let viewController = instantiateViewController(withIdentifier:
             ProfileViewController.storyboardIdentifier)
         (viewController as? ProfileViewController)?.userId = userId
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    private func openLikedUsers(selectedIndex: Int) {
+        let image = viewModel.images.value[selectedIndex]
+        
+        if image.likes < 1 {
+            return
+        }
+        
+        let viewController = instantiateViewController(withIdentifier:
+            UsersViewController.storyboardIdentifier)
+        (viewController as? UsersViewController)?.viewModel = UsersViewModel(with: image.id)
         navigationController?.pushViewController(viewController, animated: true)
     }
     

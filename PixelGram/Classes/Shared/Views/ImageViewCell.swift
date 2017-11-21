@@ -22,7 +22,7 @@ class ImageViewCell: FullWidthCollectionViewCell {
     @IBOutlet var imageView: UIImageView?
     @IBOutlet var likesLabel: UILabel?
     @IBOutlet var likeButton: UIButton?
-    @IBOutlet var shareButton: UIButton?
+    @IBOutlet var likesButton: UIButton?
     @IBOutlet var descriptionLabel: UILabel?
     @IBOutlet var dateCreatedLabel: UILabel?
     @IBOutlet var userButton: UIButton?

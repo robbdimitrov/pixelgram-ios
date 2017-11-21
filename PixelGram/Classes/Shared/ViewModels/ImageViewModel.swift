@@ -59,7 +59,7 @@ class ImageViewModel {
     }
     
     var likesText: String {
-        return "\(image.likes) likes"
+        return "\(image.likes) \(image.likes == 1 ? "like" : "likes")"
     }
     
     var descriptionText: NSAttributedString? {

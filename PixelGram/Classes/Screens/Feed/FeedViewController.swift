@@ -55,6 +55,8 @@ class FeedViewController: CollectionViewController {
     private func setupLogoutNotification() {
         NotificationCenter.default.addObserver(forName: Notification.Name(rawValue: APIClient.UserLoggedInNotification),
                                                object: APIClient.shared, queue: nil, using: { [weak self] notification in
+            self?.viewModel.page = 0
+            self?.viewModel.images.value.removeAll()
             self?.displayLoginScreen()
         })
     }

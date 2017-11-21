@@ -81,11 +81,14 @@ class ImageViewModel {
     func likeImage(with user: User) {
         let imageId = image.id
         
-        let completion: () -> Void = { [weak self] in
-            self?.image.isLiked = !(self?.image.isLiked ?? false)
-        }
+        let isLiked = image.isLiked
+        let numberOfLikes = image.likes
         
-        let failure: (String) -> Void = { error in
+        let completion: () -> Void = {}
+        
+        let failure: (String) -> Void = { [weak self] error in
+            self?.image.isLiked = isLiked
+            self?.image.likes = numberOfLikes
             print("Liking image failed \(error)")
         }
         
@@ -96,6 +99,9 @@ class ImageViewModel {
         } else {
             APIClient.shared.likeImage(withImageId: imageId, completion: completion, failure: failure)
         }
+        
+        image.isLiked = !isLiked
+        image.likes = (!isLiked ? numberOfLikes + 1 : numberOfLikes - 1)
     }
     
     // Configure date formatter

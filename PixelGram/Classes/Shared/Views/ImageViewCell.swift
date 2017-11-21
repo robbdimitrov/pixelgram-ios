@@ -61,11 +61,12 @@ class ImageViewCell: FullWidthCollectionViewCell {
             return
         }
         
-        likeButton.rx.tap.bind { [weak self, weak likeButton] in
+        likeButton.rx.tap.bind { [weak self] in
             if let currentUser = Session.shared.currentUser {
                 self?.viewModel?.likeImage(with: currentUser)
             }
-            likeButton?.isSelected = !(likeButton?.isSelected ?? false)
+            self?.likesLabel?.text = self?.viewModel?.likesText ?? ""
+            self?.likeButton?.isSelected = !(self?.likeButton?.isSelected ?? false)
         }.disposed(by: disposeBag)
         
         likeButton.isSelected = viewModel.isLikedByCurrentUser

@@ -21,6 +21,10 @@ $ pod install
 4. Change the `baseURL` inside `APIClient` to point to your server.
 5. Run the iOS client on a device or a simulator
 
+## Screenshots
+
+Screenshots are available in the [`Screenshots`](Screenshots) directory.
+
 ## Contact
 
 [Robert Dimitrov](http://robbdimitrov.com)

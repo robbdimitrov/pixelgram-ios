@@ -255,6 +255,10 @@ class FeedViewController: CollectionViewController {
             
             self?.viewModel.images.value.remove(at: index)
             self?.collectionView?.deleteItems(at: [indexPath])
+            
+            if self?.viewModel.type == .single, self?.viewModel.numberOfItems == 0 {
+                self?.navigationController?.popViewController(animated: true)
+            }
         }) { [weak self] error in
             self?.view.window?.hideLoadingHUD()
             

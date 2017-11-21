@@ -100,9 +100,7 @@ class SettingsViewController: CollectionViewController {
         let viewController = instantiateViewController(withIdentifier:
             FeedViewController.storyboardIdentifier)
         
-//        if let images = Session.shared.currentUser?.likedImages {
-//            (viewController as? FeedViewController)?.viewModel = FeedViewModel(with: .single, images: images)
-//        }
+        (viewController as? FeedViewController)?.viewModel = FeedViewModel(with: .likes, images: [])
         
         navigationController?.pushViewController(viewController, animated: true)
     }

@@ -270,8 +270,6 @@ class APIClient {
         }
     }
     
-    // MARK: - Likes
-    
     func loadUsersLikedImage(withId imageId: String, page: Int, limit: Int = 25, completion: @escaping UsersCompletion, failure: @escaping ErrorBlock) {
         NetworkActivity.shared.pushTask()
         
@@ -306,13 +304,6 @@ class APIClient {
                 failure((error as? String) ?? "Error")
             }
         }
-    }
-    
-    func loadImagesLikedByUser(withId userId: String, page: Int, limit: Int = 10, completion: @escaping ImageCompletion, failure: @escaping ErrorBlock) {
-        NetworkActivity.shared.pushTask()
-        
-        let url = "users/\(userId)/likes?page=\(page)&limit=\(limit)"
-        loadImages(withURL: url, completion: completion, failure: failure)
     }
     
     // MARK: - Image upload

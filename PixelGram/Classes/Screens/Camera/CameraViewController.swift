@@ -173,12 +173,12 @@ class CameraViewController: ViewController {
         
         view.window?.showLoadingHUD()
         
-        APIClient.sharedInstance.uploadImage(image, completion: { [weak self] dictionary in
+        APIClient.shared.uploadImage(image, completion: { [weak self] dictionary in
             guard let filename = dictionary?["filename"] as? String else {
                 return
             }
             
-            APIClient.sharedInstance.createImage(filename: filename, description: caption, completion: { dictionary in
+            APIClient.shared.createImage(filename: filename, description: caption, completion: { dictionary in
                 self?.view.window?.hideLoadingHUD()
                 
                 if let message = dictionary?["message"] as? String {

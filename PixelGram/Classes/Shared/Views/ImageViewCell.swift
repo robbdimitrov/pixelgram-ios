@@ -60,13 +60,13 @@ class ImageViewCell: FullWidthCollectionViewCell {
         }
         
         likeButton.rx.tap.bind { [weak self] in
-            if let currentUser = Session.sharedInstance.currentUser {
+            if let currentUser = Session.shared.currentUser {
                 self?.viewModel?.likeImage(with: currentUser)
             }
         }.disposed(by: disposeBag)
         
 //        viewModel.usersLiked.asObservable().map { users -> Bool in
-//            if let currentUser = Session.sharedInstance.currentUser {
+//            if let currentUser = Session.shared.currentUser {
 //                return users.contains(where: { user -> Bool in
 //                    user === currentUser
 //                })

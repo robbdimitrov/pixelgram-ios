@@ -18,7 +18,7 @@ class UserViewModel {
     
     var avatarURL: URL? {
         if user.avatarURL.count > 0 {
-            return URL(string: APIClient.sharedInstance.urlForImage(user.avatarURL))
+            return URL(string: APIClient.shared.urlForImage(user.avatarURL))
         }
         return nil
     }
@@ -48,7 +48,7 @@ class UserViewModel {
     }
     
     var isCurrentUser: Bool {
-        return user.id == (Session.sharedInstance.currentUser?.id ?? "")
+        return user.id == (Session.shared.currentUser?.id ?? "")
     }
     
 }

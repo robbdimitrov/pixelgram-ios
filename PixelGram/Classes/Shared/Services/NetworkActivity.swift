@@ -10,7 +10,7 @@ import UIKit
 
 class NetworkActivity {
 
-    static let sharedInstance = NetworkActivity()
+    static let shared = NetworkActivity()
     
     var numberOfTasks: Int = 0 {
         didSet {

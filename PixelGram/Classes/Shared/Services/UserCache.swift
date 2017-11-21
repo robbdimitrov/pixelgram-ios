@@ -10,7 +10,7 @@ import Foundation
 
 class UserCache {
 
-    static let sharedInstance = UserCache()
+    static let shared = UserCache()
     
     private var users = [String:User]()
     

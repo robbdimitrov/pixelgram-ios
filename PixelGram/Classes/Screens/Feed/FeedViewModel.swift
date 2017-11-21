@@ -67,7 +67,7 @@ class FeedViewModel {
         guard let image = images.value.first else {
             return
         }
-        APIClient.sharedInstance.loadImage(withId: image.id, completion: { [weak self] images in
+        APIClient.shared.loadImage(withId: image.id, completion: { [weak self] images in
             let oldCount = self?.images.value.count ?? 0
             
             self?.images.value.removeAll()
@@ -101,9 +101,9 @@ class FeedViewModel {
         }
         
         if type == .feed {
-            APIClient.sharedInstance.loadImages(forPage: page, completion: completion, failure: failure)
-        } else if type == .likes, let userId = Session.sharedInstance.currentUser?.id {
-            APIClient.sharedInstance.loadImages(forUserId: userId,
+            APIClient.shared.loadImages(forPage: page, completion: completion, failure: failure)
+        } else if type == .likes, let userId = Session.shared.currentUser?.id {
+            APIClient.shared.loadImages(forUserId: userId,
                                                 likes: true, page: page,
                                                 completion: completion, failure: failure)
         }

@@ -32,12 +32,12 @@ class ProfileViewController: CollectionViewController {
         super.viewWillAppear(animated)
         
         if userId == nil {
-            userId = Session.sharedInstance.currentUser?.id
+            userId = Session.shared.currentUser?.id
             setupLogoutNotification()
         }
         
         if let userId = userId {
-            guard let user = UserLoader.sharedInstance.user(withId: userId), viewModel?.user.value.id != user.id else {
+            guard let user = UserLoader.shared.user(withId: userId), viewModel?.user.value.id != user.id else {
                 return
             }
             setup(with: user)
@@ -60,7 +60,7 @@ class ProfileViewController: CollectionViewController {
     // MARK: - Notifications
     
     func setupUserLoadedNotification() {
-        NotificationCenter.default.addObserver(forName: Notification.Name(rawValue: UserLoader.UserLoadedNotification), object: UserLoader.sharedInstance, queue: nil, using: { [weak self] notification in
+        NotificationCenter.default.addObserver(forName: Notification.Name(rawValue: UserLoader.UserLoadedNotification), object: UserLoader.shared, queue: nil, using: { [weak self] notification in
             guard let userId = self?.userId, let loadedUserId = notification.userInfo?["userId"] as? String, userId == loadedUserId else {
                 return
             }
@@ -72,7 +72,7 @@ class ProfileViewController: CollectionViewController {
     
     func setupLogoutNotification() {
         NotificationCenter.default.addObserver(forName: Notification.Name(rawValue: APIClient.UserLoggedOutNotification),
-                                               object: APIClient.sharedInstance, queue: nil, using: { [weak self] notification in
+                                               object: APIClient.shared, queue: nil, using: { [weak self] notification in
                                                 self?.viewModel = nil
                                                 self?.userId = nil
                                                 self?.page = 0
@@ -89,11 +89,11 @@ class ProfileViewController: CollectionViewController {
         guard let userId = userId else {
             return
         }
-        UserLoader.sharedInstance.loadUser(withId: userId)
+        UserLoader.shared.loadUser(withId: userId)
     }
     
     func loadPosts(for page: Int, limit: Int = 10, completionBlock: (() -> Void)?) {
-        APIClient.sharedInstance.loadImages(forUserId: userId ?? "", page: page, completion: { [weak self] images in
+        APIClient.shared.loadImages(forUserId: userId ?? "", page: page, completion: { [weak self] images in
             self?.viewModel?.images.value.append(contentsOf: images)
             completionBlock?()
         }) { [weak self] error in

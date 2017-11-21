@@ -22,7 +22,7 @@ class ImageViewModel {
         likes = Variable(image.likes)
         self.image = image
         
-        user = UserLoader.sharedInstance.user(withId: image.owner)
+        user = UserLoader.shared.user(withId: image.owner)
         
         configureDateFormatter()
     }
@@ -34,7 +34,7 @@ class ImageViewModel {
     }
     
     var isOwnedByCurrentUser: Bool {
-        if let currentUserId = Session.sharedInstance.currentUser?.id {
+        if let currentUserId = Session.shared.currentUser?.id {
             return image.owner == currentUserId
         }
         return false
@@ -42,7 +42,7 @@ class ImageViewModel {
     
     var imageURL: URL? {
         if image.filename.count > 0 {
-            return URL(string: APIClient.sharedInstance.urlForImage(image.filename))
+            return URL(string: APIClient.shared.urlForImage(image.filename))
         }
         return nil
     }
@@ -53,7 +53,7 @@ class ImageViewModel {
     
     var ownerAvatarURL: URL? {
         if let avatarURL = user?.avatarURL, avatarURL.count > 0 {
-            return URL(string: APIClient.sharedInstance.urlForImage(avatarURL))
+            return URL(string: APIClient.shared.urlForImage(avatarURL))
         }
         return nil
     }

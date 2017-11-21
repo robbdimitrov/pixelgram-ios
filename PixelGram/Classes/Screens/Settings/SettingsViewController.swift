@@ -100,7 +100,7 @@ class SettingsViewController: CollectionViewController {
         let viewController = instantiateViewController(withIdentifier:
             FeedViewController.storyboardIdentifier)
         
-//        if let images = Session.sharedInstance.currentUser?.likedImages {
+//        if let images = Session.shared.currentUser?.likedImages {
 //            (viewController as? FeedViewController)?.viewModel = FeedViewModel(with: .single, images: images)
 //        }
         
@@ -108,7 +108,7 @@ class SettingsViewController: CollectionViewController {
     }
     
     func logout() {
-        APIClient.sharedInstance.logout { [weak self] in
+        APIClient.shared.logout { [weak self] in
             self?.navigationController?.popViewController(animated: false)
             self?.tabViewController?.handleTabSelection(withSelected: TabViewController.Tab.feed.rawValue)
         }

@@ -36,14 +36,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationDidReceiveMemoryWarning(_ application: UIApplication) {
-        UserCache.sharedInstance.deleteCache()
+        UserCache.shared.deleteCache()
     }
     
     // MARK: - Notifications
     
     func setupNetworkNotification() {
         NotificationCenter.default.addObserver(forName: Notification.Name(rawValue: APIClient.NetworkConnectionFailedNotification),
-                                               object: APIClient.sharedInstance, queue: nil, using: { [weak self] notification in
+                                               object: APIClient.shared, queue: nil, using: { [weak self] notification in
             if let rootViewController = self?.window?.rootViewController, let error = notification.userInfo?["error"] as? String {
                 let alertController = UIAlertController(title: "Network error", message: error, preferredStyle: .alert)
                 alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
@@ -55,7 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func removeNetworkNotification() {
         NotificationCenter.default.removeObserver(self,
                                                   name: Notification.Name(rawValue: APIClient.NetworkConnectionFailedNotification),
-                                                  object: APIClient.sharedInstance)
+                                                  object: APIClient.shared)
     }
 
 }

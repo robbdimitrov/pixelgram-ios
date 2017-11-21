@@ -14,7 +14,7 @@ extension UIImageView {
 
     func setImage(with url: URL) {
         if let manager = SDWebImageManager.shared().imageDownloader {
-            manager.setValue(Session.sharedInstance.token, forHTTPHeaderField: "x-access-token")
+            manager.setValue(Session.shared.token, forHTTPHeaderField: "x-access-token")
         }
         sd_setImage(with: url)
     }

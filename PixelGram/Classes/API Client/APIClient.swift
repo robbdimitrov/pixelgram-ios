@@ -38,7 +38,7 @@ class APIClient {
     
     // MARK: - Properties
     
-    static let sharedInstance = APIClient()
+    static let shared = APIClient()
     
     private let baseURL = "http://localhost:3000/api/v1.0"
     
@@ -47,7 +47,7 @@ class APIClient {
             var headers: HTTPHeaders = [
                 "Accept": "application/json"
             ]
-            if let token = Session.sharedInstance.token {
+            if let token = Session.shared.token {
                 headers["x-access-token"] = token
             }
             return headers
@@ -69,8 +69,8 @@ class APIClient {
     }
     
     private func autoLogin(completion: @escaping CompletionBlock, failure: @escaping ErrorBlock) {
-        let email = Session.sharedInstance.email ?? ""
-        let password = Session.sharedInstance.password ?? ""
+        let email = Session.shared.email ?? ""
+        let password = Session.shared.password ?? ""
         
         if email.count < 1 || password.count < 1 {
             failure("Something went wrong. Log in to access your account.")
@@ -87,10 +87,10 @@ class APIClient {
             "password": password
         ]
         
-        NetworkActivity.sharedInstance.pushTask()
+        NetworkActivity.shared.pushTask()
         
         request(withURL: "sessions", method: .post, parameters: parameters).responseJSON { [weak self] response in
-            NetworkActivity.sharedInstance.popTask()
+            NetworkActivity.shared.popTask()
             
             guard let statusCode = response.response?.statusCode, let json = response.result.value as? [String: AnyObject] else {
                 if let error = response.result.error?.localizedDescription {
@@ -102,15 +102,15 @@ class APIClient {
             if statusCode == APIStatusCode.ok.rawValue, let dictionary = json["user"] as? [String: AnyObject], let token = json["token"] as? String {
                 let user = UserFactory.createUser(dictionary)
                 
-                Session.sharedInstance.email = email
-                Session.sharedInstance.currentUser = user
-                Session.sharedInstance.token = token
-                Session.sharedInstance.password = password
+                Session.shared.email = email
+                Session.shared.currentUser = user
+                Session.shared.token = token
+                Session.shared.password = password
                 
                 NotificationCenter.default.post(name: Notification.Name(rawValue: APIClient.UserLoggedInNotification),
                                                 object: self, userInfo: ["user": user])
                 
-                UserCache.sharedInstance[user.id] = user
+                UserCache.shared[user.id] = user
                 
                 completion()
             } else {
@@ -125,8 +125,8 @@ class APIClient {
     }
     
     func logout(completion: CompletionBlock?) {
-        Session.sharedInstance.currentUser = nil
-        Session.sharedInstance.email = nil
+        Session.shared.currentUser = nil
+        Session.shared.email = nil
         
         NotificationCenter.default.post(name: Notification.Name(rawValue: APIClient.UserLoggedOutNotification),
                                         object: self, userInfo: nil)
@@ -144,10 +144,10 @@ class APIClient {
             "password": password
         ]
         
-        NetworkActivity.sharedInstance.pushTask()
+        NetworkActivity.shared.pushTask()
         
         request(withURL: "users", method: .post, parameters: parameters).responseJSON { [weak self] response in
-            NetworkActivity.sharedInstance.popTask()
+            NetworkActivity.shared.popTask()
             
             guard let statusCode = response.response?.statusCode, let json = response.result.value as? [String: AnyObject] else {
                 if let error = response.result.error?.localizedDescription {
@@ -166,10 +166,10 @@ class APIClient {
     }
     
     func loadUser(withId userId: String, completion: @escaping UserCompletion, failure: @escaping ErrorBlock) {
-        NetworkActivity.sharedInstance.pushTask()
+        NetworkActivity.shared.pushTask()
         
         request(withURL: "users/\(userId)", method: .get).responseJSON { [weak self] response in
-            NetworkActivity.sharedInstance.popTask()
+            NetworkActivity.shared.popTask()
             
             guard let statusCode = response.response?.statusCode, let json = response.result.value as? [String: AnyObject] else {
                 if let error = response.result.error?.localizedDescription {
@@ -188,7 +188,7 @@ class APIClient {
                 if let jsonUser = json["user"] as? [String: AnyObject] {
                     let user = UserFactory.createUser(jsonUser)
                     
-                    UserCache.sharedInstance[user.id] = user
+                    UserCache.shared[user.id] = user
                     
                     completion(user)
                 }
@@ -211,10 +211,10 @@ class APIClient {
             parameters["avatar"] = avatar
         }
         
-        NetworkActivity.sharedInstance.pushTask()
+        NetworkActivity.shared.pushTask()
         
         request(withURL: "users/\(userId)", method: .put, parameters: parameters).responseJSON { [weak self] response in
-            NetworkActivity.sharedInstance.popTask()
+            NetworkActivity.shared.popTask()
             
             guard let statusCode = response.response?.statusCode, let json = response.result.value as? [String: AnyObject] else {
                 if let error = response.result.error?.localizedDescription {
@@ -244,10 +244,10 @@ class APIClient {
             "password": password
         ]
         
-        NetworkActivity.sharedInstance.pushTask()
+        NetworkActivity.shared.pushTask()
         
         request(withURL: "users/\(userId)", method: .put, parameters: parameters).responseJSON { [weak self] response in
-            NetworkActivity.sharedInstance.popTask()
+            NetworkActivity.shared.popTask()
             
             guard let statusCode = response.response?.statusCode, let json = response.result.value as? [String: AnyObject] else {
                 if let error = response.result.error?.localizedDescription {
@@ -279,12 +279,12 @@ class APIClient {
             return
         }
         
-        NetworkActivity.sharedInstance.pushTask()
+        NetworkActivity.shared.pushTask()
         
         Alamofire.upload(multipartFormData: { multipartFormData in
             multipartFormData.append(imgData, withName: "image", fileName: "file.jpg", mimeType: "image/jpg")
         }, to: "\(baseURL)/upload/", method: .post, headers: headers) { [weak self] result in
-            NetworkActivity.sharedInstance.popTask()
+            NetworkActivity.shared.popTask()
             
             switch result {
             case .success(let upload, _, _):
@@ -323,10 +323,10 @@ class APIClient {
     }
     
     private func loadImages(withURL url: String, completion: @escaping ImageCompletion, failure: @escaping ErrorBlock) {
-        NetworkActivity.sharedInstance.pushTask()
+        NetworkActivity.shared.pushTask()
 
         request(withURL: url, method: .get).responseJSON { [weak self] response in
-            NetworkActivity.sharedInstance.popTask()
+            NetworkActivity.shared.popTask()
 
             guard let statusCode = response.response?.statusCode, let json = response.result.value as? [String: AnyObject] else {
                 if let error = response.result.error?.localizedDescription {
@@ -371,10 +371,10 @@ class APIClient {
     }
     
     func loadImage(withId imageId: String, completion: @escaping ImageCompletion, failure: @escaping ErrorBlock) {
-        NetworkActivity.sharedInstance.pushTask()
+        NetworkActivity.shared.pushTask()
         
         request(withURL: "images/\(imageId)", method: .get).responseJSON { [weak self] response in
-            NetworkActivity.sharedInstance.popTask()
+            NetworkActivity.shared.popTask()
             
             guard let statusCode = response.response?.statusCode, let json = response.result.value as? [String: AnyObject] else {
                 if let error = response.result.error?.localizedDescription {
@@ -408,10 +408,10 @@ class APIClient {
             "description": description
         ]
         
-        NetworkActivity.sharedInstance.pushTask()
+        NetworkActivity.shared.pushTask()
         
         request(withURL: "images", method: .post, parameters: parameters).responseJSON { [weak self] response in
-            NetworkActivity.sharedInstance.popTask()
+            NetworkActivity.shared.popTask()
             
             guard let statusCode = response.response?.statusCode, let json = response.result.value as? [String: AnyObject] else {
                 if let error = response.result.error?.localizedDescription {
@@ -435,10 +435,10 @@ class APIClient {
     }
     
     func deleteImage(withId imageId: String, completion: @escaping CompletionBlock, failure: @escaping ErrorBlock) {
-        NetworkActivity.sharedInstance.pushTask()
+        NetworkActivity.shared.pushTask()
         
         request(withURL: "images/\(imageId)", method: .delete).responseJSON { [weak self] response in
-            NetworkActivity.sharedInstance.popTask()
+            NetworkActivity.shared.popTask()
             
             guard let statusCode = response.response?.statusCode, let json = response.result.value as? [String: AnyObject] else {
                 if let error = response.result.error?.localizedDescription {

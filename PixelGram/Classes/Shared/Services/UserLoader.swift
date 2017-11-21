@@ -12,12 +12,12 @@ class UserLoader {
 
     static let UserLoadedNotification = "UserLoadedNotification"
     
-    static let sharedInstance = UserLoader()
+    static let shared = UserLoader()
     
     private init() {}
     
     func user(withId userId: String) -> User? {
-        if let user = UserCache.sharedInstance[userId] {
+        if let user = UserCache.shared[userId] {
             return user
         } else {
             loadUser(withId: userId)
@@ -26,7 +26,7 @@ class UserLoader {
     }
     
     func loadUser(withId userId: String, completion: APIClient.UserCompletion? = nil, failure: APIClient.ErrorBlock? = nil) {
-        APIClient.sharedInstance.loadUser(withId: userId, completion: { user in
+        APIClient.shared.loadUser(withId: userId, completion: { user in
             NotificationCenter.default.post(name: Notification.Name(rawValue: UserLoader.UserLoadedNotification),
                                             object: self, userInfo: ["userId": userId, "user": user])
             completion?(user)

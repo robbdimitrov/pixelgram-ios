@@ -12,7 +12,7 @@ import Locksmith
 
 class Session {
 
-    static let sharedInstance = Session()
+    static let shared = Session()
     
     private init() {}
     

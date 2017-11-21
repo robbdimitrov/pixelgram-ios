@@ -54,14 +54,14 @@ class FeedViewController: CollectionViewController {
     
     private func setupLogoutNotification() {
         NotificationCenter.default.addObserver(forName: Notification.Name(rawValue: APIClient.UserLoggedInNotification),
-                                               object: APIClient.sharedInstance, queue: nil, using: { [weak self] notification in
+                                               object: APIClient.shared, queue: nil, using: { [weak self] notification in
             self?.displayLoginScreen()
         })
     }
     
     private func setupUserLoadedNotification() {
         NotificationCenter.default.addObserver(forName: Notification.Name(rawValue: UserLoader.UserLoadedNotification),
-                                               object: UserLoader.sharedInstance, queue: nil, using: { [weak self] notification in
+                                               object: UserLoader.shared, queue: nil, using: { [weak self] notification in
             guard let user = notification.userInfo?["user"] as? User else {
                 return
             }
@@ -206,7 +206,7 @@ class FeedViewController: CollectionViewController {
     // MARK: - Actions
     
     private func displayLoginScreen() {
-        if Session.sharedInstance.currentUser == nil {
+        if Session.shared.currentUser == nil {
             let viewController = instantiateViewController(withIdentifier: LoginViewController.storyboardIdentifier)
             present(NavigationController(rootViewController: viewController), animated: true, completion: nil)
         }
@@ -250,7 +250,7 @@ class FeedViewController: CollectionViewController {
         
         view.window?.showLoadingHUD()
         
-        APIClient.sharedInstance.deleteImage(withId: imageId, completion: { [weak self] in
+        APIClient.shared.deleteImage(withId: imageId, completion: { [weak self] in
             self?.view.window?.hideLoadingHUD()
             
             self?.viewModel.images.value.remove(at: index)

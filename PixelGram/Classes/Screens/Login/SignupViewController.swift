@@ -103,11 +103,11 @@ class SignupViewController: ViewController {
     // MARK: - Login
     
     func register(with name: String, username: String, email: String, password: String) {
-        APIClient.sharedInstance.createUser(name: name, username: username, email: email, password: password, completion: { [weak self] response in
+        APIClient.shared.createUser(name: name, username: username, email: email, password: password, completion: { [weak self] response in
             if let message = (response?["message"] as? String) {
                 self?.showMessage(title: "User Created", content: message)
                 
-                APIClient.sharedInstance.login(withEmail: email, password: password, completion: {
+                APIClient.shared.login(withEmail: email, password: password, completion: {
                     self?.presentingViewController?.dismiss(animated: true, completion: nil)
                 }, failure: { error in
                     self?.showError(error: "Error occured on auto login. Please try logging in manually.")

@@ -26,7 +26,7 @@ class UserLoader {
     }
     
     func loadUser(withId userId: String, completion: APIClient.UserCompletion? = nil, failure: APIClient.ErrorBlock? = nil) {
-        APIClient.sharedInstance.loadUser(with: userId, completion: { user in
+        APIClient.sharedInstance.loadUser(withId: userId, completion: { user in
             NotificationCenter.default.post(name: Notification.Name(rawValue: UserLoader.UserLoadedNotification),
                                             object: self, userInfo: ["userId": userId, "user": user])
             completion?(user)

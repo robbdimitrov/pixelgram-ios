@@ -77,7 +77,7 @@ class ChangePasswordViewController: ViewController {
     func changePassword(with oldPassword: String, newPassword: String) {
         let id = Session.sharedInstance.currentUser?.id ?? ""
         
-        APIClient.sharedInstance.changePassword(with: id, oldPassword: oldPassword, password: newPassword, completion: { [weak self] in
+        APIClient.sharedInstance.changePassword(forUserId: id, oldPassword: oldPassword, password: newPassword, completion: { [weak self] in
             APIClient.sharedInstance.logout(completion: {
                 self?.showMessage(title: "Password changed successfully", content: "Login with your new password.")
                 self?.navigationController?.popToRootViewController(animated: true)

@@ -56,8 +56,28 @@ class FeedViewModel {
     // MARK: - Data loading
     
     func loadData() {
-        if type != .single {
+        if type == .single {
+            loadImage()
+        } else {
             loadImages()
+        }
+    }
+    
+    private func loadImage() {
+        guard let image = images.value.first else {
+            return
+        }
+        APIClient.sharedInstance.loadImage(withId: image.id, completion: { [weak self] images in
+            let oldCount = self?.images.value.count ?? 0
+            
+            self?.images.value.removeAll()
+            self?.images.value.append(contentsOf: images)
+            
+            let count = self?.images.value.count ?? 0
+            
+            self?.loadingFinished?(oldCount, count)
+        }) { [weak self] error in
+            self?.loadingFailed?(error)
         }
     }
     

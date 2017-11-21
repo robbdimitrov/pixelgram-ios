@@ -63,7 +63,7 @@ class APIClient {
                                         object: self, userInfo: ["error": error])
     }
     
-    private func request(with url: String, method: HTTPMethod, parameters: Parameters? = nil) -> DataRequest {
+    private func request(withURL url: String, method: HTTPMethod, parameters: Parameters? = nil) -> DataRequest {
         return Alamofire.request("\(baseURL)/\(url)", method: method, parameters: parameters,
                                  encoding: URLEncoding.httpBody, headers: headers)
     }
@@ -75,13 +75,13 @@ class APIClient {
         if email.count < 1 || password.count < 1 {
             failure("Something went wrong. Log in to access your account.")
         } else {
-            login(with: email, password: password, completion: completion, failure: failure)
+            login(withEmail: email, password: password, completion: completion, failure: failure)
         }
     }
     
     // MARK: - Authentication
     
-    func login(with email: String, password: String, completion: @escaping CompletionBlock, failure: @escaping ErrorBlock) {
+    func login(withEmail email: String, password: String, completion: @escaping CompletionBlock, failure: @escaping ErrorBlock) {
         let parameters = [
             "email": email,
             "password": password
@@ -89,7 +89,7 @@ class APIClient {
         
         NetworkActivity.sharedInstance.pushTask()
         
-        request(with: "sessions", method: .post, parameters: parameters).responseJSON { [weak self] response in
+        request(withURL: "sessions", method: .post, parameters: parameters).responseJSON { [weak self] response in
             NetworkActivity.sharedInstance.popTask()
             
             guard let statusCode = response.response?.statusCode, let json = response.result.value as? [String: AnyObject] else {
@@ -116,18 +116,22 @@ class APIClient {
             } else {
                 let error = json["error"]
                 failure((error as? String) ?? "Error")
+                
+                if statusCode == APIStatusCode.unauthorized.rawValue {
+                    self?.logout(completion: nil)
+                }
             }
         }
     }
     
-    func logout(completion: CompletionBlock) {
+    func logout(completion: CompletionBlock?) {
         Session.sharedInstance.currentUser = nil
         Session.sharedInstance.email = nil
         
         NotificationCenter.default.post(name: Notification.Name(rawValue: APIClient.UserLoggedOutNotification),
                                         object: self, userInfo: nil)
         
-        completion()
+        completion?()
     }
     
     // MARK: - Users
@@ -142,7 +146,7 @@ class APIClient {
         
         NetworkActivity.sharedInstance.pushTask()
         
-        request(with: "users", method: .post, parameters: parameters).responseJSON { [weak self] response in
+        request(withURL: "users", method: .post, parameters: parameters).responseJSON { [weak self] response in
             NetworkActivity.sharedInstance.popTask()
             
             guard let statusCode = response.response?.statusCode, let json = response.result.value as? [String: AnyObject] else {
@@ -161,10 +165,10 @@ class APIClient {
         }
     }
     
-    func loadUser(with id: String, completion: @escaping UserCompletion, failure: @escaping ErrorBlock) {
+    func loadUser(withId userId: String, completion: @escaping UserCompletion, failure: @escaping ErrorBlock) {
         NetworkActivity.sharedInstance.pushTask()
         
-        request(with: "users/\(id)", method: .get).responseJSON { [weak self] response in
+        request(withURL: "users/\(userId)", method: .get).responseJSON { [weak self] response in
             NetworkActivity.sharedInstance.popTask()
             
             guard let statusCode = response.response?.statusCode, let json = response.result.value as? [String: AnyObject] else {
@@ -176,7 +180,7 @@ class APIClient {
             }
             if statusCode == APIStatusCode.unauthorized.rawValue {
                 self?.autoLogin(completion: {
-                    self?.loadUser(with: id, completion: completion, failure: failure)
+                    self?.loadUser(withId: userId, completion: completion, failure: failure)
                 }, failure: { error in
                     failure(error)
                 })
@@ -195,7 +199,7 @@ class APIClient {
         }
     }
     
-    func editUser(with id: String, name: String, username: String, email: String, bio: String, avatar: String?, completion: @escaping ResponseBlock, failure: @escaping ErrorBlock) {
+    func editUser(withId userId: String, name: String, username: String, email: String, bio: String, avatar: String?, completion: @escaping ResponseBlock, failure: @escaping ErrorBlock) {
         var parameters = [
             "name": name,
             "username": username,
@@ -209,7 +213,7 @@ class APIClient {
         
         NetworkActivity.sharedInstance.pushTask()
         
-        request(with: "users/\(id)", method: .put, parameters: parameters).responseJSON { [weak self] response in
+        request(withURL: "users/\(userId)", method: .put, parameters: parameters).responseJSON { [weak self] response in
             NetworkActivity.sharedInstance.popTask()
             
             guard let statusCode = response.response?.statusCode, let json = response.result.value as? [String: AnyObject] else {
@@ -221,7 +225,7 @@ class APIClient {
             }
             if statusCode == APIStatusCode.unauthorized.rawValue {
                 self?.autoLogin(completion: {
-                    self?.editUser(with: id, name: name, username: username, email: email, bio: bio, avatar: avatar, completion: completion, failure: failure)
+                    self?.editUser(withId: userId, name: name, username: username, email: email, bio: bio, avatar: avatar, completion: completion, failure: failure)
                 }, failure: { error in
                     failure(error)
                 })
@@ -234,7 +238,7 @@ class APIClient {
         }
     }
     
-    func changePassword(with id: String, oldPassword: String, password: String, completion: @escaping CompletionBlock, failure: @escaping ErrorBlock) {
+    func changePassword(forUserId userId: String, oldPassword: String, password: String, completion: @escaping CompletionBlock, failure: @escaping ErrorBlock) {
         let parameters = [
             "oldPassword": oldPassword,
             "password": password
@@ -242,7 +246,7 @@ class APIClient {
         
         NetworkActivity.sharedInstance.pushTask()
         
-        request(with: "users/\(id)", method: .put, parameters: parameters).responseJSON { [weak self] response in
+        request(withURL: "users/\(userId)", method: .put, parameters: parameters).responseJSON { [weak self] response in
             NetworkActivity.sharedInstance.popTask()
             
             guard let statusCode = response.response?.statusCode, let json = response.result.value as? [String: AnyObject] else {
@@ -254,7 +258,7 @@ class APIClient {
             }
             if statusCode == APIStatusCode.unauthorized.rawValue {
                 self?.autoLogin(completion: {
-                    self?.changePassword(with: id, oldPassword: oldPassword, password: password, completion: completion, failure: failure)
+                    self?.changePassword(forUserId: userId, oldPassword: oldPassword, password: password, completion: completion, failure: failure)
                 }, failure: { error in
                     failure(error)
                 })
@@ -269,7 +273,7 @@ class APIClient {
     
     // MARK: - Image upload
     
-    func uploadImage(image: UIImage, completion: @escaping ResponseBlock, failure: @escaping ErrorBlock) {
+    func uploadImage(_ image: UIImage, completion: @escaping ResponseBlock, failure: @escaping ErrorBlock) {
         guard let imgData = UIImageJPEGRepresentation(image, 0.2) else {
             failure("Could't upload image.")
             return
@@ -294,7 +298,7 @@ class APIClient {
                     }
                     if statusCode == APIStatusCode.unauthorized.rawValue {
                         self?.autoLogin(completion: {
-                            self?.uploadImage(image: image, completion: completion, failure: failure)
+                            self?.uploadImage(image, completion: completion, failure: failure)
                         }, failure: { error in
                             failure(error)
                         })
@@ -321,7 +325,7 @@ class APIClient {
     private func loadImages(withURL url: String, completion: @escaping ImageCompletion, failure: @escaping ErrorBlock) {
         NetworkActivity.sharedInstance.pushTask()
 
-        request(with: url, method: .get).responseJSON { [weak self] response in
+        request(withURL: url, method: .get).responseJSON { [weak self] response in
             NetworkActivity.sharedInstance.popTask()
 
             guard let statusCode = response.response?.statusCode, let json = response.result.value as? [String: AnyObject] else {
@@ -366,6 +370,38 @@ class APIClient {
         loadImages(withURL: url, completion: completion, failure: failure)
     }
     
+    func loadImage(withId imageId: String, completion: @escaping ImageCompletion, failure: @escaping ErrorBlock) {
+        NetworkActivity.sharedInstance.pushTask()
+        
+        request(withURL: "images/\(imageId)", method: .get).responseJSON { [weak self] response in
+            NetworkActivity.sharedInstance.popTask()
+            
+            guard let statusCode = response.response?.statusCode, let json = response.result.value as? [String: AnyObject] else {
+                if let error = response.result.error?.localizedDescription {
+                    self?.handleNewtorkError(error: error)
+                }
+                
+                return
+            }
+            if statusCode == APIStatusCode.unauthorized.rawValue {
+                self?.autoLogin(completion: {
+                    self?.loadImage(withId: imageId, completion: completion, failure: failure)
+                }, failure: { error in
+                    failure(error)
+                })
+            } else if statusCode == APIStatusCode.ok.rawValue {
+                if let jsonImage = json["image"] as? [String: AnyObject] {
+                    let image = ImageFactory.createImage(jsonImage)
+                    
+                    completion([image])
+                }
+            } else {
+                let error = json["error"]
+                failure((error as? String) ?? "Error")
+            }
+        }
+    }
+    
     func createImage(filename: String, description: String, completion: @escaping ResponseBlock, failure: @escaping ErrorBlock) {
         let parameters = [
             "filename": filename,
@@ -374,14 +410,13 @@ class APIClient {
         
         NetworkActivity.sharedInstance.pushTask()
         
-        request(with: "images", method: .post, parameters: parameters).responseJSON { [weak self] response in
+        request(withURL: "images", method: .post, parameters: parameters).responseJSON { [weak self] response in
             NetworkActivity.sharedInstance.popTask()
             
             guard let statusCode = response.response?.statusCode, let json = response.result.value as? [String: AnyObject] else {
                 if let error = response.result.error?.localizedDescription {
                     self?.handleNewtorkError(error: error)
                 }
-                
                 return
             }
             if statusCode == APIStatusCode.unauthorized.rawValue {
@@ -402,7 +437,7 @@ class APIClient {
     func deleteImage(withId imageId: String, completion: @escaping CompletionBlock, failure: @escaping ErrorBlock) {
         NetworkActivity.sharedInstance.pushTask()
         
-        request(with: "images/\(imageId)", method: .delete).responseJSON { [weak self] response in
+        request(withURL: "images/\(imageId)", method: .delete).responseJSON { [weak self] response in
             NetworkActivity.sharedInstance.popTask()
             
             guard let statusCode = response.response?.statusCode, let json = response.result.value as? [String: AnyObject] else {

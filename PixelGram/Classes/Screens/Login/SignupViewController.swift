@@ -107,7 +107,7 @@ class SignupViewController: ViewController {
             if let message = (response?["message"] as? String) {
                 self?.showMessage(title: "User Created", content: message)
                 
-                APIClient.sharedInstance.login(with: email, password: password, completion: {
+                APIClient.sharedInstance.login(withEmail: email, password: password, completion: {
                     self?.presentingViewController?.dismiss(animated: true, completion: nil)
                 }, failure: { error in
                     self?.showError(error: "Error occured on auto login. Please try logging in manually.")

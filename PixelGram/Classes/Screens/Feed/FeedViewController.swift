@@ -14,8 +14,8 @@ import RxCocoa
 class FeedViewController: CollectionViewController {
 
     var viewModel = FeedViewModel()
-    var dataSource: CollectionViewDataSource?
-    var selectedIndex: Int?
+    private var dataSource: CollectionViewDataSource?
+    private var selectedIndex: Int?
     
     // MARK: - View lifecycle
     
@@ -25,6 +25,7 @@ class FeedViewController: CollectionViewController {
         setupRefreshControl()
         setupViewModel()
         setupUserLoadedNotification()
+        setupLogoutNotification()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,16 +47,21 @@ class FeedViewController: CollectionViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if Session.sharedInstance.currentUser == nil {
-            let viewController = instantiateViewController(withIdentifier: LoginViewController.storyboardIdentifier)
-            present(NavigationController(rootViewController: viewController), animated: true, completion: nil)
-        }
+        displayLoginScreen()
     }
     
     // MARK: - Notifications
     
-    func setupUserLoadedNotification() {
-        NotificationCenter.default.addObserver(forName: Notification.Name(rawValue: UserLoader.UserLoadedNotification), object: UserLoader.sharedInstance, queue: nil, using: { [weak self] notification in
+    private func setupLogoutNotification() {
+        NotificationCenter.default.addObserver(forName: Notification.Name(rawValue: APIClient.UserLoggedInNotification),
+                                               object: APIClient.sharedInstance, queue: nil, using: { [weak self] notification in
+            self?.displayLoginScreen()
+        })
+    }
+    
+    private func setupUserLoadedNotification() {
+        NotificationCenter.default.addObserver(forName: Notification.Name(rawValue: UserLoader.UserLoadedNotification),
+                                               object: UserLoader.sharedInstance, queue: nil, using: { [weak self] notification in
             guard let user = notification.userInfo?["user"] as? User else {
                 return
             }
@@ -67,11 +73,13 @@ class FeedViewController: CollectionViewController {
     
     override func handleRefresh(_ sender: UIRefreshControl) {
         viewModel.page = 0
-        viewModel.images.value.removeAll()
+        if viewModel.type != .single {
+            viewModel.images.value.removeAll()
+        }
         viewModel.loadData()
     }
     
-    func reloadVisibleCells(_ userId: String) {
+    private func reloadVisibleCells(_ userId: String) {
         guard let collectionView = collectionView else {
             return
         }
@@ -86,7 +94,7 @@ class FeedViewController: CollectionViewController {
         }
     }
     
-    func createDataSource() -> CollectionViewDataSource {
+    private func createDataSource() -> CollectionViewDataSource {
         let dataSource = CollectionViewDataSource(configureCell: { [weak self] (collectionView, indexPath) -> UICollectionViewCell in
             if indexPath.row == (self?.viewModel.images.value.count ?? 0) - 1 {
                 self?.viewModel.loadData()
@@ -100,16 +108,14 @@ class FeedViewController: CollectionViewController {
     
     // MARK: - Cells
     
-    func configureCell(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
+    private func configureCell(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageViewCell.reuseIdentifier, for: indexPath)
         if let cell = cell as? ImageViewCell {
             let imageViewModel = viewModel.imageViewModel(forIndex: indexPath.row)
             cell.configure(with: imageViewModel)
             
-            cell.userButton?.rx.tap.subscribe(onNext: { [weak self, weak imageViewModel] in
-                if let userId = imageViewModel?.image.owner {
-                    self?.openUserProfile(with: userId)
-                }
+            cell.userButton?.rx.tap.subscribe(onNext: { [weak self] in
+                self?.openUserProfile(atIndex: indexPath.row)
             }).disposed(by: cell.disposeBag)
             
             cell.optionsButton?.rx.tap.subscribe(onNext: { [weak self] in
@@ -120,11 +126,21 @@ class FeedViewController: CollectionViewController {
         return cell
     }
     
-    func updateCells(oldCount: Int, count: Int) {
-        guard count > oldCount else {
+    private func updateCells(oldCount: Int, count: Int) {
+        guard let collectionView = collectionView else {
             return
         }
         
+        if oldCount == count {
+            refreshCells(collectionView: collectionView)
+        } else if oldCount < count {
+            insertCells(collectionView: collectionView, oldCount: oldCount, count: count)
+        } else if oldCount > count {
+            collectionView.reloadData()
+        }
+    }
+    
+    private func insertCells(collectionView: UICollectionView, oldCount: Int, count: Int) {
         var indexPaths = [IndexPath]()
         
         for index in oldCount...(count - 1) {
@@ -132,15 +148,24 @@ class FeedViewController: CollectionViewController {
             indexPaths.append(indexPath)
         }
         if oldCount == 0 {
-            collectionView?.reloadData()
+            collectionView.reloadData()
         } else {
-            collectionView?.insertItems(at: indexPaths)
+            collectionView.insertItems(at: indexPaths)
+        }
+    }
+    
+    private func refreshCells(collectionView: UICollectionView) {
+        for cell in collectionView.visibleCells {
+            if let indexPath = collectionView.indexPath(for: cell) {
+                let imageViewModel = viewModel.imageViewModel(forIndex: indexPath.row)
+                (cell as? ImageViewCell)?.configure(with: imageViewModel)
+            }
         }
     }
     
     // MARK: - Config
     
-    func setupViewModel() {
+    private func setupViewModel() {
         viewModel.loadingFinished = { [weak self] (oldCount, count) in
             if self?.collectionView?.refreshControl?.isRefreshing ?? false {
                 self?.collectionView?.refreshControl?.endRefreshing()
@@ -153,7 +178,7 @@ class FeedViewController: CollectionViewController {
         }
     }
     
-    func setupRefreshControl() {
+    private func setupRefreshControl() {
         collectionView?.alwaysBounceVertical = true
         collectionView?.refreshControl = refreshControl
     }
@@ -180,7 +205,14 @@ class FeedViewController: CollectionViewController {
     
     // MARK: - Actions
     
-    func openOptions() {
+    private func displayLoginScreen() {
+        if Session.sharedInstance.currentUser == nil {
+            let viewController = instantiateViewController(withIdentifier: LoginViewController.storyboardIdentifier)
+            present(NavigationController(rootViewController: viewController), animated: true, completion: nil)
+        }
+    }
+    
+    private func openOptions() {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         // Cancel action
@@ -194,7 +226,7 @@ class FeedViewController: CollectionViewController {
         present(alertController, animated: true, completion: nil)
     }
     
-    func deleteAction() {
+    private func deleteAction() {
         let alertController = UIAlertController(title: "Delete Post?", message: "Do you want to delete the post permanently?",
                                                 preferredStyle: .alert)
         
@@ -212,7 +244,7 @@ class FeedViewController: CollectionViewController {
         present(alertController, animated: true, completion: nil)
     }
     
-    func deleteImage(atIndex index: Int) {
+    private func deleteImage(atIndex index: Int) {
         let imageId = viewModel.images.value[index].id
         let indexPath = IndexPath(row: index, section: 0)
         
@@ -232,7 +264,12 @@ class FeedViewController: CollectionViewController {
     
     // MARK: - Navigation
     
-    func openUserProfile(with userId: String) {
+    private func openUserProfile(atIndex index: Int) {
+        let imageOwner = viewModel.images.value[index].owner
+        openUserProfile(withUserId: imageOwner)
+    }
+    
+    private func openUserProfile(withUserId userId: String) {
         let viewController = instantiateViewController(withIdentifier:
             ProfileViewController.storyboardIdentifier)
         (viewController as? ProfileViewController)?.userId = userId

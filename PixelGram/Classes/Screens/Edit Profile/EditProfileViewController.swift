@@ -119,7 +119,7 @@ class EditProfileViewController: ViewController {
         let completion: (String, String, String, String, String?) -> Void = { [weak self] (name, username, email, bio, avatar) in
             let userId = Session.sharedInstance.currentUser?.id ?? ""
             
-            APIClient.sharedInstance.editUser(with: userId, name: name, username: username, email: email, bio: bio, avatar: avatar, completion: { response in
+            APIClient.sharedInstance.editUser(withId: userId, name: name, username: username, email: email, bio: bio, avatar: avatar, completion: { response in
                 self?.view.window?.hideLoadingHUD()
                 
                 self?.showMessage(title: "Success", content: "User updates successfully.")
@@ -131,7 +131,7 @@ class EditProfileViewController: ViewController {
         }
         
         if let image = selectedImage {
-            APIClient.sharedInstance.uploadImage(image: image, completion: { response in
+            APIClient.sharedInstance.uploadImage(image, completion: { response in
                 completion(name, username, email, bio, (response?["filename"] as? String) ?? nil)
             }) { [weak self] error in
                 self?.view.window?.hideLoadingHUD()

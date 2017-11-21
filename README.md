@@ -1,8 +1,6 @@
 # PixelGram iOS Client
 
 iOS client for the [PixelGram API](https://github.com/robbdimitrov/pixelgram-api).
-It is written using the [MVVM](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel)
-pattern and [RxSwift](https://github.com/ReactiveX/RxSwift).
 
 ## Setup
 

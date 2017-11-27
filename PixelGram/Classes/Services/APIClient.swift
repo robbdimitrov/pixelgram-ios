@@ -20,7 +20,7 @@ class APIClient {
     
     // MARK: - Response status codes
     
-    enum APIStatusCode: Int {
+    enum StatusCode: Int {
         case ok = 200
         case badRequest = 400
         case unauthorized = 401
@@ -49,7 +49,7 @@ class APIClient {
                 "Accept": "application/json"
             ]
             if let token = Session.shared.token {
-                headers["x-access-token"] = token
+                headers["X-Access-Token"] = token
             }
             return headers
         }
@@ -100,7 +100,7 @@ class APIClient {
                 
                 return
             }
-            if statusCode == APIStatusCode.ok.rawValue, let dictionary = json["user"] as? [String: AnyObject], let token = json["token"] as? String {
+            if statusCode == StatusCode.ok.rawValue, let dictionary = json["user"] as? [String: AnyObject], let token = json["token"] as? String {
                 let user = UserFactory.createUser(dictionary)
                 
                 Session.shared.email = email
@@ -118,7 +118,7 @@ class APIClient {
                 let error = json["error"]
                 failure((error as? String) ?? "Error")
                 
-                if statusCode == APIStatusCode.unauthorized.rawValue {
+                if statusCode == StatusCode.unauthorized.rawValue {
                     self?.logout(completion: nil)
                 }
             }
@@ -157,7 +157,7 @@ class APIClient {
                 
                 return
             }
-            if statusCode == APIStatusCode.ok.rawValue {
+            if statusCode == StatusCode.ok.rawValue {
                 completion(json)
             } else {
                 let error = json["error"]
@@ -179,13 +179,13 @@ class APIClient {
                 
                 return
             }
-            if statusCode == APIStatusCode.unauthorized.rawValue {
+            if statusCode == StatusCode.unauthorized.rawValue {
                 self?.autoLogin(completion: {
                     self?.loadUser(withId: userId, completion: completion, failure: failure)
                 }, failure: { error in
                     failure(error)
                 })
-            } else if statusCode == APIStatusCode.ok.rawValue {
+            } else if statusCode == StatusCode.ok.rawValue {
                 if let jsonUser = json["user"] as? [String: AnyObject] {
                     let user = UserFactory.createUser(jsonUser)
                     UserCache.shared[user.id] = user
@@ -222,13 +222,13 @@ class APIClient {
                 
                 return
             }
-            if statusCode == APIStatusCode.unauthorized.rawValue {
+            if statusCode == StatusCode.unauthorized.rawValue {
                 self?.autoLogin(completion: {
                     self?.editUser(withId: userId, name: name, username: username, email: email, bio: bio, avatar: avatar, completion: completion, failure: failure)
                 }, failure: { error in
                     failure(error)
                 })
-            } else if statusCode == APIStatusCode.ok.rawValue {
+            } else if statusCode == StatusCode.ok.rawValue {
                 completion(json)
             } else {
                 let error = json["error"]
@@ -255,13 +255,13 @@ class APIClient {
                 
                 return
             }
-            if statusCode == APIStatusCode.unauthorized.rawValue {
+            if statusCode == StatusCode.unauthorized.rawValue {
                 self?.autoLogin(completion: {
                     self?.changePassword(forUserId: userId, oldPassword: oldPassword, password: password, completion: completion, failure: failure)
                 }, failure: { error in
                     failure(error)
                 })
-            } else if statusCode == APIStatusCode.ok.rawValue {
+            } else if statusCode == StatusCode.ok.rawValue {
                 completion()
             } else {
                 let error = json["error"]
@@ -283,13 +283,13 @@ class APIClient {
                 
                 return
             }
-            if statusCode == APIStatusCode.unauthorized.rawValue {
+            if statusCode == StatusCode.unauthorized.rawValue {
                 self?.autoLogin(completion: {
                     self?.loadUsersLikedImage(withId: imageId, page: page, limit: limit, completion: completion, failure: failure)
                 }, failure: { error in
                     failure(error)
                 })
-            } else if statusCode == APIStatusCode.ok.rawValue {
+            } else if statusCode == StatusCode.ok.rawValue {
                 if let jsonImages = json["likes"] as? [[String: AnyObject]] {
                     var users = [User]()
                     for dictionary in jsonImages {
@@ -331,13 +331,13 @@ class APIClient {
                         
                         return
                     }
-                    if statusCode == APIStatusCode.unauthorized.rawValue {
+                    if statusCode == StatusCode.unauthorized.rawValue {
                         self?.autoLogin(completion: {
                             self?.uploadImage(image, completion: completion, failure: failure)
                         }, failure: { error in
                             failure(error)
                         })
-                    } else if statusCode == APIStatusCode.ok.rawValue {
+                    } else if statusCode == StatusCode.ok.rawValue {
                         if let json = response.result.value as? [String: AnyObject] {
                             completion(json)
                         }
@@ -370,13 +370,13 @@ class APIClient {
 
                 return
             }
-            if statusCode == APIStatusCode.unauthorized.rawValue {
+            if statusCode == StatusCode.unauthorized.rawValue {
                 self?.autoLogin(completion: {
                     self?.loadImages(withURL: url, completion: completion, failure: failure)
                 }, failure: { error in
                     failure(error)
                 })
-            } else if statusCode == APIStatusCode.ok.rawValue {
+            } else if statusCode == StatusCode.ok.rawValue {
                 if let jsonImages = json["images"] as? [[String: AnyObject]] {
                     var images = [Image]()
                     for dictionary in jsonImages {
@@ -418,13 +418,13 @@ class APIClient {
                 
                 return
             }
-            if statusCode == APIStatusCode.unauthorized.rawValue {
+            if statusCode == StatusCode.unauthorized.rawValue {
                 self?.autoLogin(completion: {
                     self?.loadImage(withId: imageId, completion: completion, failure: failure)
                 }, failure: { error in
                     failure(error)
                 })
-            } else if statusCode == APIStatusCode.ok.rawValue {
+            } else if statusCode == StatusCode.ok.rawValue {
                 if let jsonImage = json["image"] as? [String: AnyObject] {
                     let image = ImageFactory.createImage(jsonImage)
                     
@@ -454,13 +454,13 @@ class APIClient {
                 }
                 return
             }
-            if statusCode == APIStatusCode.unauthorized.rawValue {
+            if statusCode == StatusCode.unauthorized.rawValue {
                 self?.autoLogin(completion: {
                     self?.createImage(filename: filename, description: description, completion: completion, failure: failure)
                 }, failure: { error in
                     failure(error)
                 })
-            } else if statusCode == APIStatusCode.ok.rawValue {
+            } else if statusCode == StatusCode.ok.rawValue {
                 completion(json)
             } else {
                 let error = json["error"]
@@ -482,13 +482,13 @@ class APIClient {
                 
                 return
             }
-            if statusCode == APIStatusCode.unauthorized.rawValue {
+            if statusCode == StatusCode.unauthorized.rawValue {
                 self?.autoLogin(completion: {
                     self?.deleteImage(withId: imageId, completion: completion, failure: failure)
                 }, failure: { error in
                     failure(error)
                 })
-            } else if statusCode == APIStatusCode.ok.rawValue {
+            } else if statusCode == StatusCode.ok.rawValue {
                 completion()
             } else {
                 let error = json["error"]
@@ -510,13 +510,13 @@ class APIClient {
                 
                 return
             }
-            if statusCode == APIStatusCode.unauthorized.rawValue {
+            if statusCode == StatusCode.unauthorized.rawValue {
                 self?.autoLogin(completion: {
                     self?.likeImage(withImageId: imageId, completion: completion, failure: failure)
                 }, failure: { error in
                     failure(error)
                 })
-            } else if statusCode == APIStatusCode.ok.rawValue {
+            } else if statusCode == StatusCode.ok.rawValue {
                 completion()
             } else {
                 let error = json["error"]
@@ -538,13 +538,13 @@ class APIClient {
                 
                 return
             }
-            if statusCode == APIStatusCode.unauthorized.rawValue {
+            if statusCode == StatusCode.unauthorized.rawValue {
                 self?.autoLogin(completion: {
                     self?.dislikeImage(withUserId: userId, imageId: imageId, completion: completion, failure: failure)
                 }, failure: { error in
                     failure(error)
                 })
-            } else if statusCode == APIStatusCode.ok.rawValue {
+            } else if statusCode == StatusCode.ok.rawValue {
                 completion()
             } else {
                 let error = json["error"]

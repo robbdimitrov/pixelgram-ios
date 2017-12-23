@@ -12,7 +12,7 @@ $ git clone git@github.com:robbdimitrov/pixelgram-ios.git
 $ cd pixelgram-ios
 ```
 
-5. Install the [`CocoaPods`](https://cocoapods.org/) dependencies
+3. Install the [`CocoaPods`](https://cocoapods.org/) dependencies
 
 ```
 $ pod install
